@@ -57,7 +57,7 @@ public class Mundo {
 		// Grafico el el tile base
 		for (int i = 0; i < alto; i++) {
 			for (int j = 0; j < ancho; j++) {
-				iso = dosDaIso(j, i);
+				iso = convertir2DaISO(j, i);
 				if ((iso[0] >= xMinimo && iso[0] <= xMaximo) && (iso[1] >= yMinimo && iso[1] <= yMaximo)) {
 					int map = juego.getPersonaje().getMapa();
 					if (map == 1) {
@@ -86,7 +86,7 @@ public class Mundo {
 			for (int j = 0; j < ancho; j++) {
 
 				// Se grafican los obstáculos sólidos
-				iso = dosDaIso(j, i);
+				iso = convertir2DaISO(j, i);
 				if ((iso[0] >= xMinimo && iso[0] <= xMaximo) && (iso[1] >= yMinimo && iso[1] <= yMaximo) && getTile(j, i).esSolido()) {
 					obst = getTile(j, i);
 					obst.graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()), (int) (iso[1] - juego.getCamara().getyOffset() - obst.getAlto() / 2), obst.getAncho(), obst.getAlto());
@@ -320,7 +320,7 @@ public class Mundo {
 		return alto;
 	}
 
-	public static float[] isoA2D(float x, float y) {
+	public static float[] convertirISOa2D(float x, float y) {
 		float[] dosD = new float[2];
 
 		dosD[0] = (x / (Tile.ANCHO / 2) + y / (Tile.ALTO / 2)) / 2;
@@ -329,7 +329,7 @@ public class Mundo {
 		return dosD;
 	}
 
-	public static float[] dosDaIso(float x, float y) {
+	public static float[] convertir2DaISO(float x, float y) {
 		float[] iso = new float[2];
 
 		iso[0] = (x - y) * (Tile.ANCHO / 2);

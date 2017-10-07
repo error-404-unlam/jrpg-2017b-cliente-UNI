@@ -15,7 +15,7 @@ import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
 
 /**
- * La clase EscuchaMensajes tiene como función esuchar los mensajes que se enviaran al servidor.
+ * La clase EscuchaMensajes tiene como función escuchar los mensajes que se enviarán al servidor.
  */
 public class EscuchaMensajes extends Thread {
 
@@ -27,10 +27,10 @@ public class EscuchaMensajes extends Thread {
 	// private Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
 	// private Map<Integer, PaquetePersonaje> personajesConectados;
 	/**
-	 * Constructor de EsuchaMensaje
+	 * Constructor de EscuchaMensaje
 	 * 
 	 * @param juego
-	 *            juego del que se escucha el mensaje
+	 *            Juego del que se escucha el mensaje.
 	 */
 	public EscuchaMensajes(final Juego juego) {
 		this.juego = juego;
@@ -61,19 +61,19 @@ public class EscuchaMensajes extends Thread {
 
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor.");
+			JOptionPane.showMessageDialog(null, "Falló la conexión con el servidor al intentar escuchar un mensaje.");
 		}
 	}
 	/**
-	 * Pide la ubicacion de los personajes
+	 * Pide la ubicación de los personajes.
 	 * 
-	 * @return devuelve el mapa con la ubicacion de los personajes
+	 * @return Devuelve el mapa con la ubicacion de los personajes.
 	 */
 
 	/**
-	 * Pide los personajes conectados
+	 * Pide los personajes conectados.
 	 * 
-	 * @return devuelve el mapa con los personajes conectados
+	 * @return Devuelve el mapa con los personajes conectados.
 	 */
 
 }
