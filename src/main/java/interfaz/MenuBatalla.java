@@ -30,7 +30,7 @@ public class MenuBatalla {
 		else
 			g.drawImage(Recursos.menuBatallaDeshabilitado, x, y, null);
 
-		// Dibujo los boones
+		// Dibujo los botones
 		g.drawImage(Recursos.habilidades.get(personaje.getHabilidadesRaza()[0]), botones[0][0], botones[0][1], anchoBoton, anchoBoton, null);
 		g.drawImage(Recursos.habilidades.get(personaje.getHabilidadesRaza()[1]), botones[1][0], botones[1][1], anchoBoton, anchoBoton, null);
 		g.drawImage(Recursos.habilidades.get(personaje.getHabilidadesCasta()[0]), botones[2][0], botones[2][1], anchoBoton, anchoBoton, null);
@@ -47,7 +47,7 @@ public class MenuBatalla {
 		g.drawString(personaje.getHabilidadesCasta()[2], x + 442, y + 94);
 		g.drawString("Ser energizado", x + 442, y + 168);
 
-		// Dibujo el turno de quien es
+		// Dibujo de quién es el turno
 		g.setColor(Color.WHITE);
 		if (habilitado)
 			Pantalla.centerString(g, new Rectangle(x, y + 5, Recursos.menuBatalla.getWidth(), 20), "Mi Turno");
