@@ -183,7 +183,7 @@ public class Cliente extends Thread {
 					menuCarga.dispose();
 				}
 			} catch (IOException | InterruptedException | ClassNotFoundException e) {
-				JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor durante el inicio de sesión.");
+				JOptionPane.showMessageDialog(null, "Falló la conexión con el servidor durante el inicio de sesión.");
 				System.exit(1);
 			}
 		}
