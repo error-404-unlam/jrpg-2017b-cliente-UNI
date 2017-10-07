@@ -75,8 +75,8 @@ public class Mundo {
 	}
 
 	public void graficarObstaculos(Graphics g) {
-		Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
-		Map<Integer, PaquetePersonaje> personajesConectados;
+		Map<Integer, PaqueteMovimiento> ubicacionPersonajes = null;
+		Map<Integer, PaquetePersonaje> personajesConectados = null;
 		int jPersonaje;
 		int iPersonaje;
 		boolean haySolidoArriba;
@@ -145,8 +145,12 @@ public class Mundo {
 				// adyacentes a un obstáculo sólido, y teniendo en cuenta si
 				// están en el mismo mapa
 				if (juego.getPersonajesConectados() != null) {
-					personajesConectados = new HashMap<Integer, PaquetePersonaje>(juego.getPersonajesConectados());
-					ubicacionPersonajes = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionPersonajes());
+					try {
+						personajesConectados = new HashMap<Integer, PaquetePersonaje>(juego.getPersonajesConectados());
+						ubicacionPersonajes = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionPersonajes());
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 					Iterator<Integer> it = personajesConectados.keySet().iterator();
 					int key;
 					PaqueteMovimiento actual;
