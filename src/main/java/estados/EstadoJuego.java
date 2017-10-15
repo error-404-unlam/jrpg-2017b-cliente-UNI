@@ -78,16 +78,12 @@ public class EstadoJuego extends Estado {
 	}
 
 	private String getMundo() {
-		int mundo = juego.getPersonaje().getMapa();
-
-		if (mundo == 1) {
-			return "Aubenor";
-		} else if (mundo == 2) {
-			return "Aris";
-		} else if (mundo == 3) {
-			return "Eodrim";
+		String[] mundo = { "Aubenor" , "Aris" , "Eodrim" };
+		int mapNum = juego.getPersonaje().getMapa();
+		
+		if(mapNum >=1 && mapNum<=3) {
+			return mundo[mapNum];
 		}
-
 		return null;
 	}
 
