@@ -43,13 +43,13 @@ public class EstadoJuego extends Estado {
 		miniaturaPersonaje = Recursos.personaje.get(paquetePersonaje.getRaza()).get(5)[0];
 
 		try {
-			// Le envio al servidor que me conecte al mapa y mi posicion
+			// Le pido al servidor que me conecte al mapa
 			juego.getPersonaje().setComando(Comando.CONEXION);
 			juego.getPersonaje().setEstado(Estado.estadoJuego);
 			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
 			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
 		} catch (IOException e) {
-			JOptionPane.showMessageDialog(null, "Fallo la conexión con el servidor al ingresar al mundo");
+			JOptionPane.showMessageDialog(null, "Falló la conexión con el servidor al ingresar al mundo.");
 		}
 	}
 
@@ -93,7 +93,7 @@ public class EstadoJuego extends Estado {
 
 	public void setHaySolicitud(boolean b, PaquetePersonaje enemigo, int tipoSolicitud) {
 		haySolicitud = b;
-		// menu que mostrara al enemigo
+		// Menu que mostrará al enemigo
 		menuEnemigo = new MenuInfoPersonaje(300, 50, enemigo);
 		this.tipoSolicitud = tipoSolicitud;
 	}

@@ -1,19 +1,18 @@
 package frames;
 
+import java.awt.Point;
+import java.awt.Toolkit;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import cliente.*;
+import cliente.Cliente;
 import mensajeria.Comando;
-
-import javax.swing.ImageIcon;
-
-import java.awt.Point;
-import java.awt.Toolkit;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 
 public class MenuCarga extends JFrame {
 
@@ -21,6 +20,7 @@ public class MenuCarga extends JFrame {
 	private JLabel barraCargando;
 
 	public MenuCarga(final Cliente cliente) {
+		// Se inicializa ícono y cursor
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/frames/IconoWome.png"));
 		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0), "custom cursor"));
 

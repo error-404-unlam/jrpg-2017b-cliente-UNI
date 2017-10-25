@@ -57,7 +57,7 @@ public class Mundo {
 		// Grafico el el tile base
 		for (int i = 0; i < alto; i++) {
 			for (int j = 0; j < ancho; j++) {
-				iso = dosDaIso(j, i);
+				iso = convertir2DaISO(j, i);
 				if ((iso[0] >= xMinimo && iso[0] <= xMaximo) && (iso[1] >= yMinimo && iso[1] <= yMaximo)) {
 					int map = juego.getPersonaje().getMapa();
 					if (map == 1) {
@@ -75,8 +75,8 @@ public class Mundo {
 	}
 
 	public void graficarObstaculos(Graphics g) {
-		Map<Integer, PaqueteMovimiento> ubicacionPersonajes;
-		Map<Integer, PaquetePersonaje> personajesConectados;
+		Map<Integer, PaqueteMovimiento> ubicacionPersonajes = null;
+		Map<Integer, PaquetePersonaje> personajesConectados = null;
 		int jPersonaje;
 		int iPersonaje;
 		boolean haySolidoArriba;
@@ -86,7 +86,7 @@ public class Mundo {
 			for (int j = 0; j < ancho; j++) {
 
 				// Se grafican los obstáculos sólidos
-				iso = dosDaIso(j, i);
+				iso = convertir2DaISO(j, i);
 				if ((iso[0] >= xMinimo && iso[0] <= xMaximo) && (iso[1] >= yMinimo && iso[1] <= yMaximo) && getTile(j, i).esSolido()) {
 					obst = getTile(j, i);
 					obst.graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()), (int) (iso[1] - juego.getCamara().getyOffset() - obst.getAlto() / 2), obst.getAncho(), obst.getAlto());
@@ -100,8 +100,7 @@ public class Mundo {
 				/*
 				 * Parche temporal
 				 *
-				 * Bug a solucionar: Las coordenadas del personaje no se
-				 * actualizan apropiadamente luego de un movimiento
+				 * Bug a solucionar: Las coordenadas del personaje no se actualizan apropiadamente luego de un movimiento
 				 *
 				 * Será necesario remover el parche una vez solucionado el bug
 				 */
@@ -122,8 +121,7 @@ public class Mundo {
 					iPersonaje++;
 				}
 				/*
-				 * -------------------------------------------------------------
-				 * -------------------------------------------------------------
+				 * -------------------------------------------------
 				 */
 
 				try {
@@ -147,8 +145,12 @@ public class Mundo {
 				// adyacentes a un obstáculo sólido, y teniendo en cuenta si
 				// están en el mismo mapa
 				if (juego.getPersonajesConectados() != null) {
-					personajesConectados = new HashMap(juego.getPersonajesConectados());
-					ubicacionPersonajes = new HashMap(juego.getUbicacionPersonajes());
+					try {
+						personajesConectados = new HashMap<Integer, PaquetePersonaje>(juego.getPersonajesConectados());
+						ubicacionPersonajes = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionPersonajes());
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 					Iterator<Integer> it = personajesConectados.keySet().iterator();
 					int key;
 					PaqueteMovimiento actual;
@@ -158,19 +160,16 @@ public class Mundo {
 						key = it.next();
 						actual = ubicacionPersonajes.get(key);
 						if (actual != null && actual.getIdPersonaje() != juego.getPersonaje().getId() && personajesConectados.get(actual.getIdPersonaje()).getEstado() == Estado.estadoJuego && personajesConectados.get(actual.getIdPersonaje()).getMapa() == juego.getPersonaje().getMapa()) {
-							
+
 							jPersonaje = Mundo.mouseATile(actual.getPosX(), actual.getPosY())[0];
 							iPersonaje = Mundo.mouseATile(actual.getPosX(), actual.getPosY())[1];
 
 							/*
 							 * Parche temporal
 							 *
-							 * Bug a solucionar: Las coordenadas del personaje
-							 * no se actualizan apropiadamente luego de un
-							 * movimiento
+							 * Bug a solucionar: Las coordenadas del personaje no se actualizan apropiadamente luego de un movimiento
 							 *
-							 * Será necesario remover el parche una vez
-							 * solucionado el bug
+							 * Será necesario remover el parche una vez solucionado el bug
 							 */
 							if (juego.getUbicacionPersonaje().getDireccion() == 0) {
 								iPersonaje++;
@@ -189,7 +188,6 @@ public class Mundo {
 								iPersonaje++;
 							}
 							/*
-							 * -------------------------------------------------
 							 * -------------------------------------------------
 							 */
 
@@ -212,8 +210,7 @@ public class Mundo {
 						}
 					}
 				}
-				
-				
+
 			}
 		}
 	}
@@ -323,7 +320,7 @@ public class Mundo {
 		return alto;
 	}
 
-	public static float[] isoA2D(float x, float y) {
+	public static float[] convertirISOa2D(float x, float y) {
 		float[] dosD = new float[2];
 
 		dosD[0] = (x / (Tile.ANCHO / 2) + y / (Tile.ALTO / 2)) / 2;
@@ -332,7 +329,7 @@ public class Mundo {
 		return dosD;
 	}
 
-	public static float[] dosDaIso(float x, float y) {
+	public static float[] convertir2DaISO(float x, float y) {
 		float[] iso = new float[2];
 
 		iso[0] = (x - y) * (Tile.ANCHO / 2);

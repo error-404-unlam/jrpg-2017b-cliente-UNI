@@ -68,10 +68,11 @@ public class MenuEscape extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				Pantalla.menuEscp = null;
+				Pantalla.menuAsignar = null;
 				if (Pantalla.menuAsignar == null) {
 					Pantalla.menuAsignar = new MenuAsignarSkills(cliente);
-					Pantalla.menuAsignar.setVisible(true);
 				}
+				Pantalla.menuAsignar.setVisible(true);
 			}
 		});
 		contentPane.add(asignarSkills);
