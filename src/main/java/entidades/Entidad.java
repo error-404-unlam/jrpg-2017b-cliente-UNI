@@ -5,8 +5,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -97,6 +99,18 @@ public class Entidad {
 	private float yComercio;
 	private float[] comercio;
 
+	private Map<Integer, Command> commandMap=new HashMap<Integer, Command>();
+	
+	public void cargarMap(){
+		commandMap.put(horizontalIzq, moverIzq);
+		commandMap.put(horizontalDer, moverDer);
+		commandMap.put(verticalSup, moverArriba);
+		commandMap.put(verticalInf, moverAbajo);
+		commandMap.put(diagonalInfIzq, moverAbajoIzq);
+		commandMap.put(diagonalInfDer, moverAbajoDer);
+		commandMap.put(diagonalSupIzq, moverArribaIzq);
+		commandMap.put(diagonalSupDer, moverArribaDer);
+	}
 	/**
 	 * Constructor de la clase Entidad
 	 * 
@@ -144,6 +158,7 @@ public class Entidad {
 		juego.getUbicacionPersonaje().setPosY(y);
 		juego.getUbicacionPersonaje().setDireccion(getDireccion());
 		juego.getUbicacionPersonaje().setFrame(getFrame());
+		cargarMap();
 	}
 
 	/**
@@ -463,24 +478,10 @@ public class Entidad {
 	 * Obtiene el frameActual del personaje
 	 */
 	private BufferedImage getFrameAnimacionActual() {
-		if (movimientoHacia == horizontalIzq) {
-			return moverIzq.getFrameActual();
-		} else if (movimientoHacia == horizontalDer) {
-			return moverDer.getFrameActual();
-		} else if (movimientoHacia == verticalSup) {
-			return moverArriba.getFrameActual();
-		} else if (movimientoHacia == verticalInf) {
-			return moverAbajo.getFrameActual();
-		} else if (movimientoHacia == diagonalInfIzq) {
-			return moverAbajoIzq.getFrameActual();
-		} else if (movimientoHacia == diagonalInfDer) {
-			return moverAbajoDer.getFrameActual();
-		} else if (movimientoHacia == diagonalSupIzq) {
-			return moverArribaIzq.getFrameActual();
-		} else if (movimientoHacia == diagonalSupDer) {
-			return moverArribaDer.getFrameActual();
-		}
-
+		
+		Command command;
+		if((command=commandMap.get(movimientoHacia))!=null)
+				return command.executeGetFrameActual();
 		return Recursos.orco.get(6)[0];
 	}
 
@@ -497,24 +498,9 @@ public class Entidad {
 	 * Obtiene el frame donde esta el personaje
 	 */
 	private int getFrame() {
-		if (movimientoHacia == horizontalIzq) {
-			return moverIzq.getFrame();
-		} else if (movimientoHacia == horizontalDer) {
-			return moverDer.getFrame();
-		} else if (movimientoHacia == verticalSup) {
-			return moverArriba.getFrame();
-		} else if (movimientoHacia == verticalInf) {
-			return moverAbajo.getFrame();
-		} else if (movimientoHacia == diagonalInfIzq) {
-			return moverAbajoIzq.getFrame();
-		} else if (movimientoHacia == diagonalInfDer) {
-			return moverAbajoDer.getFrame();
-		} else if (movimientoHacia == diagonalSupIzq) {
-			return moverArribaIzq.getFrame();
-		} else if (movimientoHacia == diagonalSupDer) {
-			return moverArribaDer.getFrame();
-		}
-
+		Command command;
+		if((command=commandMap.get(movimientoHacia))!=null)
+			return command.executeGetFrame();
 		return 0;
 	}
 
