@@ -8,6 +8,10 @@ import chat.VentanaContactos;
 import mensajeria.PaqueteDePersonajes;
 import mensajeria.PaquetePersonaje;
 
+/**
+ * Clase Conexion.
+ * @author Miguel
+ */
 public class Conexion extends ComandosEscucha {
 
 	@Override
@@ -17,6 +21,10 @@ public class Conexion extends ComandosEscucha {
 		actualizarLista(pdp);
 	}
 
+	/**
+	 * Actualista la lista con de Contactos.
+	 * @param pdp PaqueteDePersonajes
+	 */
 	private void actualizarLista(final PaqueteDePersonajes pdp) {
 		DefaultListModel<String> modelo = new DefaultListModel<String>();
 		VentanaContactos.getList().removeAll();

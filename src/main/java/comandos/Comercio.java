@@ -8,6 +8,10 @@ import frames.MenuComerciar;
 import mensajeria.Paquete;
 import mensajeria.PaqueteComerciar;
 
+/**
+ * Clase Comercio. Comercia entre Personajes.
+ * @author Miguel
+ */
 public class Comercio extends ComandosEscucha {
 
 	@Override

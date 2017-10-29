@@ -2,6 +2,10 @@ package comandos;
 
 import mensajeria.Comando;
 
+/**
+ * Clase SalirSet.
+ * @author Miguel
+ */
 public class SalirSet extends ComandosCliente {
 
 	@Override

@@ -5,6 +5,10 @@ import javax.swing.JOptionPane;
 import frames.MenuCreacionPj;
 import mensajeria.Paquete;
 
+/**
+ * Clase Registro: Encargada de registrar al usuario.
+ * @author Miguel
+ */
 public class Registro extends ComandosCliente {
 
 	@Override
@@ -15,7 +19,8 @@ public class Registro extends ComandosCliente {
 			if (paquete.getMensaje().equals(Paquete.msjExito)) {
 
 				// Abro el menu para la creaci�n del personaje
-				MenuCreacionPj menuCreacionPJ = new MenuCreacionPj(this.getCliente(), this.getCliente().getPaquetePersonaje(), gson);
+				MenuCreacionPj menuCreacionPJ = new MenuCreacionPj(
+						this.getCliente(), this.getCliente().getPaquetePersonaje(), gson);
 				menuCreacionPJ.setVisible(true);
 
 				// Espero a que el usuario cree el personaje
