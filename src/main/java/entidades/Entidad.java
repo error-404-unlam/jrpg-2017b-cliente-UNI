@@ -92,19 +92,8 @@ public class Entidad {
 	private float xComercio;
 	private float yComercio;
 	private float[] comercio;
-
-	private Map<Integer, Command> commandMap=new HashMap<Integer, Command>();
 	
-	public void cargarMap(){
-		commandMap.put(horizontalIzq, moverIzq);
-		commandMap.put(horizontalDer, moverDer);
-		commandMap.put(verticalSup, moverArriba);
-		commandMap.put(verticalInf, moverAbajo);
-		commandMap.put(diagonalInfIzq, moverAbajoIzq);
-		commandMap.put(diagonalInfDer, moverAbajoDer);
-		commandMap.put(diagonalSupIzq, moverArribaIzq);
-		commandMap.put(diagonalSupDer, moverArribaDer);
-	}
+
 	/**
 	 * Constructor de la clase Entidad
 	 * 
@@ -149,7 +138,6 @@ public class Entidad {
 		juego.getUbicacionPersonaje().setPosY(y);
 		juego.getUbicacionPersonaje().setDireccion(getDireccion());
 		juego.getUbicacionPersonaje().setFrame(getFrame());
-		cargarMap();
 	}
 
 	/**

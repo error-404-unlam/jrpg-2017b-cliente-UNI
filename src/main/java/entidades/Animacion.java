@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 /**
  * La clase Animacion tiene como función controlar las animaciones.
  */
-public class Animacion implements Command{
+public class Animacion{
 
 	private int velocidad;
 	private int indice;
@@ -67,15 +67,5 @@ public class Animacion implements Command{
 	 */
 	public int getFrame() {
 		return indice;
-	}
-
-	@Override
-	public int executeGetFrame() {
-		return getFrame();
-	}
-
-	@Override
-	public BufferedImage executeGetFrameActual() {
-		return getFrameActual();
 	}
 }
