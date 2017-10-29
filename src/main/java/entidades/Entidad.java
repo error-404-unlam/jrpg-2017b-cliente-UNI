@@ -5,8 +5,10 @@ import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -91,6 +93,18 @@ public class Entidad {
 	private float yComercio;
 	private float[] comercio;
 
+	private Map<Integer, Command> commandMap=new HashMap<Integer, Command>();
+	
+	public void cargarMap(){
+		commandMap.put(horizontalIzq, moverIzq);
+		commandMap.put(horizontalDer, moverDer);
+		commandMap.put(verticalSup, moverArriba);
+		commandMap.put(verticalInf, moverAbajo);
+		commandMap.put(diagonalInfIzq, moverAbajoIzq);
+		commandMap.put(diagonalInfDer, moverAbajoDer);
+		commandMap.put(diagonalSupIzq, moverArribaIzq);
+		commandMap.put(diagonalSupDer, moverArribaDer);
+	}
 	/**
 	 * Constructor de la clase Entidad
 	 * 
@@ -135,6 +149,7 @@ public class Entidad {
 		juego.getUbicacionPersonaje().setPosY(y);
 		juego.getUbicacionPersonaje().setDireccion(getDireccion());
 		juego.getUbicacionPersonaje().setFrame(getFrame());
+		cargarMap();
 	}
 
 	/**
@@ -463,8 +478,7 @@ public class Entidad {
 	/**
 	 * Obtiene el frame donde esta el personaje
 	 */
-	private int getFrame() {
-		
+	private int getFrame() {		
 		if(this.movimientoHacia >= 0 && this.movimientoHacia <=7 ) {
 			return this.animDirDeMov[this.movimientoHacia].getFrame();
 		}
@@ -577,9 +591,7 @@ public class Entidad {
 	 * @return true or false
 	 */
 	private boolean estanEnDiagonal(final Nodo nodoUno, final Nodo nodoDos) {
-		if (nodoUno.obtenerX() == nodoDos.obtenerX() || nodoUno.obtenerY() == nodoDos.obtenerY())
-			return false;
-		return true;
+		return nodoUno.obtenerX() == nodoDos.obtenerX() || nodoUno.obtenerY() == nodoDos.obtenerY();
 	}
 
 	/**
