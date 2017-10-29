@@ -2,11 +2,15 @@ package comandos;
 
 import mensajeria.Comando;
 
+/**
+ * Clase RegistroSet
+ * @author Miguel
+ */
 public class RegistroSet extends ComandosCliente {
 
 	@Override
 	public void ejecutar() {
-		cliente.getPaqueteUsuario().setComando(Comando.REGISTRO);
+		this.getCliente().getPaqueteUsuario().setComando(Comando.REGISTRO);
 
 	}
 
