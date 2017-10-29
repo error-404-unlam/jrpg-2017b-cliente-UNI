@@ -13,7 +13,7 @@ public class Conexion extends ComandosEscucha {
 	@Override
 	public void ejecutar() {
 		PaqueteDePersonajes pdp = (PaqueteDePersonajes) gson.fromJson(cadenaLeida, PaqueteDePersonajes.class);
-		juego.setPersonajesConectados(pdp.getPersonajes());
+		this.getJuego().setPersonajesConectados(pdp.getPersonajes());
 		actualizarLista(pdp);
 	}
 
@@ -23,7 +23,7 @@ public class Conexion extends ComandosEscucha {
 		for (Map.Entry<Integer, PaquetePersonaje> personaje : pdp.getPersonajes().entrySet()) {
 			modelo.addElement(personaje.getValue().getNombre());
 		}
-		modelo.removeElement(juego.getPersonaje().getNombre());
+		modelo.removeElement(this.getJuego().getPersonaje().getNombre());
 		VentanaContactos.getList().setModel(modelo);
 	}
 }

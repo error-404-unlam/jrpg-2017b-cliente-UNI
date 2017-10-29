@@ -22,23 +22,23 @@ public class Trueque extends ComandosEscucha {
 		paqueteComerciar = gson.fromJson(cadenaLeida, PaqueteComerciar.class);
 		Personaje pj = null;
 
-		juego.getCli().getPaquetePersonaje().removerBonus();
+		this.getJuego().getCli().getPaquetePersonaje().removerBonus();
 
-		String nombre = juego.getCli().getPaquetePersonaje().getNombre();
-		int salud = juego.getCli().getPaquetePersonaje().getSaludTope();
-		int energia = juego.getCli().getPaquetePersonaje().getEnergiaTope();
-		int fuerza = juego.getCli().getPaquetePersonaje().getFuerza();
-		int destreza = juego.getCli().getPaquetePersonaje().getDestreza();
-		int inteligencia = juego.getCli().getPaquetePersonaje().getInteligencia();
-		int experiencia = juego.getCli().getPaquetePersonaje().getExperiencia();
-		int nivel = juego.getCli().getPaquetePersonaje().getNivel();
-		int id = juego.getCli().getPaquetePersonaje().getId();
+		String nombre = this.getJuego().getCli().getPaquetePersonaje().getNombre();
+		int salud = this.getJuego().getCli().getPaquetePersonaje().getSaludTope();
+		int energia = this.getJuego().getCli().getPaquetePersonaje().getEnergiaTope();
+		int fuerza = this.getJuego().getCli().getPaquetePersonaje().getFuerza();
+		int destreza = this.getJuego().getCli().getPaquetePersonaje().getDestreza();
+		int inteligencia = this.getJuego().getCli().getPaquetePersonaje().getInteligencia();
+		int experiencia = this.getJuego().getCli().getPaquetePersonaje().getExperiencia();
+		int nivel = this.getJuego().getCli().getPaquetePersonaje().getNivel();
+		int id = this.getJuego().getCli().getPaquetePersonaje().getId();
 
 		Casta casta = null;
 
 		try {
-			casta = (Casta) Class.forName("dominio" + "." + juego.getCli().getPaquetePersonaje().getCasta()).newInstance();
-			pj = (Personaje) Class.forName("dominio" + "." + juego.getCli().getPaquetePersonaje().getRaza()).getConstructor(String.class, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, Casta.class, Integer.TYPE, Integer.TYPE, Integer.TYPE).newInstance(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, id);
+			casta = (Casta) Class.forName("dominio" + "." + this.getJuego().getCli().getPaquetePersonaje().getCasta()).newInstance();
+			pj = (Personaje) Class.forName("dominio" + "." + this.getJuego().getCli().getPaquetePersonaje().getRaza()).getConstructor(String.class, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, Integer.TYPE, Casta.class, Integer.TYPE, Integer.TYPE, Integer.TYPE).newInstance(nombre, salud, energia, fuerza, destreza, inteligencia, casta, experiencia, nivel, id);
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException e) {
 			JOptionPane.showMessageDialog(null, "Error al crear la batalla");
 		}
@@ -46,14 +46,14 @@ public class Trueque extends ComandosEscucha {
 		// trueque
 		if (id == paqueteComerciar.getId()) {
 			paqueteComerciar.getItemsADar().removeAll(paqueteComerciar.getItemsADar());
-			ArrayList<Item> items = juego.getPersonajesConectados().get(paqueteComerciar.getIdEnemigo()).getItems();
+			ArrayList<Item> items = this.getJuego().getPersonajesConectados().get(paqueteComerciar.getIdEnemigo()).getItems();
 			boolean loop = true;
 			int i = 0;
-			while (juego.getCli().getM1().getObtener().size() > 0) {
+			while (this.getJuego().getCli().getM1().getObtener().size() > 0) {
 				while (loop) {
-					if (items.get(i).getNombre().equals(juego.getCli().getM1().getObtener().get(0))) {
+					if (items.get(i).getNombre().equals(this.getJuego().getCli().getM1().getObtener().get(0))) {
 						paqueteComerciar.getItemsADar().add(items.get(i));
-						juego.getCli().getM1().getObtener().remove(0);
+						this.getJuego().getCli().getM1().getObtener().remove(0);
 						loop = false;
 					}
 					i++;
@@ -61,17 +61,17 @@ public class Trueque extends ComandosEscucha {
 				loop = true;
 				i = 0;
 			}
-			pj.trueque(juego.getCli().getPaquetePersonaje().getItems(), paqueteComerciar.getItemsADar(), juego.getCli().getM1().getDar());
+			pj.trueque(this.getJuego().getCli().getPaquetePersonaje().getItems(), paqueteComerciar.getItemsADar(), this.getJuego().getCli().getM1().getDar());
 		} else {
 			// sino soy yo esta todo ok y trueque
-			pj.trueque(juego.getCli().getPaquetePersonaje().getItems(), paqueteComerciar.getItemsADar(), juego.getCli().getM1().getDar());
+			pj.trueque(this.getJuego().getCli().getPaquetePersonaje().getItems(), paqueteComerciar.getItemsADar(), this.getJuego().getCli().getM1().getDar());
 		}
-		juego.getCli().getPaquetePersonaje().actualizarTrueque(pj.getItems());
-		paquetePersonaje = juego.getCli().getPaquetePersonaje();
+		this.getJuego().getCli().getPaquetePersonaje().actualizarTrueque(pj.getItems());
+		paquetePersonaje = this.getJuego().getCli().getPaquetePersonaje();
 		paquetePersonaje.setComando(Comando.ACTUALIZARTRUEQUE);
-		juego.getCli().setM1(null);
+		this.getJuego().getCli().setM1(null);
 		try {
-			juego.getCli().getSal().writeObject(gson.toJson(paquetePersonaje));
+			this.getJuego().getCli().getSal().writeObject(gson.toJson(paquetePersonaje));
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Error al actualizar trueque");
 
