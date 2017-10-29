@@ -71,14 +71,8 @@ public class Entidad {
 	private boolean enMovimiento;
 
 	// Animaciones
-	private final Animacion moverIzq;
-	private final Animacion moverArribaIzq;
-	private final Animacion moverArriba;
-	private final Animacion moverArribaDer;
-	private final Animacion moverDer;
-	private final Animacion moverAbajoDer;
-	private final Animacion moverAbajo;
-	private final Animacion moverAbajoIzq;
+
+	private final Animacion [] animDirDeMov;	
 
 	private final Gson gson = new Gson();
 	private int intervaloEnvio = 0;
@@ -143,15 +137,12 @@ public class Entidad {
 		yOffset = alto / 2;
 		x = (int) (spawnX / 64) * 64;
 		y = (int) (spawnY / 32) * 32;
-
-		moverIzq = new Animacion(velAnimacion, animaciones.get(0));
-		moverArribaIzq = new Animacion(velAnimacion, animaciones.get(1));
-		moverArriba = new Animacion(velAnimacion, animaciones.get(2));
-		moverArribaDer = new Animacion(velAnimacion, animaciones.get(3));
-		moverDer = new Animacion(velAnimacion, animaciones.get(4));
-		moverAbajoDer = new Animacion(velAnimacion, animaciones.get(5));
-		moverAbajo = new Animacion(velAnimacion, animaciones.get(6));
-		moverAbajoIzq = new Animacion(velAnimacion, animaciones.get(7));
+		
+		this.animDirDeMov = new Animacion [8];
+		
+		for(int i=0 ; i < this.animDirDeMov.length ; i++) {
+			this.animDirDeMov[i] = new Animacion(velAnimacion, animaciones.get(i));
+		}
 
 		// Informo mi posición actual
 		juego.getUbicacionPersonaje().setPosX(x);
@@ -166,24 +157,14 @@ public class Entidad {
 	 */
 	public void actualizar() {
 
-		if (enMovimiento) {
-			moverIzq.actualizar();
-			moverArribaIzq.actualizar();
-			moverArriba.actualizar();
-			moverArribaDer.actualizar();
-			moverDer.actualizar();
-			moverAbajoDer.actualizar();
-			moverAbajo.actualizar();
-			moverAbajoIzq.actualizar();
+		if (enMovimiento) {			
+			for(int i=0 ; i < this.animDirDeMov.length ; i++) {
+				this.animDirDeMov[i].actualizar();
+			}
 		} else {
-			moverIzq.reset();
-			moverArribaIzq.reset();
-			moverArriba.reset();
-			moverArribaDer.reset();
-			moverDer.reset();
-			moverAbajoDer.reset();
-			moverAbajo.reset();
-			moverAbajoIzq.reset();
+			for(int i=0 ; i < this.animDirDeMov.length ; i++) {
+				this.animDirDeMov[i].reset();
+			}
 		}
 
 		getEntrada();
@@ -479,9 +460,9 @@ public class Entidad {
 	 */
 	private BufferedImage getFrameAnimacionActual() {
 		
-		Command command;
-		if((command=commandMap.get(movimientoHacia))!=null)
-				return command.executeGetFrameActual();
+		if(this.movimientoHacia >= 0 && this.movimientoHacia <=7 ) {
+			return this.animDirDeMov[this.movimientoHacia].getFrameActual();
+		}
 		return Recursos.orco.get(6)[0];
 	}
 
@@ -497,10 +478,10 @@ public class Entidad {
 	/**
 	 * Obtiene el frame donde esta el personaje
 	 */
-	private int getFrame() {
-		Command command;
-		if((command=commandMap.get(movimientoHacia))!=null)
-			return command.executeGetFrame();
+	private int getFrame() {		
+		if(this.movimientoHacia >= 0 && this.movimientoHacia <=7 ) {
+			return this.animDirDeMov[this.movimientoHacia].getFrame();
+		}
 		return 0;
 	}
 
