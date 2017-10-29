@@ -14,12 +14,11 @@ import recursos.Recursos;
  * Carga los recursos
  * */
 public class CargarRecursos extends Thread {
-
+	/**
+	 * Setea el cliente a utilizar
+	 * @param Cliente
+	 * */
 	private Cliente cliente;
-/**
- * Constructor de carga de recursos
- * @param Cliente
- * */
 	public CargarRecursos(final Cliente cliente) {
 		this.cliente = cliente;
 	}
