@@ -5,8 +5,13 @@ import javax.swing.JOptionPane;
 import dominio.Item;
 import mensajeria.PaqueteComerciar;
 
+/**
+ * Comando que actualiza el comercio.
+ * @author Miguel
+ */
 public class ActualizarComercio extends ComandosEscucha {
 
+	private final int tamMax = 9;
 	@Override
 	public void ejecutar() {
 		int sizeMisItems = juego.getCli().getM1().getSizeItems();
@@ -18,10 +23,10 @@ public class ActualizarComercio extends ComandosEscucha {
 		sizeAObtener = paqueteComerciar.getItemsADar().size();
 		cuentaSize = sizeMisItems - sizeADar + sizeAObtener;
 		if (sizeADar != 0) {
-			if (cuentaSize <= 9) {
+			if (cuentaSize <= tamMax) {
 				juego.getCli().getM1().getChckbxListo().setEnabled(true);
 				juego.getCli().getM1().getLeyenda().setVisible(false);
-			} else if (cuentaSize > 9) {
+			} else if (cuentaSize > tamMax) {
 				juego.getCli().getM1().getChckbxListo().setEnabled(false);
 				juego.getCli().getM1().getLeyenda().setVisible(true);
 			}
@@ -47,9 +52,11 @@ public class ActualizarComercio extends ComandosEscucha {
 			}
 			// modifico la cant de listos en el jframe y tambien el lbl
 			juego.getCli().getM1().setCantListos(paqueteComerciar.getListo());
-			juego.getCli().getM1().getCantListo().setText(String.valueOf(juego.getCli().getM1().getCantListos()) + "/2");
+			juego.getCli().getM1().getCantListo().setText(
+					String.valueOf(juego.getCli().getM1().getCantListos()) + "/2");
 			if (juego.getCli().getM1().getCantListos() == 2) {
-				JOptionPane.showMessageDialog(juego.getCli().getM1(), "Se ha realizado con exito el comercio");
+				JOptionPane.showMessageDialog(juego.getCli().getM1(),
+						"Se ha realizado con exito el comercio");
 				juego.getCli().getM1().dispose();
 			}
 		}
