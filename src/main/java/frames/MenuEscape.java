@@ -104,9 +104,9 @@ public class MenuEscape extends JFrame {
 					Paquete p = new Paquete();
 					p.setComando(Comando.DESCONECTAR);
 					p.setIp(cliente.getMiIp());
-					cliente.getSalida().writeObject(gson.toJson(p));
+					cliente.getSal().writeObject(gson.toJson(p));
 					cliente.getEntrada().close();
-					cliente.getSalida().close();
+					cliente.getSal().close();
 					cliente.getSocket().close();
 					System.exit(0);
 				} catch (IOException e1) {

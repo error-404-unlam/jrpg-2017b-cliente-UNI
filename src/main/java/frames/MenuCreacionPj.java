@@ -51,9 +51,9 @@ public class MenuCreacionPj extends JFrame {
 		final String vecEnergia[] = { "55", "60", "50" };
 		final String vecFuerza[] = { "15", "10", "10" };
 		final String vecDestreza[] = { "10", "10", "15" };
-		final String vecInteligencia[] = { "10", "15", "10" };
+		final String vecInteligencia[]={"10", "15", "10"};
 
-		// En caso de cerrar
+		//En caso de cerrar
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -228,7 +228,8 @@ public class MenuCreacionPj extends JFrame {
 		lblBackground.setIcon(new ImageIcon(MenuCreacionPj.class.getResource("/frames/menuBackground.jpg")));
 	}
 
-	protected void crearPj(Cliente cliente, PaquetePersonaje personaje, Gson gson, String[] vecSalud, String[] vecEnergia, String[] vecFuerza, String[] vecDestreza, String[] vecInteligencia) {
+	protected void crearPj(Cliente cliente, PaquetePersonaje personaje, Gson gson, String[] vecSalud,
+			String[] vecEnergia, String[] vecFuerza, String[] vecDestreza, String[] vecInteligencia) {
 
 		personaje.setNombre(nombre.getText());
 		if (nombre.getText().equals(""))
@@ -244,7 +245,7 @@ public class MenuCreacionPj extends JFrame {
 
 			// Le envio los datos al servidor
 			cliente.getPaquetePersonaje().setComando(Comando.CREACIONPJ);
-			cliente.getSalida().writeObject(gson.toJson(cliente.getPaquetePersonaje()));
+			cliente.getSal().writeObject(gson.toJson(cliente.getPaquetePersonaje()));
 			dispose();
 		} catch (JsonSyntaxException | IOException esd) {
 			JOptionPane.showMessageDialog(null, "Error al crear personaje");

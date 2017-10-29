@@ -97,8 +97,8 @@ public class TestCliente {
 			Paquete p = new Paquete();
 			p.setComando(Comando.DESCONECTAR);
 			p.setIp(cliente.getMiIp());
-			cliente.getSalida().writeObject(gson.toJson(p));
-			cliente.getSalida().close();
+			cliente.getSal().writeObject(gson.toJson(p));
+			cliente.getSal().close();
 			cliente.getEntrada().close();
 			cliente.getSocket().close();
 			myThread.stop();
@@ -125,7 +125,7 @@ public class TestCliente {
 		try {
 
 			// Envio el paquete para registrarme
-			cliente.getSalida().writeObject(gson.toJson(pu));
+			cliente.getSal().writeObject(gson.toJson(pu));
 
 			// Recibo la respuesta del servidor
 			Paquete resultado = (Paquete) gson.fromJson((String) cliente.getEntrada().readObject(), Paquete.class);
@@ -134,8 +134,8 @@ public class TestCliente {
 			Paquete p = new Paquete();
 			p.setComando(Comando.DESCONECTAR);
 			p.setIp(cliente.getMiIp());
-			cliente.getSalida().writeObject(gson.toJson(p));
-			cliente.getSalida().close();
+			cliente.getSal().writeObject(gson.toJson(p));
+			cliente.getSal().close();
 			cliente.getEntrada().close();
 			cliente.getSocket().close();
 
@@ -166,7 +166,7 @@ public class TestCliente {
 		try {
 
 			// Envio el paquete para registrarme
-			cliente.getSalida().writeObject(gson.toJson(pu));
+			cliente.getSal().writeObject(gson.toJson(pu));
 			// Recibo la respuesta del servidor
 			Paquete resultado = (Paquete) gson.fromJson((String) cliente.getEntrada().readObject(), Paquete.class);
 
@@ -174,8 +174,8 @@ public class TestCliente {
 			Paquete p = new Paquete();
 			p.setComando(Comando.DESCONECTAR);
 			p.setIp(cliente.getMiIp());
-			cliente.getSalida().writeObject(gson.toJson(p));
-			cliente.getSalida().close();
+			cliente.getSal().writeObject(gson.toJson(p));
+			cliente.getSal().close();
 			cliente.getEntrada().close();
 			cliente.getSocket().close();
 			Assert.assertEquals(Paquete.msjFracaso, resultado.getMensaje());
@@ -216,13 +216,13 @@ public class TestCliente {
 		try {
 
 			// Envio el paquete de registro de usuario
-			cliente.getSalida().writeObject(gson.toJson(pu));
+			cliente.getSal().writeObject(gson.toJson(pu));
 
 			// Recibo la respuesta del servidor
 			Paquete paquete = (Paquete) gson.fromJson((String) cliente.getEntrada().readObject(), Paquete.class);
 
 			// Envio el paquete de registro de personaje
-			cliente.getSalida().writeObject(gson.toJson(pp));
+			cliente.getSal().writeObject(gson.toJson(pp));
 
 			// Recibo el personaje de mi usuario
 			pp = (PaquetePersonaje) gson.fromJson((String) cliente.getEntrada().readObject(), PaquetePersonaje.class);
@@ -231,8 +231,8 @@ public class TestCliente {
 			Paquete p = new Paquete();
 			p.setComando(Comando.DESCONECTAR);
 			p.setIp(cliente.getMiIp());
-			cliente.getSalida().writeObject(gson.toJson(p));
-			cliente.getSalida().close();
+			cliente.getSal().writeObject(gson.toJson(p));
+			cliente.getSal().close();
 			cliente.getEntrada().close();
 			cliente.getSocket().close();
 			// Lo fuerzo porque la verdad que de esta manera está compliqueti
@@ -262,7 +262,7 @@ public class TestCliente {
 		try {
 
 			// Envio el paquete de incio de sesion
-			cliente.getSalida().writeObject(gson.toJson(pu));
+			cliente.getSal().writeObject(gson.toJson(pu));
 
 			// Recibo el paquete con el personaje
 			PaquetePersonaje paquetePersonaje = (PaquetePersonaje) gson.fromJson((String) cliente.getEntrada().readObject(), PaquetePersonaje.class);
@@ -271,8 +271,8 @@ public class TestCliente {
 			Paquete p = new Paquete();
 			p.setComando(Comando.DESCONECTAR);
 			p.setIp(cliente.getMiIp());
-			cliente.getSalida().writeObject(gson.toJson(p));
-			cliente.getSalida().close();
+			cliente.getSal().writeObject(gson.toJson(p));
+			cliente.getSal().close();
 			cliente.getEntrada().close();
 			cliente.getSocket().close();
 
@@ -306,7 +306,7 @@ public class TestCliente {
 		try {
 
 			// Envio el paquete de actualizacion de personaje
-			cliente.getSalida().writeObject(gson.toJson(pp));
+			cliente.getSal().writeObject(gson.toJson(pp));
 
 			// Recibo el paquete con el personaje actualizado
 			PaquetePersonaje paquetePersonaje = (PaquetePersonaje) gson.fromJson((String) cliente.getEntrada().readObject(), PaquetePersonaje.class);
@@ -315,8 +315,8 @@ public class TestCliente {
 			Paquete p = new Paquete();
 			p.setComando(Comando.DESCONECTAR);
 			p.setIp(cliente.getMiIp());
-			cliente.getSalida().writeObject(gson.toJson(p));
-			cliente.getSalida().close();
+			cliente.getSal().writeObject(gson.toJson(p));
+			cliente.getSal().close();
 			cliente.getEntrada().close();
 			cliente.getSocket().close();
 

@@ -14,8 +14,8 @@ public class ActualizarTrueque extends ComandosEscucha {
 		if (juego.getPersonaje().getId() == paquetePersonaje.getId()) {
 			juego.actualizarPersonaje();
 			juego.getEstadoJuego().actualizarPersonaje();
-			juego.getCliente().actualizarItems(paquetePersonaje);
-			juego.getCliente().actualizarPersonaje(juego.getPersonajesConectados().get(paquetePersonaje.getId()));
+			juego.getCli().actualizarItems(paquetePersonaje);
+			juego.getCli().actualizarPersonaje(juego.getPersonajesConectados().get(paquetePersonaje.getId()));
 
 		}
 

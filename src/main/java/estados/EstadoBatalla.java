@@ -242,7 +242,7 @@ public class EstadoBatalla extends Estado {
 
 	public void enviarAtaque(PaqueteAtacar paqueteAtacar) {
 		try {
-			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteAtacar));
+			juego.getCli().getSal().writeObject(gson.toJson(paqueteAtacar));
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Fallo la conexion con el servidor.");
 		}
@@ -250,7 +250,7 @@ public class EstadoBatalla extends Estado {
 
 	private void finalizarBatalla() {
 		try {
-			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteFinalizarBatalla));
+			juego.getCli().getSal().writeObject(gson.toJson(paqueteFinalizarBatalla));
 
 			paquetePersonaje.setSaludTope(personaje.getSaludTope());
 			paquetePersonaje.setEnergiaTope(personaje.getEnergiaTope());
@@ -273,8 +273,8 @@ public class EstadoBatalla extends Estado {
 			paquetePersonaje.setComando(Comando.ACTUALIZARPERSONAJE);
 			paqueteEnemigo.setComando(Comando.ACTUALIZARPERSONAJE);
 
-			juego.getCliente().getSalida().writeObject(gson.toJson(paquetePersonaje));
-			juego.getCliente().getSalida().writeObject(gson.toJson(paqueteEnemigo));
+			juego.getCli().getSal().writeObject(gson.toJson(paquetePersonaje));
+			juego.getCli().getSal().writeObject(gson.toJson(paqueteEnemigo));
 
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Falló la conexión con el servidor al finalizar batalla.");

@@ -184,7 +184,7 @@ public class MenuAsignarSkills extends JFrame {
 				puntosAsignarInicial = puntosAsignar;
 
 				try {
-					cliente.getSalida().writeObject(gson.toJson(cliente.getPaquetePersonaje()));
+					cliente.getSal().writeObject(gson.toJson(cliente.getPaquetePersonaje()));
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Error al actualizar las estadísticas.");
 				}
@@ -221,7 +221,7 @@ public class MenuAsignarSkills extends JFrame {
 				puntosAsignarInicial = puntosAsignar;
 
 				try {
-					cliente.getSalida().writeObject(gson.toJson(cliente.getPaquetePersonaje()));
+					cliente.getSal().writeObject(gson.toJson(cliente.getPaquetePersonaje()));
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Error al actualizar las estadísticas.");
 				}

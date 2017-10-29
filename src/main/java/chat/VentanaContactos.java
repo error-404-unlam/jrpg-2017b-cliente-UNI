@@ -89,7 +89,7 @@ public class VentanaContactos extends JFrame {
 				if (arg0.getClickCount() == 2) {
 					if (list.getSelectedValue() != null) {
 						if (!juego.getChatsActivos().containsKey(list.getSelectedValue())) {
-							if (juego.getCliente() != null) {
+							if (juego.getCli() != null) {
 								MiChat chat = new MiChat(juego);
 								juego.getChatsActivos().put(list.getSelectedValue(), chat);
 								chat.setTitle(list.getSelectedValue());
@@ -110,8 +110,8 @@ public class VentanaContactos extends JFrame {
 	}
 
 	private void actualizarLista(final Juego juego) {
-		if (juego.getCliente() != null) {
-			synchronized (juego.getCliente()) {
+		if (juego.getCli() != null) {
+			synchronized (juego.getCli()) {
 				modelo.removeAllElements();
 				if (juego.getPersonajesConectados() != null) {
 					for (Map.Entry<Integer, PaquetePersonaje> personaje : juego.getPersonajesConectados().entrySet()) {

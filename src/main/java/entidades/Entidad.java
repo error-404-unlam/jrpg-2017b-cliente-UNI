@@ -169,14 +169,14 @@ public class Entidad {
 		posMouse = juego.getHandlerMouse().getPosMouse();
 		if (juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 738 && posMouse[0] <= 797 && posMouse[1] >= 545 && posMouse[1] <= 597) {
 			if (Pantalla.menuInventario == null) {
-				Pantalla.menuInventario = new MenuInventario(juego.getCliente());
+				Pantalla.menuInventario = new MenuInventario(juego.getCli());
 				Pantalla.menuInventario.setVisible(true);
 			}
 			juego.getHandlerMouse().setNuevoClick(false);
 		}
 		if (juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 3 && posMouse[0] <= 105 && posMouse[1] >= 562 && posMouse[1] <= 597) {
 			if (Pantalla.menuEscp == null) {
-				Pantalla.menuEscp = new MenuEscape(juego.getCliente());
+				Pantalla.menuEscp = new MenuEscape(juego.getCli());
 				Pantalla.menuEscp.setVisible(true);
 			}
 			juego.getHandlerMouse().setNuevoClick(false);
@@ -196,7 +196,7 @@ public class Entidad {
 				if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.menuSubirNivel) {
 					if (juego.getEstadoJuego().getMenuEnemigo().clickEnAsignarSkills(posMouse[0], posMouse[1])) {
 						if (Pantalla.menuAsignar == null) {
-							Pantalla.menuAsignar = new MenuAsignarSkills(juego.getCliente());
+							Pantalla.menuAsignar = new MenuAsignarSkills(juego.getCli());
 						}
 						Pantalla.menuAsignar.setVisible(true);
 					}
@@ -224,7 +224,7 @@ public class Entidad {
 								juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
 
 								try {
-									juego.getCliente().getSalida().writeObject(gson.toJson(pBatalla));
+									juego.getCli().getSal().writeObject(gson.toJson(pBatalla));
 								} catch (IOException e) {
 									JOptionPane.showMessageDialog(null, "Falló la conexión " + "con el servidor" + "al intentar batallar");
 								}
@@ -235,13 +235,13 @@ public class Entidad {
 							// Pregunto si el menú emergente es de tipo comercio
 							if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.menuComerciar) {
 								if ((int) comercio[0] >= 44 && (int) comercio[0] <= 71 && (int) comercio[1] >= 0 && (int) comercio[1] <= 29) {
-									if (juego.getCliente().getM1() == null) {
-										juego.getCliente().setPaqueteComercio(new PaqueteComerciar());
-										juego.getCliente().getPaqueteComercio().setId(juego.getPersonaje().getId());
-										juego.getCliente().getPaqueteComercio().setIdEnemigo(idEnemigo);
+									if (juego.getCli().getM1() == null) {
+										juego.getCli().setPaqueteComercio(new PaqueteComerciar());
+										juego.getCli().getPaqueteComercio().setId(juego.getPersonaje().getId());
+										juego.getCli().getPaqueteComercio().setIdEnemigo(idEnemigo);
 
 										try {
-											juego.getCliente().getSalida().writeObject(gson.toJson(juego.getCliente().getPaqueteComercio()));
+											juego.getCli().getSal().writeObject(gson.toJson(juego.getCli().getPaqueteComercio()));
 										} catch (IOException e) {
 											JOptionPane.showMessageDialog(null, "Falló la conexión " + "con el servidor" + "al intentar comerciar");
 										}
@@ -482,7 +482,7 @@ public class Entidad {
 		juego.getUbicacionPersonaje().setDireccion(getDireccion());
 		juego.getUbicacionPersonaje().setFrame(getFrame());
 		try {
-			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
+			juego.getCli().getSal().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Falló la conexión con el servidor en Entidad.enviarPosicion()");
 		}

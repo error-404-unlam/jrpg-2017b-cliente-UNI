@@ -257,7 +257,7 @@ public class Cliente extends Thread {
 	 * 
 	 * @return Devuelve la salida
 	 */
-	public ObjectOutputStream getSalida() {
+	public ObjectOutputStream getSal() {
 		return salida;
 	}
 
@@ -365,7 +365,7 @@ public class Cliente extends Thread {
 		this.paqueteComercio = paqueteComercio;
 	}
 
-	public PaqueteMensaje getPaqueteMensaje() {
+	public PaqueteMensaje getPaqMsj() {
 		return paqueteMensaje;
 	}
 

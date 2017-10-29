@@ -34,7 +34,7 @@ public class EscuchaMensajes extends Thread {
 	 */
 	public EscuchaMensajes(final Juego juego) {
 		this.juego = juego;
-		cliente = juego.getCliente();
+		cliente = juego.getCli();
 		entrada = cliente.getEntrada();
 	}
 

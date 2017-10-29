@@ -279,7 +279,7 @@ public class MenuComerciar extends JFrame {
 					misItems.removeElement(listMisItems.getSelectedValue());
 					cliente.getPaqueteComercio().setComando(Comando.ACTUALIZARCOMERCIO);
 					try {
-						cliente.getSalida().writeObject(gson.toJson(cliente.getPaqueteComercio()));
+						cliente.getSal().writeObject(gson.toJson(cliente.getPaqueteComercio()));
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(null, "No se pudo actualizar comercio");
 					}
@@ -320,7 +320,7 @@ public class MenuComerciar extends JFrame {
 					}
 					cliente.getPaqueteComercio().setComando(Comando.ACTUALIZARCOMERCIO);
 					try {
-						cliente.getSalida().writeObject(gson.toJson(cliente.getPaqueteComercio()));
+						cliente.getSal().writeObject(gson.toJson(cliente.getPaqueteComercio()));
 					} catch (IOException e) {
 						JOptionPane.showMessageDialog(null, "No se pudo actualizar comercio");
 					}
@@ -418,7 +418,7 @@ public class MenuComerciar extends JFrame {
 						cliente.getPaqueteComercio().aumentarListo();
 						cliente.getPaqueteComercio().setComando(Comando.ACTUALIZARCOMERCIO);
 						try {
-							cliente.getSalida().writeObject(gson.toJson(cliente.getPaqueteComercio()));
+							cliente.getSal().writeObject(gson.toJson(cliente.getPaqueteComercio()));
 						} catch (IOException e) {
 							JOptionPane.showMessageDialog(null, "No se pudo actualizar comercio");
 						}
@@ -427,7 +427,7 @@ public class MenuComerciar extends JFrame {
 						cliente.getPaqueteComercio().setComando(Comando.TRUEQUE);
 						// Le informo al otro que vamos a hacer el trueque
 						try {
-							cliente.getSalida().writeObject(gson.toJson(cliente.getPaqueteComercio()));
+							cliente.getSal().writeObject(gson.toJson(cliente.getPaqueteComercio()));
 						} catch (IOException e) {
 							JOptionPane.showMessageDialog(null, "No se pudo actualizar comercio");
 						}
@@ -444,7 +444,7 @@ public class MenuComerciar extends JFrame {
 						cliente.getPaqueteComercio().setComando(Comando.ACTUALIZARCOMERCIO);
 						// Tambien le tiene que avisar el LISTO al otro jugador
 						try {
-							cliente.getSalida().writeObject(gson.toJson(cliente.getPaqueteComercio()));
+							cliente.getSal().writeObject(gson.toJson(cliente.getPaqueteComercio()));
 						} catch (IOException e) {
 							JOptionPane.showMessageDialog(null, "No se pudo actualizar comercio");
 						}
@@ -466,7 +466,7 @@ public class MenuComerciar extends JFrame {
 						// Tambien le tiene que avisar el NO LISTO al otro
 						// jugador
 						try {
-							cliente.getSalida().writeObject(gson.toJson(cliente.getPaqueteComercio()));
+							cliente.getSal().writeObject(gson.toJson(cliente.getPaqueteComercio()));
 						} catch (IOException e) {
 							JOptionPane.showMessageDialog(null, "No se pudo actualizar comercio");
 						}

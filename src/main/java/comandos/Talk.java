@@ -11,17 +11,17 @@ public class Talk extends ComandosEscucha {
 	public void ejecutar() {
 		MiChat chat = null;
 		String destino;
-		juego.getCliente().setPaqueteMensaje((PaqueteMensaje) gson.fromJson(cadenaLeida, PaqueteMensaje.class));
-		if (!(juego.getCliente().getPaqueteMensaje().getUserReceptor() == null)) {
-			if (!(juego.getChatsActivos().containsKey(juego.getCliente().getPaqueteMensaje().getUserEmisor()))) {
+		juego.getCli().setPaqueteMensaje((PaqueteMensaje) gson.fromJson(cadenaLeida, PaqueteMensaje.class));
+		if (!(juego.getCli().getPaqMsj().getUserReceptor() == null)) {
+			if (!(juego.getChatsActivos().containsKey(juego.getCli().getPaqMsj().getUserEmisor()))) {
 				chat = new MiChat(juego);
 
-				chat.setTitle(juego.getCliente().getPaqueteMensaje().getUserEmisor());
+				chat.setTitle(juego.getCli().getPaqMsj().getUserEmisor());
 				chat.setVisible(true);
 
-				juego.getChatsActivos().put(juego.getCliente().getPaqueteMensaje().getUserEmisor(), chat);
+				juego.getChatsActivos().put(juego.getCli().getPaqMsj().getUserEmisor(), chat);
 			}
-			destino = juego.getCliente().getPaqueteMensaje().getUserEmisor();
+			destino = juego.getCli().getPaqMsj().getUserEmisor();
 		} else {
 			// ALL
 			if (!juego.getChatsActivos().containsKey("Sala")) {
@@ -37,7 +37,7 @@ public class Talk extends ComandosEscucha {
 			}
 			destino = "Sala";
 		}
-		juego.getChatsActivos().get(destino).getChat().append(juego.getCliente().getPaqueteMensaje().getUserEmisor() + ": " + juego.getCliente().getPaqueteMensaje().getMensaje() + "\n");
+		juego.getChatsActivos().get(destino).getChat().append(juego.getCli().getPaqMsj().getUserEmisor() + ": " + juego.getCli().getPaqMsj().getMensaje() + "\n");
 		juego.getChatsActivos().get(destino).getTexto().grabFocus();
 	}
 }
