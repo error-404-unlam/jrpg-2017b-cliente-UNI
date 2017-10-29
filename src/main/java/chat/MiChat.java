@@ -69,20 +69,59 @@ public class MiChat extends JFrame {
 	 */
 	private final int altoChatScrollPane = 201;
 
+	/**
+	 * Posicion X del boton Enviar.
+	 */
 	private final int posXEnviar = 334;
+	/**
+	 * Posicion Y del boton Enviar.
+	 */
 	private final int posYEnviar = 225;
+	/**
+	 * Ancho del boton Enviar.
+	 */
 	private final int anchoEnviar = 81;
+	/**
+	 * Alto del boton Enviar.
+	 */
 	private final int altoEnviar = 23;
 
+	/**
+	 * Posicion X del Texto.
+	 */
 	private final int posXTexto = 10;
+	/**
+	 * Posicion Y del Texto.
+	 */
 	private final int posYTexto = 10;
+	/**
+	 * Ancho del Texto.
+	 */
 	private final int anchoTexto = 314;
+	/**
+	 * Alto del Texto.
+	 */
 	private final int altoTexto = 27;
+	/**
+	 * Cantidad de Columnas.
+	 */
 	private final int columnas = 10;
 
+	/**
+	 * Posicion X del Background.
+	 */
 	private final int posXBackground = -20;
+	/**
+	 * Posicion Y del Background.
+	 */
 	private final int posYBackground = 0;
+	/**
+	 * Ancho del Background
+	 */
 	private final int anchoBackground = 480;
+	/**
+	 * Alto del BackGround
+	 */
 	private final int altoBackground = 283;
 	/**
 	 * JPanel que contendrá los elementos del chat.
