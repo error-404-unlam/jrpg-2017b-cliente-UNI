@@ -15,7 +15,7 @@ public class Registro extends ComandosCliente {
 			if (paquete.getMensaje().equals(Paquete.msjExito)) {
 
 				// Abro el menu para la creaci�n del personaje
-				MenuCreacionPj menuCreacionPJ = new MenuCreacionPj(cliente, cliente.getPaquetePersonaje(), gson);
+				MenuCreacionPj menuCreacionPJ = new MenuCreacionPj(this.getCliente(), this.getCliente().getPaquetePersonaje(), gson);
 				menuCreacionPJ.setVisible(true);
 
 				// Espero a que el usuario cree el personaje
@@ -29,7 +29,7 @@ public class Registro extends ComandosCliente {
 					JOptionPane.showMessageDialog(null, "No se pudo registrar.");
 				}
 				// El usuario no pudo iniciar sesión
-				cliente.getPaqueteUsuario().setInicioSesion(false);
+				this.getCliente().getPaqueteUsuario().setInicioSesion(false);
 			}
 
 		}

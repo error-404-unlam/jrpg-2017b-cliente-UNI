@@ -6,8 +6,8 @@ public class SalirSet extends ComandosCliente {
 
 	@Override
 	public void ejecutar() {
-		cliente.getPaqueteUsuario().setIp(cliente.getMiIp());
-		cliente.getPaqueteUsuario().setComando(Comando.SALIR);
+		this.getCliente().getPaqueteUsuario().setIp(this.getCliente().getMiIp());
+		this.getCliente().getPaqueteUsuario().setComando(Comando.SALIR);
 	}
 
 }
