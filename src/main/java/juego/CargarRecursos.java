@@ -9,11 +9,16 @@ import cliente.Cliente;
 import mensajeria.Comando;
 import recursos.Recursos;
 
-/*Carga los recursos */
+/** 
+ * @author leonel
+ * Carga los recursos 
+ * */
 public class CargarRecursos extends Thread {
 
 	private Cliente cliente;
-/*Constructor de carga de recursos */
+/**
+ * Constructor de carga de recursos 
+ * */
 	public CargarRecursos(final Cliente cliente) {
 		this.cliente = cliente;
 	}
