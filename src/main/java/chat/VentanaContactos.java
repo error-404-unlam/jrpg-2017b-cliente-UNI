@@ -22,35 +22,124 @@ import juego.Juego;
 import juego.Pantalla;
 import mensajeria.PaquetePersonaje;
 
+/**
+ * Crea la ventana Contactos del Chat.
+ * @author Miguel
+ */
 public class VentanaContactos extends JFrame {
+	/**
+	 * JPanel que contendrá los elementos de la ventana Contactos.
+	 */
 	private JPanel contentPane;
 	private DefaultListModel<String> modelo = new DefaultListModel<String>();
+	/**
+	 * Jlist que contiene los elementos de la ventana.
+	 */
 	private static JList<String> list = new JList<String>();
+	/**
+	 * Boton Multichat.
+	 */
 	private static JButton botonMc;
+	/**
+	 * Fondo de la ventana.
+	 */
 	private JLabel background;
+	/**
+	 * Bordes en blanco de la ventana.
+	 */
+	private final int bordeVacio = 5;
 
 	/**
-	 * Create the frame.
+	 * Posicion X de la ventana Contactos.
 	 */
-	public VentanaContactos(final Juego juego) {
+	private final int posXContactos = 100;
+	/**
+	 * Posicion Y de la ventana Contactos.
+	 */
+	private final int posYContactos = 100;
+	/**
+	 * Ancho de la ventana Contactos.
+	 */
+	private final int anchoContactos = 327;
+	/**
+	 * Alto de la ventana Contactos.
+	 */
+	private final int altoContactos = 273;
+	/**
+	 * Posicion X del Scroll Pane de Contactos.
+	 */
+	private final int posXScrollPane = 10;
+	/**
+	 * Posicion Y del Scroll Pane de Contactos.
+	 */
+	private final int posYScrollPane = 11;
+	/**
+	 * Ancho del Scroll Pane de Contactos.
+	 */
+	private final int anchoContactoScrollPane = 299;
+	/**
+	 * Alto del Scroll Pane de Contactos.
+	 */
+	private final int altoContactoScrollPane = 188;
+
+	/**
+	 * Posicion X del boton MultiChat.
+	 */
+	private final int posXMultiChat = 119;
+	/**
+	 * Posicion Y del boton MultiChat.
+	 */
+	private final int posYMultiChat = 208;
+	/**
+	 * Ancho del boton MultiChat.
+	 */
+	private final int anchoMultiChat = 89;
+	/**
+	 * Alto del boton MultiChat.
+	 */
+	private final int altoMultiChat = 23;
+
+	/**
+	 * Posicion X del Background.
+	 */
+	private final int posXBackground = -16;
+	/**
+	 * Posicion Y del Background.
+	 */
+	private final int posYBackground = 0;
+	/**
+	 * Ancho del Background
+	 */
+	private final int anchoBackground = 352;
+	/**
+	 * Alto del BackGround
+	 */
+	private final int altoBackground = 254;
+
+	/**
+	 * Constructor de la clase VentanaContactos que recibe el Juego Actual.
+	 * @param juegoParam
+	 *            Juego Actual
+	 */
+	public VentanaContactos(final Juego juegoParam) {
 		setResizable(false);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 327, 273);
+		setBounds(posXContactos, posYContactos, anchoContactos, altoContactos);
 		setLocationRelativeTo(null);
 		setTitle("Usuarios");
 
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(bordeVacio, bordeVacio, bordeVacio, bordeVacio));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(10, 11, 299, 188);
+		scrollPane.setBounds(posXScrollPane, posYScrollPane, anchoContactoScrollPane, altoContactoScrollPane);
 		contentPane.add(scrollPane);
 
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosing(WindowEvent arg0) {
+			public void windowClosing(final WindowEvent arg0) {
 				Pantalla.ventContac = null;
 				dispose();
 			}
@@ -59,11 +148,11 @@ public class VentanaContactos extends JFrame {
 		botonMc = new JButton("Multichat");
 		botonMc.setIcon(new ImageIcon("recursos//multichatButton.png"));
 		botonMc.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (modelo.size() != 0) {
-					if (!juego.getChatsActivos().containsKey("Sala")) {
-						MiChat chat = new MiChat(juego);
-						juego.getChatsActivos().put("Sala", chat);
+					if (!juegoParam.getChatsActivos().containsKey("Sala")) {
+						MiChat chat = new MiChat(juegoParam);
+						juegoParam.getChatsActivos().put("Sala", chat);
 						chat.setTitle("Sala");
 						chat.setVisible(true);
 						botonMc.setEnabled(false);
@@ -71,13 +160,14 @@ public class VentanaContactos extends JFrame {
 				}
 			}
 		});
-		botonMc.setBounds(119, 208, 89, 23);
+		botonMc.setBounds(posXMultiChat, posYMultiChat, anchoMultiChat, altoMultiChat);
 		contentPane.add(botonMc);
 
 		// Cargo la lista de contactos
-		actualizarLista(juego);
-		// Pregunto si la ventana sala esta abierta y cancelo el boton multichat
-		if (juego.getChatsActivos().containsKey("Sala")) {
+		actualizarLista(juegoParam);
+		// Pregunto si la ventana sala esta abierta y cancelo el boton
+		// multichat
+		if (juegoParam.getChatsActivos().containsKey("Sala")) {
 			botonMc.setEnabled(false);
 		} else {
 			botonMc.setEnabled(true);
@@ -85,13 +175,15 @@ public class VentanaContactos extends JFrame {
 
 		list.addMouseListener(new MouseAdapter() {
 			@Override
-			public void mouseClicked(MouseEvent arg0) {
+			public void mouseClicked(final MouseEvent arg0) {
 				if (arg0.getClickCount() == 2) {
 					if (list.getSelectedValue() != null) {
-						if (!juego.getChatsActivos().containsKey(list.getSelectedValue())) {
-							if (juego.getCli() != null) {
-								MiChat chat = new MiChat(juego);
-								juego.getChatsActivos().put(list.getSelectedValue(), chat);
+						if (!juegoParam.getChatsActivos().
+								containsKey(list.getSelectedValue())) {
+							if (juegoParam.getCli() != null) {
+								MiChat chat = new MiChat(juegoParam);
+								juegoParam.getChatsActivos().
+									put(list.getSelectedValue(), chat);
 								chat.setTitle(list.getSelectedValue());
 								chat.setVisible(true);
 							}
@@ -105,16 +197,21 @@ public class VentanaContactos extends JFrame {
 		scrollPane.setViewportView(list);
 
 		background = new JLabel(new ImageIcon("recursos//background.jpg"));
-		background.setBounds(-16, 0, 352, 254);
+		background.setBounds(posXBackground, posYBackground, anchoBackground, altoBackground);
 		contentPane.add(background);
 	}
 
+	/**
+	 * Actualiza la lista De Contactos del Juego.
+	 * @param juego Juego a Actualizar la lista.
+	 */
 	private void actualizarLista(final Juego juego) {
 		if (juego.getCli() != null) {
 			synchronized (juego.getCli()) {
 				modelo.removeAllElements();
 				if (juego.getPersonajesConectados() != null) {
-					for (Map.Entry<Integer, PaquetePersonaje> personaje : juego.getPersonajesConectados().entrySet()) {
+					for (Map.Entry<Integer, PaquetePersonaje> personaje
+							:juego.getPersonajesConectados().entrySet()) {
 						modelo.addElement(personaje.getValue().getNombre());
 					}
 					modelo.removeElement(juego.getPersonaje().getNombre());
@@ -124,10 +221,18 @@ public class VentanaContactos extends JFrame {
 		}
 	}
 
+	/**
+	 * Devuelve la lista de Contactos.
+	 * @return list
+	 */
 	public static JList<String> getList() {
 		return list;
 	}
 
+	/**
+	 * Devuelve el boton multiChat.
+	 * @return botonMc
+	 */
 	public static JButton getBotonMc() {
 		return botonMc;
 	}
