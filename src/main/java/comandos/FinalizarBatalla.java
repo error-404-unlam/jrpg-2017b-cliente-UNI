@@ -6,7 +6,7 @@ import mensajeria.PaqueteFinalizarBatalla;
 
 /**
  * Clase FinalizarBatalla. Finaliza la batalla.
- * 
+ *
  * @author Miguel
  */
 public class FinalizarBatalla extends ComandosEscucha {

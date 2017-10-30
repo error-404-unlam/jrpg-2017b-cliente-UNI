@@ -8,14 +8,19 @@ import javax.swing.JOptionPane;
 
 /**
  * Clase utilitaria de mundo
+ *
  * @author lesanmartin
  */
 public final class Utilitarias {
+	/**
+	 * Constructor de la clase
+	 */
 	private Utilitarias() {
 		
 	}
 	/**
 	 * Carga el mapa
+	 *
 	 * @param path
 	 * @return
 	 */
@@ -40,6 +45,7 @@ public final class Utilitarias {
 
 	/**
 	 * Convierte un numero de string a int
+	 *
 	 * @param numero
 	 * @return
 	 */

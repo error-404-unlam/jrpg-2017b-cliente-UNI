@@ -158,7 +158,7 @@ public class Entidad {
 		getEntrada();
 		mover();
 
-		juego.getCamara().Centrar(this);
+		juego.getCamara().centrar(this);
 	}
 
 	/**

@@ -13,13 +13,6 @@ import javax.swing.JOptionPane;
  */
 public class CargadorImagen {
 	/**
-	 * Constructor de la clase
-	 */
-	public CargadorImagen() {
-		
-	}
-
-	/**
 	 *
 	 * @param path parametro path
 	 * @return si carga la imagen o no
