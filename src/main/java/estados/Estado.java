@@ -22,6 +22,7 @@ public abstract class Estado {
 
 	/**
 	 * Constructor de la clase
+	 * 
 	 * @param juego
 	 */
 	public Estado(final Juego juego) {
@@ -35,12 +36,14 @@ public abstract class Estado {
 
 	/**
 	 * Clase abstracta para graficar
+	 * 
 	 * @param g
 	 */
 	public abstract void graficar(Graphics g);
 
 	/**
 	 * Setea el estado
+	 * 
 	 * @param estado
 	 */
 	public static void setEstado(final Estado estado) {
@@ -49,6 +52,7 @@ public abstract class Estado {
 
 	/**
 	 * Retorna el estado actual
+	 * 
 	 * @return estadoActual
 	 */
 	public static Estado getEstado() {
@@ -57,12 +61,14 @@ public abstract class Estado {
 
 	/**
 	 * Retorna si es estado de juego
+	 * 
 	 * @return boolean
 	 */
 	public abstract boolean esEstadoDeJuego();
 	
 	/**
 	 * Retorna el estado del juego
+	 * 
 	 * @return estadoJuego
 	 */
 	public static int getEstadoJuego() {
@@ -71,6 +77,7 @@ public abstract class Estado {
 	
 	/**
 	 * Retorna el estado offline
+	 * 
 	 * @return estadoOffline
 	 */
 	public static int getEstadoOffLine() {
@@ -79,6 +86,7 @@ public abstract class Estado {
 	
 	/**
 	 * Retorna el estado de la batalla
+	 * 
 	 * @return estado Batalla
 	 */
 	public static int getEstadoBatalla() {

@@ -12,6 +12,12 @@ import javax.swing.JOptionPane;
  *
  */
 public class CargadorImagen {
+	/**
+	 * Constructor de la clase
+	 */
+	public CargadorImagen() {
+		
+	}
 
 	/**
 	 *

@@ -21,7 +21,7 @@ import mensajeria.Comando;
 
 /**
  * Clase Menu de inventario
- * 
+ *
  * @author lesanmartin
  *
  */
@@ -37,7 +37,7 @@ public class MenuInventario extends JFrame {
 
 	/**
 	 * Constructor de la clase
-	 * 
+	 *
 	 * @param cliente
 	 */
 	public MenuInventario(final Cliente cliente) {
@@ -72,10 +72,10 @@ public class MenuInventario extends JFrame {
 			JOptionPane.showMessageDialog(null, "Falló al iniciar el inventario");
 
 		}
-		this.setBounds(POS_X_VENTANA,POS_X_VENTANA,ANCHO_VENTANA,ALTURA_VENTANA);
+		this.setBounds(POS_X_VENTANA, POS_Y_VENTANA, ANCHO_VENTANA, ALTURA_VENTANA);
 		this.pack();
 		this.setLocationRelativeTo(null);
-		this.setLocation(LOC_X,LOC_Y);
+		this.setLocation(LOC_X, LOC_Y);
 		this.setResizable(false);
 		this.setVisible(true);
 	}

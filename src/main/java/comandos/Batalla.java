@@ -6,6 +6,7 @@ import mensajeria.PaqueteBatalla;
 
 /**
  * Comando Batalla
+ * 
  * @author Miguel
  */
 public class Batalla extends ComandosEscucha {

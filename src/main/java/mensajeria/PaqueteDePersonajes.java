@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.Map;
 /**
  * Clase de paquete de personajes
+ *
  * @author lesanmartin
  */
 public class PaqueteDePersonajes extends Paquete implements Serializable, Cloneable {
@@ -18,6 +19,7 @@ public class PaqueteDePersonajes extends Paquete implements Serializable, Clonea
 
 	/**
 	 * Asigna personajes
+	 *
 	 * @param personajes
 	 */
 	public PaqueteDePersonajes(final Map<Integer, PaquetePersonaje> personajes) {
@@ -26,6 +28,7 @@ public class PaqueteDePersonajes extends Paquete implements Serializable, Clonea
 
 	/**
 	 * Devuelve el objeto personajes
+	 *
 	 * @return personajes
 	 */
 	public Map<Integer, PaquetePersonaje> getPersonajes() {
