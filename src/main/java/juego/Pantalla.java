@@ -32,6 +32,12 @@ import frames.MenuStats;
 import mensajeria.Comando;
 import mensajeria.Paquete;
 
+/**
+ * Clase Pantalla 
+ *
+ * @author lesanmartin
+ *
+ */
 public class Pantalla {
 
 	private JFrame pantalla;
@@ -46,6 +52,14 @@ public class Pantalla {
 
 	private final Gson gson = new Gson();
 
+	/**
+	 * Constructor de la clase 
+	 *
+	 * @param NOMBRE
+	 * @param ANCHO
+	 * @param ALTO
+	 * @param cliente
+	 */
 	public Pantalla(final String NOMBRE, final int ANCHO, final int ALTO, final Cliente cliente) {
 		pantalla = new JFrame(NOMBRE);
 		pantalla.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/frames/IconoWome.png"));

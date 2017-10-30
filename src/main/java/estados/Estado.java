@@ -18,11 +18,11 @@ public abstract class Estado {
 	private static int estadoJuego = 1;
 	private static int estadoBatalla = 2;
 
-	protected Juego juego;
+	private Juego juego;
 
 	/**
 	 * Constructor de la clase
-	 * @param juego
+	 * @param juego a construir
 	 */
 	public Estado(final Juego juego) {
 		this.juego = juego;
@@ -35,13 +35,13 @@ public abstract class Estado {
 
 	/**
 	 * Clase abstracta para graficar
-	 * @param g
+	 * @param g graphics
 	 */
 	public abstract void graficar(Graphics g);
 
 	/**
 	 * Setea el estado
-	 * @param estado
+	 * @param estado estadoJuego
 	 */
 	public static void setEstado(final Estado estado) {
 		estadoActual = estado;
@@ -60,7 +60,6 @@ public abstract class Estado {
 	 * @return boolean
 	 */
 	public abstract boolean esEstadoDeJuego();
-	
 	/**
 	 * Retorna el estado del juego
 	 * @return estadoJuego
@@ -68,7 +67,6 @@ public abstract class Estado {
 	public static int getEstadoJuego() {
 		return estadoJuego;
 	}
-	
 	/**
 	 * Retorna el estado offline
 	 * @return estadoOffline
@@ -76,12 +74,19 @@ public abstract class Estado {
 	public static int getEstadoOffLine() {
 		return estadoOffline;
 	}
-	
 	/**
 	 * Retorna el estado de la batalla
 	 * @return estado Batalla
 	 */
 	public static int getEstadoBatalla() {
 		return estadoBatalla;
+	}
+
+	/**
+	 * Devuelve el Juego
+	 * @return Juego
+	 */
+	public Juego getJuego() {
+		return juego;
 	}
 }

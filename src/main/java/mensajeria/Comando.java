@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 
 /**
  * Clase de Comandos
- * 
+ *
  * @author lesanmartin
  *
  */
@@ -46,6 +46,7 @@ public abstract class Comando {
 
 	/**
 	 * Setea la cadena leida
+	 *
 	 * @param cadenaLeida
 	 */
 	public void setCadena(final String cadenaLeida) {

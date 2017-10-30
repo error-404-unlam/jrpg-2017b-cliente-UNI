@@ -12,7 +12,6 @@ import javax.swing.JOptionPane;
  *
  */
 public class CargadorImagen {
-
 	/**
 	 *
 	 * @param path parametro path

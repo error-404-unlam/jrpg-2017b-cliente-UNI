@@ -5,6 +5,7 @@ import java.util.Map;
 
 /**
  * Clase paquete de movimientos
+ *
  * @author lesanmartin
  *
  */
@@ -21,6 +22,7 @@ public class PaqueteDeMovimientos extends Paquete implements Serializable, Clone
 
 	/**
 	 * Asigna el objeto personajes
+	 *
 	 * @param personajes
 	 */
 	public PaqueteDeMovimientos(final Map<Integer, PaqueteMovimiento> personajes) {
@@ -29,6 +31,7 @@ public class PaqueteDeMovimientos extends Paquete implements Serializable, Clone
 
 	/**
 	 * Devuelve el objeto personajes
+	 *
 	 * @return personajes
 	 */
 	public Map<Integer, PaqueteMovimiento> getPersonajes() {

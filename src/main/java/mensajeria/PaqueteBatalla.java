@@ -3,6 +3,7 @@ package mensajeria;
 import java.io.Serializable;
 /**
  * Clase Paquete de Batalla
+ *
  * @author lesanmartin
  *
  */
@@ -21,6 +22,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Retorna el id
+	 *
 	 * @return getId
 	 */
 	public int getId() {
@@ -29,6 +31,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Setea el id
+	 *
 	 * @param id
 	 */
 	public void setId(final int id) {
@@ -37,6 +40,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Retorna el id enemigo
+	 *
 	 * @return idEnemigo
 	 */
 	public int getIdEnemigo() {
@@ -45,6 +49,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Setea el id del enemigo
+	 *
 	 * @param idEnemigo
 	 */
 	public void setIdEnemigo(final int idEnemigo) {
@@ -53,6 +58,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Devuelve si es mi turno
+	 *
 	 * @return miTurno
 	 */
 	public boolean isMiTurno() {
@@ -61,6 +67,7 @@ public class PaqueteBatalla extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Setea mi turno
+	 *
 	 * @param miTurno
 	 */
 	public void setMiTurno(final boolean miTurno) {

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 /**
  * Clase de Paquete de Mensajes
+ *
  * @author lesanmartin
  *
  */
@@ -35,6 +36,7 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Retorna el usuario emisor
+	 *
 	 * @return userEmisor
 	 */
 	public String getUserEmisor() {
@@ -43,6 +45,7 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Setea el id del usuario emisor
+	 *
 	 * @param idEmisor
 	 */
 	public void setUserEmisor(final String idEmisor) {
@@ -51,6 +54,7 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Retorna el usuario receptor
+	 *
 	 * @return userReceptor
 	 */
 	public String getUserReceptor() {
@@ -59,6 +63,7 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Setea el usuario receptor
+	 *
 	 * @param idReceptor
 	 */
 	public void setUserReceptor(final String idReceptor) {
