@@ -28,13 +28,12 @@ public class EscuchaMensajes extends Thread {
 	// private Map<Integer, PaquetePersonaje> personajesConectados;
 	/**
 	 * Constructor de EscuchaMensaje
-	 * 
 	 * @param juego
 	 *            Juego del que se escucha el mensaje.
 	 */
 	public EscuchaMensajes(final Juego juego) {
 		this.juego = juego;
-		cliente = juego.getCliente();
+		cliente = juego.getCli();
 		entrada = cliente.getEntrada();
 	}
 
@@ -61,18 +60,18 @@ public class EscuchaMensajes extends Thread {
 
 			}
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(null, "Falló la conexión con el servidor al intentar escuchar un mensaje.");
+			JOptionPane.showMessageDialog(
+					null, "Falló la conexión con el servidor "
+							+ "al intentar escuchar un mensaje.");
 		}
 	}
 	/**
 	 * Pide la ubicación de los personajes.
-	 * 
 	 * @return Devuelve el mapa con la ubicacion de los personajes.
 	 */
 
 	/**
 	 * Pide los personajes conectados.
-	 * 
 	 * @return Devuelve el mapa con los personajes conectados.
 	 */
 

@@ -71,14 +71,8 @@ public class Entidad {
 	private boolean enMovimiento;
 
 	// Animaciones
-	private final Animacion moverIzq;
-	private final Animacion moverArribaIzq;
-	private final Animacion moverArriba;
-	private final Animacion moverArribaDer;
-	private final Animacion moverDer;
-	private final Animacion moverAbajoDer;
-	private final Animacion moverAbajo;
-	private final Animacion moverAbajoIzq;
+
+	private final Animacion [] animDirDeMov;	
 
 	private final Gson gson = new Gson();
 	private int intervaloEnvio = 0;
@@ -98,19 +92,8 @@ public class Entidad {
 	private float xComercio;
 	private float yComercio;
 	private float[] comercio;
-
-	private Map<Integer, Command> commandMap=new HashMap<Integer, Command>();
 	
-	public void cargarMap(){
-		commandMap.put(horizontalIzq, moverIzq);
-		commandMap.put(horizontalDer, moverDer);
-		commandMap.put(verticalSup, moverArriba);
-		commandMap.put(verticalInf, moverAbajo);
-		commandMap.put(diagonalInfIzq, moverAbajoIzq);
-		commandMap.put(diagonalInfDer, moverAbajoDer);
-		commandMap.put(diagonalSupIzq, moverArribaIzq);
-		commandMap.put(diagonalSupDer, moverArribaDer);
-	}
+
 	/**
 	 * Constructor de la clase Entidad
 	 * 
@@ -143,22 +126,18 @@ public class Entidad {
 		yOffset = alto / 2;
 		x = (int) (spawnX / 64) * 64;
 		y = (int) (spawnY / 32) * 32;
-
-		moverIzq = new Animacion(velAnimacion, animaciones.get(0));
-		moverArribaIzq = new Animacion(velAnimacion, animaciones.get(1));
-		moverArriba = new Animacion(velAnimacion, animaciones.get(2));
-		moverArribaDer = new Animacion(velAnimacion, animaciones.get(3));
-		moverDer = new Animacion(velAnimacion, animaciones.get(4));
-		moverAbajoDer = new Animacion(velAnimacion, animaciones.get(5));
-		moverAbajo = new Animacion(velAnimacion, animaciones.get(6));
-		moverAbajoIzq = new Animacion(velAnimacion, animaciones.get(7));
+		
+		this.animDirDeMov = new Animacion [8];
+		
+		for(int i=0 ; i < this.animDirDeMov.length ; i++) {
+			this.animDirDeMov[i] = new Animacion(velAnimacion, animaciones.get(i));
+		}
 
 		// Informo mi posición actual
 		juego.getUbicacionPersonaje().setPosX(x);
 		juego.getUbicacionPersonaje().setPosY(y);
 		juego.getUbicacionPersonaje().setDireccion(getDireccion());
 		juego.getUbicacionPersonaje().setFrame(getFrame());
-		cargarMap();
 	}
 
 	/**
@@ -166,24 +145,14 @@ public class Entidad {
 	 */
 	public void actualizar() {
 
-		if (enMovimiento) {
-			moverIzq.actualizar();
-			moverArribaIzq.actualizar();
-			moverArriba.actualizar();
-			moverArribaDer.actualizar();
-			moverDer.actualizar();
-			moverAbajoDer.actualizar();
-			moverAbajo.actualizar();
-			moverAbajoIzq.actualizar();
+		if (enMovimiento) {			
+			for(int i=0 ; i < this.animDirDeMov.length ; i++) {
+				this.animDirDeMov[i].actualizar();
+			}
 		} else {
-			moverIzq.reset();
-			moverArribaIzq.reset();
-			moverArriba.reset();
-			moverArribaDer.reset();
-			moverDer.reset();
-			moverAbajoDer.reset();
-			moverAbajo.reset();
-			moverAbajoIzq.reset();
+			for(int i=0 ; i < this.animDirDeMov.length ; i++) {
+				this.animDirDeMov[i].reset();
+			}
 		}
 
 		getEntrada();
@@ -200,14 +169,14 @@ public class Entidad {
 		posMouse = juego.getHandlerMouse().getPosMouse();
 		if (juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 738 && posMouse[0] <= 797 && posMouse[1] >= 545 && posMouse[1] <= 597) {
 			if (Pantalla.menuInventario == null) {
-				Pantalla.menuInventario = new MenuInventario(juego.getCliente());
+				Pantalla.menuInventario = new MenuInventario(juego.getCli());
 				Pantalla.menuInventario.setVisible(true);
 			}
 			juego.getHandlerMouse().setNuevoClick(false);
 		}
 		if (juego.getHandlerMouse().getNuevoClick() && posMouse[0] >= 3 && posMouse[0] <= 105 && posMouse[1] >= 562 && posMouse[1] <= 597) {
 			if (Pantalla.menuEscp == null) {
-				Pantalla.menuEscp = new MenuEscape(juego.getCliente());
+				Pantalla.menuEscp = new MenuEscape(juego.getCli());
 				Pantalla.menuEscp.setVisible(true);
 			}
 			juego.getHandlerMouse().setNuevoClick(false);
@@ -227,7 +196,7 @@ public class Entidad {
 				if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.menuSubirNivel) {
 					if (juego.getEstadoJuego().getMenuEnemigo().clickEnAsignarSkills(posMouse[0], posMouse[1])) {
 						if (Pantalla.menuAsignar == null) {
-							Pantalla.menuAsignar = new MenuAsignarSkills(juego.getCliente());
+							Pantalla.menuAsignar = new MenuAsignarSkills(juego.getCli());
 						}
 						Pantalla.menuAsignar.setVisible(true);
 					}
@@ -255,7 +224,7 @@ public class Entidad {
 								juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
 
 								try {
-									juego.getCliente().getSalida().writeObject(gson.toJson(pBatalla));
+									juego.getCli().getSal().writeObject(gson.toJson(pBatalla));
 								} catch (IOException e) {
 									JOptionPane.showMessageDialog(null, "Falló la conexión " + "con el servidor" + "al intentar batallar");
 								}
@@ -266,13 +235,13 @@ public class Entidad {
 							// Pregunto si el menú emergente es de tipo comercio
 							if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.menuComerciar) {
 								if ((int) comercio[0] >= 44 && (int) comercio[0] <= 71 && (int) comercio[1] >= 0 && (int) comercio[1] <= 29) {
-									if (juego.getCliente().getM1() == null) {
-										juego.getCliente().setPaqueteComercio(new PaqueteComerciar());
-										juego.getCliente().getPaqueteComercio().setId(juego.getPersonaje().getId());
-										juego.getCliente().getPaqueteComercio().setIdEnemigo(idEnemigo);
+									if (juego.getCli().getM1() == null) {
+										juego.getCli().setPaqueteComercio(new PaqueteComerciar());
+										juego.getCli().getPaqueteComercio().setId(juego.getPersonaje().getId());
+										juego.getCli().getPaqueteComercio().setIdEnemigo(idEnemigo);
 
 										try {
-											juego.getCliente().getSalida().writeObject(gson.toJson(juego.getCliente().getPaqueteComercio()));
+											juego.getCli().getSal().writeObject(gson.toJson(juego.getCli().getPaqueteComercio()));
 										} catch (IOException e) {
 											JOptionPane.showMessageDialog(null, "Falló la conexión " + "con el servidor" + "al intentar comerciar");
 										}
@@ -479,9 +448,9 @@ public class Entidad {
 	 */
 	private BufferedImage getFrameAnimacionActual() {
 		
-		Command command;
-		if((command=commandMap.get(movimientoHacia))!=null)
-				return command.executeGetFrameActual();
+		if(this.movimientoHacia >= 0 && this.movimientoHacia <=7 ) {
+			return this.animDirDeMov[this.movimientoHacia].getFrameActual();
+		}
 		return Recursos.orco.get(6)[0];
 	}
 
@@ -497,10 +466,10 @@ public class Entidad {
 	/**
 	 * Obtiene el frame donde esta el personaje
 	 */
-	private int getFrame() {
-		Command command;
-		if((command=commandMap.get(movimientoHacia))!=null)
-			return command.executeGetFrame();
+	private int getFrame() {		
+		if(this.movimientoHacia >= 0 && this.movimientoHacia <=7 ) {
+			return this.animDirDeMov[this.movimientoHacia].getFrame();
+		}
 		return 0;
 	}
 
@@ -513,7 +482,7 @@ public class Entidad {
 		juego.getUbicacionPersonaje().setDireccion(getDireccion());
 		juego.getUbicacionPersonaje().setFrame(getFrame());
 		try {
-			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
+			juego.getCli().getSal().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Falló la conexión con el servidor en Entidad.enviarPosicion()");
 		}

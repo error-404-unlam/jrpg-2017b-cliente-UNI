@@ -33,7 +33,7 @@ public class MenuInventario extends JFrame {
 				try {
 					Gson gson = new Gson();
 					cliente.getPaquetePersonaje().setComando(Comando.ACTUALIZARINVENTARIO);
-					cliente.getSalida().writeObject(gson.toJson(cliente.getPaquetePersonaje()));
+					cliente.getSal().writeObject(gson.toJson(cliente.getPaquetePersonaje()));
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Error al actualizar inventario");
 				}

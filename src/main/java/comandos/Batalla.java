@@ -4,16 +4,20 @@ import estados.Estado;
 import estados.EstadoBatalla;
 import mensajeria.PaqueteBatalla;
 
+/**
+ * Comando Batalla
+ * @author Miguel
+ */
 public class Batalla extends ComandosEscucha {
 
 	@Override
 	public void ejecutar() {
 
 		PaqueteBatalla paqueteBatalla = (PaqueteBatalla) gson.fromJson(cadenaLeida, PaqueteBatalla.class);
-		juego.getPersonaje().setEstado(Estado.estadoBatalla);
+		this.getJuego().getPersonaje().setEstado(Estado.estadoBatalla);
 		Estado.setEstado(null);
-		juego.setEstadoBatalla(new EstadoBatalla(juego, paqueteBatalla));
-		Estado.setEstado(juego.getEstadoBatalla());
+		this.getJuego().setEstadoBatalla(new EstadoBatalla(this.getJuego(), paqueteBatalla));
+		Estado.setEstado(this.getJuego().getEstadoBatalla());
 
 	}
 

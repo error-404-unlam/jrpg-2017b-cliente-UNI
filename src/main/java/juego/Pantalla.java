@@ -49,7 +49,9 @@ public class Pantalla {
 	public Pantalla(final String NOMBRE, final int ANCHO, final int ALTO, final Cliente cliente) {
 		pantalla = new JFrame(NOMBRE);
 		pantalla.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/frames/IconoWome.png"));
-		pantalla.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0), "custom cursor"));
+		pantalla.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0),
+				"custom cursor"));
 
 		pantalla.setSize(ANCHO, ALTO);
 		pantalla.setResizable(false);
@@ -61,9 +63,9 @@ public class Pantalla {
 					Paquete p = new Paquete();
 					p.setComando(Comando.DESCONECTAR);
 					p.setIp(cliente.getMiIp());
-					cliente.getSalida().writeObject(gson.toJson(p));
+					cliente.getSal().writeObject(gson.toJson(p));
 					cliente.getEntrada().close();
-					cliente.getSalida().close();
+					cliente.getSal().close();
 					cliente.getSocket().close();
 					System.exit(0);
 				} catch (IOException e) {
@@ -75,34 +77,33 @@ public class Pantalla {
 		pantalla.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyReleased(KeyEvent e) {
-				if (e.getKeyCode() == KeyEvent.VK_I) {
-					if (Estado.getEstado().esEstadoDeJuego()) {
+				
+				if (Estado.getEstado().esEstadoDeJuego()) {
+					if (e.getKeyCode() == KeyEvent.VK_I) {
 						if (menuInventario == null) {
 							menuInventario = new MenuInventario(cliente);
 							menuInventario.setVisible(true);
 						}
-					}
-				} else if (e.getKeyCode() == KeyEvent.VK_A) {
-					if (Estado.getEstado().esEstadoDeJuego()) {
+
+					} else if (e.getKeyCode() == KeyEvent.VK_A) {
 						if (menuAsignar == null) {
 							menuAsignar = new MenuAsignarSkills(cliente);
+							menuAsignar.setVisible(true);
 						}
-						menuAsignar.setVisible(true);
-					}
-				} else if (e.getKeyCode() == KeyEvent.VK_S) {
-					if (Estado.getEstado().esEstadoDeJuego()) {
+
+					} else if (e.getKeyCode() == KeyEvent.VK_S) {
 						if (menuStats == null) {
 							menuStats = new MenuStats(cliente);
 							menuStats.setVisible(true);
 						}
-					}
-				} else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-					if (Estado.getEstado().esEstadoDeJuego()) {
+
+					} else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 						if (menuEscp == null) {
 							menuEscp = new MenuEscape(cliente);
 							menuEscp.setVisible(true);
 						}
 					}
+					
 				} else if (e.getKeyCode() == KeyEvent.VK_C) {
 					// if(Estado.getEstado().esEstadoDeJuego()) {
 					if (ventContac == null) {

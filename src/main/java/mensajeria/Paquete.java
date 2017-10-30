@@ -69,24 +69,25 @@ public class Paquete implements Serializable, Cloneable {
 	}
 
 	public Comando getObjeto(String nombrePaquete) {
-		Comando c = null;
+		Comando c = null;	
 		try {
 			c = (Comando) Class.forName(nombrePaquete + "." + Comando.CLASSNAMES[comando]).newInstance();
+
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			JOptionPane.showMessageDialog(null, "Error al asignar responsabilidades");
+			e.printStackTrace();
 		}
 		return c;
 	}
 
 	public static Comando getObjetoSet(String nombrePaquete, int accion) {
-		Comando c = null;
+		Comando c = null;		
 		try {
 			c = (Comando) Class.forName(nombrePaquete + "." + Comando.CLASSNAMESBIS[accion]).newInstance();
+		
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
-			JOptionPane.showMessageDialog(null, "Error al asignar responsabilidades");
+			e.printStackTrace();
 		}
 		return c;
-
 	}
 
 }

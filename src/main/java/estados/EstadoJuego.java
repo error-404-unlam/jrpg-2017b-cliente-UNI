@@ -46,8 +46,8 @@ public class EstadoJuego extends Estado {
 			// Le pido al servidor que me conecte al mapa
 			juego.getPersonaje().setComando(Comando.CONEXION);
 			juego.getPersonaje().setEstado(Estado.estadoJuego);
-			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
-			juego.getCliente().getSalida().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
+			juego.getCli().getSal().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
+			juego.getCli().getSal().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Falló la conexión con el servidor al ingresar al mundo.");
 		}
@@ -78,16 +78,12 @@ public class EstadoJuego extends Estado {
 	}
 
 	private String getMundo() {
-		int mundo = juego.getPersonaje().getMapa();
-
-		if (mundo == 1) {
-			return "Aubenor";
-		} else if (mundo == 2) {
-			return "Aris";
-		} else if (mundo == 3) {
-			return "Eodrim";
+		String[] mundo = { "Aubenor" , "Aris" , "Eodrim" };
+		int mapNum = juego.getPersonaje().getMapa();
+		
+		if(mapNum >=1 && mapNum<=3) {
+			return mundo[mapNum];
 		}
-
 		return null;
 	}
 

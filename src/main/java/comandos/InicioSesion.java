@@ -5,6 +5,10 @@ import javax.swing.JOptionPane;
 import mensajeria.Paquete;
 import mensajeria.PaquetePersonaje;
 
+/**
+ * Clase InicioSesion. Encargada de iniciar la sesion del juego.
+ * @author Miguel
+ */
 public class InicioSesion extends ComandosCliente {
 
 	@Override
@@ -13,17 +17,19 @@ public class InicioSesion extends ComandosCliente {
 		if (paquete.getMensaje().equals(Paquete.msjExito)) {
 
 			// El usuario ya inicio sesi�n
-			cliente.getPaqueteUsuario().setInicioSesion(true);
+			this.getCliente().getPaqueteUsuario().setInicioSesion(true);
 
 			// Recibo el paquete personaje con los datos
-			cliente.setPaquetePersonaje(gson.fromJson(cadenaLeida, PaquetePersonaje.class));
+			this.getCliente().setPaquetePersonaje(gson.fromJson(cadenaLeida, PaquetePersonaje.class));
 
 		} else {
-			if (paquete.getMensaje().equals(Paquete.msjFracaso))
-				JOptionPane.showMessageDialog(null, "Error al iniciar sesión." + " Revise el usuario y la contraseña");
+			if (paquete.getMensaje().equals(Paquete.msjFracaso)) {
+				JOptionPane.showMessageDialog(null, "Error al iniciar sesión."
+						+ "Revise el usuario y la contraseña");
+			}
 
 			// El usuario no pudo iniciar sesión
-			cliente.getPaqueteUsuario().setInicioSesion(false);
+			this.getCliente().getPaqueteUsuario().setInicioSesion(false);
 		}
 
 	}

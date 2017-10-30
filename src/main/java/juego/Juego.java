@@ -219,7 +219,7 @@ public class Juego implements Runnable {
 		this.estadoBatalla = estadoBatalla;
 	}
 
-	public Cliente getCliente() {
+	public Cliente getCli() {
 		return cliente;
 	}
 

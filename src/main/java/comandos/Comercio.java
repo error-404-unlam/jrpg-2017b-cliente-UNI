@@ -8,6 +8,10 @@ import frames.MenuComerciar;
 import mensajeria.Paquete;
 import mensajeria.PaqueteComerciar;
 
+/**
+ * Clase Comercio. Comercia entre Personajes.
+ * @author Miguel
+ */
 public class Comercio extends ComandosEscucha {
 
 	@Override
@@ -17,20 +21,20 @@ public class Comercio extends ComandosEscucha {
 		// Cuando recibo el paquete de comercio actualizado intercambio user/
 		// destino
 		paqueteComerciar.setIdEnemigo(paqueteComerciar.getId());
-		paqueteComerciar.setId(juego.getCliente().getPaquetePersonaje().getId());
+		paqueteComerciar.setId(this.getJuego().getCli().getPaquetePersonaje().getId());
 
 		if (paqueteComerciar.isSolicitudDeComercio()) {
-			if (juego.getCliente().getM1() != null) {
+			if (this.getJuego().getCli().getM1() != null) {
 				paqueteComerciar.setMensaje(Paquete.msjFracaso);
 			} else {
-				juego.getCliente().setPaqueteComercio(paqueteComerciar);
-				juego.getCliente().setM1(new MenuComerciar(juego.getCliente()));
-				juego.getCliente().getM1().setVisible(true);
+				this.getJuego().getCli().setPaqueteComercio(paqueteComerciar);
+				this.getJuego().getCli().setM1(new MenuComerciar(this.getJuego().getCli()));
+				this.getJuego().getCli().getM1().setVisible(true);
 				paqueteComerciar.setMensaje(Paquete.msjExito);
 			}
 			paqueteComerciar.setSolicitudDeComercio(false);
 			try {
-				juego.getCliente().getSalida().writeObject(gson.toJson(paqueteComerciar));
+				this.getJuego().getCli().getSal().writeObject(gson.toJson(paqueteComerciar));
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "No se envio la solicitud de comercio");
 			}
@@ -39,10 +43,10 @@ public class Comercio extends ComandosEscucha {
 			if (paqueteComerciar.getMensaje().equals(Paquete.msjFracaso)) {
 				JOptionPane.showMessageDialog(null, "Ya esta comerciando");
 			} else {
-				if (juego.getCliente().getM1() == null) {
-					juego.getCliente().setPaqueteComercio(paqueteComerciar);
-					juego.getCliente().setM1(new MenuComerciar(juego.getCliente()));
-					juego.getCliente().getM1().setVisible(true);
+				if (this.getJuego().getCli().getM1() == null) {
+					this.getJuego().getCli().setPaqueteComercio(paqueteComerciar);
+					this.getJuego().getCli().setM1(new MenuComerciar(this.getJuego().getCli()));
+					this.getJuego().getCli().getM1().setVisible(true);
 				}
 			}
 		}
