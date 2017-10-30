@@ -2,12 +2,24 @@ package mensajeria;
 
 import com.google.gson.Gson;
 
+/**
+ * Clase de Comandos
+ * 
+ * @author lesanmartin
+ *
+ */
 public abstract class Comando {
 	// Nombre del paquete donde se encuentran las clases con las
 	// responsabilidades
 	public static final String NOMBREPAQUETE = "comandos";
-	public static final String[] CLASSNAMES = { "Conexion", "CrearPersonaje", "Desconectar", "InicioSesion", "MostrarMapas", "Movimiento", "Registro", "Salir", "Batalla", "Atacar", "FinalizarBatalla", "ActualizarPersonaje", "ActualizarPersonajeLvl", "ActualizarInventario", "Comercio", "ActualizarComercio", "Trueque", "ActualizarTrueque", "Talk" };
-	public static final String[] CLASSNAMESBIS = { "Conexion", "CrearPersonaje", "Desconectar", "InicioSesionSet", "MostrarMapas", "Movimiento", "RegistroSet", "SalirSet", "Batalla", "Atacar", "FinalizarBatalla", "ActualizarPersonaje", "ActualizarPersonajeLvl", "ActualizarInventario", "Comercio", "ActualizarComercio", "Trueque", "ActualizarTrueque", "Talk" };
+	public static final String[] CLASSNAMES = {"Conexion", "CrearPersonaje", "Desconectar", "InicioSesion",
+			"MostrarMapas", "Movimiento", "Registro", "Salir", "Batalla", "Atacar", "FinalizarBatalla",
+			"ActualizarPersonaje", "ActualizarPersonajeLvl", "ActualizarInventario", "Comercio", "ActualizarComercio",
+			"Trueque", "ActualizarTrueque", "Talk"};
+	public static final String[] CLASSNAMESBIS = {"Conexion", "CrearPersonaje", "Desconectar", "InicioSesionSet",
+			"MostrarMapas", "Movimiento", "RegistroSet", "SalirSet", "Batalla", "Atacar", "FinalizarBatalla",
+			"ActualizarPersonaje", "ActualizarPersonajeLvl", "ActualizarInventario", "Comercio", "ActualizarComercio",
+			"Trueque", "ActualizarTrueque", "Talk"};
 
 	public static final int CONEXION = 0;
 	public static final int CREACIONPJ = 1;
@@ -32,9 +44,16 @@ public abstract class Comando {
 	protected final Gson gson = new Gson();
 	protected String cadenaLeida;
 
-	public void setCadena(String cadenaLeida) {
+	/**
+	 * Setea la cadena leida
+	 * @param cadenaLeida
+	 */
+	public void setCadena(final String cadenaLeida) {
 		this.cadenaLeida = cadenaLeida;
 	}
 
+	/**
+	 * Metodo abstracto para ejecutar
+	 */
 	public abstract void ejecutar();
 }

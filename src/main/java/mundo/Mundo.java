@@ -159,7 +159,7 @@ public class Mundo {
 					while (it.hasNext()) {
 						key = it.next();
 						actual = ubicacionPersonajes.get(key);
-						if (actual != null && actual.getIdPersonaje() != juego.getPersonaje().getId() && personajesConectados.get(actual.getIdPersonaje()).getEstado() == Estado.estadoJuego && personajesConectados.get(actual.getIdPersonaje()).getMapa() == juego.getPersonaje().getMapa()) {
+						if (actual != null && actual.getIdPersonaje() != juego.getPersonaje().getId() && personajesConectados.get(actual.getIdPersonaje()).getEstado() == Estado.getEstadoJuego() && personajesConectados.get(actual.getIdPersonaje()).getMapa() == juego.getPersonaje().getMapa()) {
 
 							jPersonaje = Mundo.mouseATile(actual.getPosX(), actual.getPosY())[0];
 							iPersonaje = Mundo.mouseATile(actual.getPosX(), actual.getPosY())[1];

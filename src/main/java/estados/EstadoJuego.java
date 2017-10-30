@@ -45,7 +45,7 @@ public class EstadoJuego extends Estado {
 		try {
 			// Le pido al servidor que me conecte al mapa
 			juego.getPersonaje().setComando(Comando.CONEXION);
-			juego.getPersonaje().setEstado(Estado.estadoJuego);
+			juego.getPersonaje().setEstado(Estado.getEstadoJuego());
 			juego.getCli().getSal().writeObject(gson.toJson(juego.getPersonaje(), PaquetePersonaje.class));
 			juego.getCli().getSal().writeObject(gson.toJson(juego.getUbicacionPersonaje(), PaqueteMovimiento.class));
 		} catch (IOException e) {

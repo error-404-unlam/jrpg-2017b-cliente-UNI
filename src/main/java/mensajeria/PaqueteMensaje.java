@@ -2,39 +2,72 @@ package mensajeria;
 
 import java.io.Serializable;
 
+/**
+ * Clase de Paquete de Mensajes
+ * @author lesanmartin
+ *
+ */
 public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
 
 	private String userEmisor;
 	private String userReceptor;
 	private String msj;
 
+	/**
+	 * Constructor de la clase
+	 */
 	public PaqueteMensaje() {
 	}
 
+	/**
+	 * Retorna el mensaje
+	 */
 	public String getMensaje() {
 		return msj;
 	}
 
-	public void setMensaje(String mensaje) {
+	/**
+	 * Asigna mensaje
+	 */
+	public void setMensaje(final String mensaje) {
 		this.msj = mensaje;
 	}
 
+	/**
+	 * Retorna el usuario emisor
+	 * @return userEmisor
+	 */
 	public String getUserEmisor() {
 		return userEmisor;
 	}
 
-	public void setUserEmisor(String idEmisor) {
+	/**
+	 * Setea el id del usuario emisor
+	 * @param idEmisor
+	 */
+	public void setUserEmisor(final String idEmisor) {
 		this.userEmisor = idEmisor;
 	}
 
+	/**
+	 * Retorna el usuario receptor
+	 * @return userReceptor
+	 */
 	public String getUserReceptor() {
 		return userReceptor;
 	}
 
-	public void setUserReceptor(String idReceptor) {
+	/**
+	 * Setea el usuario receptor
+	 * @param idReceptor
+	 */
+	public void setUserReceptor(final String idReceptor) {
 		this.userReceptor = idReceptor;
 	}
 
+	/**
+	 * Clona objeto
+	 */
 	public Object clone() {
 		Object obj = null;
 		obj = super.clone();
