@@ -5,7 +5,7 @@ package entidades;
  */
 public class PilaDeTiles {
 
-	NodoDePila ptrPila;
+	private NodoDePila ptrPila;
 
 	/**
 	 * Constructor de la Clase Nodo de Tiles
@@ -16,7 +16,6 @@ public class PilaDeTiles {
 
 	/**
 	 * Establece el nuevo siguiente
-	 * 
 	 * @param nodo
 	 *            nuevo nodo siguiente
 	 */
@@ -27,25 +26,23 @@ public class PilaDeTiles {
 
 	/**
 	 * Pide el tope
-	 * 
 	 * @return un nodo de pila con el tope de la pila
 	 */
 	public NodoDePila pop() {
-		NodoDePila tope = ptrPila;
+		NodoDePila tope = this.ptrPila;
 		if (tope == null) {
 			return null;
 		}
-		ptrPila = ptrPila.obtenerSiguiente();
+		this.ptrPila = this.ptrPila.obtenerSiguiente();
 		return tope;
 	}
 
 	/**
 	 * Pregunta si esta vacia la pila de tiles
-	 * 
 	 * @return true or false
 	 */
 	public boolean estaVacia() {
-		return ptrPila == null;
+		return this.ptrPila == null;
 	}
 
 }

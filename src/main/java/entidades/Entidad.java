@@ -271,7 +271,7 @@ public class Entidad {
 					key = it.next();
 					actual = juego.getUbicacionPersonajes().get(key);
 					tilePersonajes = Mundo.mouseATile(actual.getPosX(), actual.getPosY());
-					if (actual != null && actual.getIdPersonaje() != juego.getPersonaje().getId() && juego.getPersonajesConectados().get(actual.getIdPersonaje()) != null && juego.getPersonajesConectados().get(actual.getIdPersonaje()).getEstado() == Estado.estadoJuego) {
+					if (actual != null && actual.getIdPersonaje() != juego.getPersonaje().getId() && juego.getPersonajesConectados().get(actual.getIdPersonaje()) != null && juego.getPersonajesConectados().get(actual.getIdPersonaje()).getEstado() == Estado.getEstadoJuego()) {
 
 						if (tileMoverme[0] == tilePersonajes[0] && tileMoverme[1] == tilePersonajes[1]) {
 							idEnemigo = actual.getIdPersonaje();
