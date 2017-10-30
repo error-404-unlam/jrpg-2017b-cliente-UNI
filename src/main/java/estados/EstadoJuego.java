@@ -61,10 +61,10 @@ public class EstadoJuego extends Estado {
 
 	@Override
 	public void graficar(Graphics g) {
-		g.drawImage(Recursos.background, 0, 0, juego.getAncho(), juego.getAlto(), null);
+		g.drawImage(Recursos.background, 0, 0, this.getJuego().getAncho(), this.getJuego().getAlto(), null);
 		mundo.graficarSuelo(g);
 		mundo.graficarObstaculos(g);
-		g.drawImage(Recursos.marco, 0, 0, juego.getAncho(), juego.getAlto(), null);
+		g.drawImage(Recursos.marco, 0, 0, this.getJuego().getAncho(), this.getJuego().getAlto(), null);
 		EstadoDePersonaje.dibujarEstadoDePersonaje(g, 5, 5, paquetePersonaje, miniaturaPersonaje);
 		g.drawImage(Recursos.mochila, 738, 545, 59, 52, null);
 		g.drawImage(Recursos.menu, 3, 562, 102, 35, null);
@@ -79,7 +79,7 @@ public class EstadoJuego extends Estado {
 
 	private String getMundo() {
 		String[] mundo = { "Aubenor" , "Aris" , "Eodrim" };
-		int mapNum = juego.getPersonaje().getMapa();
+		int mapNum = this.getJuego().getPersonaje().getMapa();
 		
 		if(mapNum >=1 && mapNum<=3) {
 			return mundo[mapNum];
@@ -99,7 +99,7 @@ public class EstadoJuego extends Estado {
 	}
 
 	public void actualizarPersonaje() {
-		paquetePersonaje = juego.getPersonaje();
+		paquetePersonaje = this.getJuego().getPersonaje();
 	}
 
 	public MenuInfoPersonaje getMenuEnemigo() {
