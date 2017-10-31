@@ -13,21 +13,21 @@ public class SpriteSheet {
 
 	/**
 	 * Constructor de la clase
-	 * @param sprite
+	 * @param sprite Sprite
 	 */
 	public SpriteSheet(final BufferedImage sprite) {
 		this.sprite = sprite;
 	}
 
 	/**
-	 * Return Tile
-	 * @param x
-	 * @param y
-	 * @param ancho
-	 * @param alto
-	 * @return imagen
+	 * Devuelve el tile
+	 * @param x posicion X
+	 * @param y posicion Y
+	 * @param ancho Ancho
+	 * @param alto Alto
+	 * @return BufferedImage
 	 */
-	public BufferedImage getTile(final int x,final int y,final int ancho,final int alto) {
+	public BufferedImage getTile(final int x, final int y, final int ancho, final int alto) {
 		return sprite.getSubimage(x, y, ancho, alto);
 	}
 }
