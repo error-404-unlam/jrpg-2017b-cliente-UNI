@@ -14,7 +14,7 @@ import recursos.Recursos;
 public class MenuInfoPersonaje {
 
 	private static final int anchoPersonaje = 128;
-	private static final BufferedImage menu = Recursos.menuEnemigo;
+	private static final BufferedImage menu = Recursos.getMenuEnemigo();
 	public static final int menuBatallar = 0;
 	public static final int menuInformacion = 1;
 	public static final int menuSubirNivel = 2;
@@ -74,13 +74,13 @@ public class MenuInfoPersonaje {
 
 		// Muestro los botones
 		g.setFont(new Font("Book Antiqua", 1, 20));
-		g.drawImage(Recursos.botonMenu, x + 50, y + 380, 200, 25, null);
+		g.drawImage(Recursos.getBotonMenu(), x + 50, y + 380, 200, 25, null);
 		g.setColor(Color.WHITE);
 		Pantalla.centerString(g, new Rectangle(x + 50, y + 380, 200, 25), leyendaBoton[tipoMenu]);
 
 		// Agrego el botón "Asignar Skills"
 		if (tipoMenu == 2) {
-			g.drawImage(Recursos.botonMenu, x + 50, y + 410, 200, 25, null);
+			g.drawImage(Recursos.getBotonMenu(), x + 50, y + 410, 200, 25, null);
 			Pantalla.centerString(g, new Rectangle(x + 50, y + 410, 200, 25), "Asignar Skills");
 		}
 	}
