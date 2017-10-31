@@ -13,12 +13,21 @@ import javax.swing.border.MatteBorder;
 import dominio.Item;
 import mensajeria.PaquetePersonaje;
 
+/**
+ * Clase para el inventario del personaje
+ * @author leonel
+ *
+ */
 public class Inventario extends JPanel {
 	private static final int CANTCOLUMNAS = 3;
 	private static final int CANTFILAS = 3;
 	private ArrayList<Item> items;
-
-	public Inventario(PaquetePersonaje paquetePersonaje) throws IOException {
+	/**
+	 * 
+	 * @param paquetePersonaje
+	 * @throws IOException
+	 */
+	public Inventario(final PaquetePersonaje paquetePersonaje) throws IOException {
 		setLayout(new GridBagLayout());
 		items = new ArrayList<Item>(paquetePersonaje.getItems());
 		GridBagConstraints gbc = new GridBagConstraints();

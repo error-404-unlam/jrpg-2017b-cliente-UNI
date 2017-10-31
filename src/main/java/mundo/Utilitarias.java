@@ -6,9 +6,25 @@ import java.io.IOException;
 
 import javax.swing.JOptionPane;
 
-public class Utilitarias {
-
-	public static String archivoAString(String path) {
+/**
+ * Clase utilitaria de mundo
+ *
+ * @author lesanmartin
+ */
+public final class Utilitarias {
+	/**
+	 * Constructor de la clase
+	 */
+	private Utilitarias() {
+		
+	}
+	/**
+	 * Carga el mapa
+	 *
+	 * @param path
+	 * @return
+	 */
+	public static String archivoAString(final String path) {
 		StringBuilder builder = new StringBuilder();
 
 		try {
@@ -27,7 +43,13 @@ public class Utilitarias {
 		return builder.toString();
 	}
 
-	public static int parseInt(String numero) {
+	/**
+	 * Convierte un numero de string a int
+	 *
+	 * @param numero
+	 * @return
+	 */
+	public static int parseInt(final String numero) {
 		try {
 			return Integer.parseInt(numero);
 		} catch (NumberFormatException e) {

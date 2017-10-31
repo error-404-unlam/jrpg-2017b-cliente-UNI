@@ -11,7 +11,6 @@ public class NodoDePila {
 
 	/**
 	 * Constructor de la clase Nodo de Pila
-	 * 
 	 * @param x
 	 *            valor de x donde esta el personaje
 	 * @param y
@@ -25,7 +24,6 @@ public class NodoDePila {
 
 	/**
 	 * Pide el siguiente
-	 * 
 	 * @return devuelve un nodo de pila con el siguiente
 	 */
 	public NodoDePila obtenerSiguiente() {
@@ -34,17 +32,15 @@ public class NodoDePila {
 
 	/**
 	 * Setea el siguiente
-	 * 
 	 * @param nodo
 	 *            nuevo nodo a setear
 	 */
-	public void establecerSiguiente(NodoDePila nodo) {
+	public void establecerSiguiente(final NodoDePila nodo) {
 		ptrSiguiente = nodo;
 	}
 
 	/**
 	 * Pide el valor de X
-	 * 
 	 * @return devuelve el valor de X
 	 */
 	public int obtenerX() {
@@ -53,7 +49,6 @@ public class NodoDePila {
 
 	/**
 	 * Pide el valor de Y
-	 * 
 	 * @return devuelve el valor de Y
 	 */
 	public int obtenerY() {

@@ -32,7 +32,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	private int puntosAsignadosInteligencia;
 
 	public PaquetePersonaje() throws IOException {
-		estado = Estado.estadoOffline;
+		estado = Estado.getEstadoOffLine();
 	}
 
 	public int getEstado() {
