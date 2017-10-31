@@ -26,17 +26,17 @@ public class MenuBatalla {
 	public void graficar(Graphics g) {
 
 		if (habilitado)
-			g.drawImage(Recursos.menuBatalla, x, y, null);
+			g.drawImage(Recursos.getMenuBatalla(), x, y, null);
 		else
-			g.drawImage(Recursos.menuBatallaDeshabilitado, x, y, null);
+			g.drawImage(Recursos.getMenuBatallaDeshabilitado(), x, y, null);
 
 		// Dibujo los botones
-		g.drawImage(Recursos.habilidades.get(personaje.getHabilidadesRaza()[0]), botones[0][0], botones[0][1], anchoBoton, anchoBoton, null);
-		g.drawImage(Recursos.habilidades.get(personaje.getHabilidadesRaza()[1]), botones[1][0], botones[1][1], anchoBoton, anchoBoton, null);
-		g.drawImage(Recursos.habilidades.get(personaje.getHabilidadesCasta()[0]), botones[2][0], botones[2][1], anchoBoton, anchoBoton, null);
-		g.drawImage(Recursos.habilidades.get(personaje.getHabilidadesCasta()[1]), botones[3][0], botones[3][1], anchoBoton, anchoBoton, null);
-		g.drawImage(Recursos.habilidades.get(personaje.getHabilidadesCasta()[2]), botones[4][0], botones[4][1], anchoBoton, anchoBoton, null);
-		g.drawImage(Recursos.habilidades.get("Ser Energizado"), botones[5][0], botones[5][1], anchoBoton, anchoBoton, null);
+		g.drawImage(Recursos.getHabilidades().get(personaje.getHabilidadesRaza()[0]), botones[0][0], botones[0][1], anchoBoton, anchoBoton, null);
+		g.drawImage(Recursos.getHabilidades().get(personaje.getHabilidadesRaza()[1]), botones[1][0], botones[1][1], anchoBoton, anchoBoton, null);
+		g.drawImage(Recursos.getHabilidades().get(personaje.getHabilidadesCasta()[0]), botones[2][0], botones[2][1], anchoBoton, anchoBoton, null);
+		g.drawImage(Recursos.getHabilidades().get(personaje.getHabilidadesCasta()[1]), botones[3][0], botones[3][1], anchoBoton, anchoBoton, null);
+		g.drawImage(Recursos.getHabilidades().get(personaje.getHabilidadesCasta()[2]), botones[4][0], botones[4][1], anchoBoton, anchoBoton, null);
+		g.drawImage(Recursos.getHabilidades().get("Ser Energizado"), botones[5][0], botones[5][1], anchoBoton, anchoBoton, null);
 
 		// Dibujo las leyendas
 		g.setFont(new Font("Book Antiqua", 1, 14));
@@ -50,9 +50,9 @@ public class MenuBatalla {
 		// Dibujo de quién es el turno
 		g.setColor(Color.WHITE);
 		if (habilitado)
-			Pantalla.centerString(g, new Rectangle(x, y + 5, Recursos.menuBatalla.getWidth(), 20), "Mi Turno");
+			Pantalla.centerString(g, new Rectangle(x, y + 5, Recursos.getMenuBatalla().getWidth(), 20), "Mi Turno");
 		else
-			Pantalla.centerString(g, new Rectangle(x, y + 5, Recursos.menuBatalla.getWidth(), 20), "Turno Rival");
+			Pantalla.centerString(g, new Rectangle(x, y + 5, Recursos.getMenuBatalla().getWidth(), 20), "Turno Rival");
 
 	}
 
@@ -67,7 +67,7 @@ public class MenuBatalla {
 	}
 
 	public boolean clickEnMenu(int mouseX, int mouseY) {
-		if (mouseX >= x && mouseX <= x + Recursos.menuBatalla.getWidth() && mouseY >= y && mouseY <= y + Recursos.menuBatalla.getHeight())
+		if (mouseX >= x && mouseX <= x + Recursos.getMenuBatalla().getWidth() && mouseY >= y && mouseY <= y + Recursos.getMenuBatalla().getHeight())
 			return habilitado;
 		return false;
 	}

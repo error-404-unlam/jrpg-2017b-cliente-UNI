@@ -37,7 +37,7 @@ public class Recursos {
 	private static BufferedImage[] humanoAbajoIzq;
 
 	private static SpriteSheet spriteOgro;
-	public static LinkedList<BufferedImage[]> orco = new LinkedList<>();
+	private static LinkedList<BufferedImage[]> orco = new LinkedList<>();
 	private static BufferedImage[] orcoIzq;
 	private static BufferedImage[] orcoArribaIzq;
 	private static BufferedImage[] orcoArriba;
@@ -48,7 +48,7 @@ public class Recursos {
 	private static BufferedImage[] orcoAbajoIzq;
 
 	private static SpriteSheet spriteElfo;
-	public static LinkedList<BufferedImage[]> elfo = new LinkedList<>();
+	private static LinkedList<BufferedImage[]> elfo = new LinkedList<>();
 	private static BufferedImage[] elfoIzq;
 	private static BufferedImage[] elfoArribaIzq;
 	private static BufferedImage[] elfoArriba;
@@ -61,32 +61,37 @@ public class Recursos {
 
 	// Entorno
 	private static SpriteSheet trees;
-	public static BufferedImage cesped;
-	public static BufferedImage roca;
-	public static BufferedImage background;
-	public static BufferedImage marco;
-	public static BufferedImage botonMenu;
-	public static BufferedImage menuEnemigo;
-	public static BufferedImage greenTree;
-	public static BufferedImage nievePiso1;
-	public static BufferedImage iceBlock;
+	private static BufferedImage cesped;
+	private static BufferedImage roca;
+	private static BufferedImage background;
+	private static BufferedImage marco;
+	private static BufferedImage botonMenu;
+	private static BufferedImage menuEnemigo;
+	private static BufferedImage greenTree;
+	private static BufferedImage nievePiso1;
+	private static BufferedImage iceBlock;
 	// Fin Entorno
 
 	// Batalla
-	public static BufferedImage barraSpells;
-	public static BufferedImage estadoPersonaje;
-	public static BufferedImage barraSalud;
-	public static BufferedImage barraEnergia;
-	public static BufferedImage barraExperiencia;
-	public static BufferedImage menuBatalla;
-	public static BufferedImage menuBatallaDeshabilitado;
-	public static BufferedImage noItem;
-	public static BufferedImage mochila;
-	public static BufferedImage menu;
-	public static BufferedImage chat;
-	public static Map<String, BufferedImage> habilidades = new HashMap<>();
+	private static BufferedImage barraSpells;
+	private static BufferedImage estadoPersonaje;
+	private static BufferedImage barraSalud;
+	private static BufferedImage barraEnergia;
+	private static BufferedImage barraExperiencia;
+	private static BufferedImage menuBatalla;
+	private static BufferedImage menuBatallaDeshabilitado;
+	private static BufferedImage noItem;
+	private static BufferedImage mochila;
+	private static BufferedImage menu;
+	private static BufferedImage chat;
+	private static Map<String, BufferedImage> habilidades = new HashMap<>();
 	// Fin Batalla
-
+	private static final int X_MAPA_ARIS = 64;
+	private static final int Y_MAPA_ARIS = 64;
+	private static final int ANCHO_MAPA_ARIS = 64;
+	private static final int ALTO_MAPA_ARIS = 64;
+	private static final int ANCHO_TILE = 64;
+	private static final int ALTO_TILE = 64;
 	// Se cargan todos los recursos del juego una sola vez al inicio
 
 	public static void cargar(MenuCarga menuCarga) throws NumberFormatException, IOException {
@@ -347,22 +352,39 @@ public class Recursos {
 		iceBlock = CargadorImagen.cargarImagen("/nieve cubo.png");
 
 		// Mapa
-		if (MenuMapas.numberMap == 1) {
+		if (MenuMapas.getNumberMap() == 1) {
 			SpriteSheet mapaAubenor = new SpriteSheet(CargadorImagen.cargarImagen("/Aubenor.png"));
 			Tile.aubenor = new Tile[81];
-			boolean[][] solidezAubenor = { { true, true, false, true, false, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true }, { true, false, false, false, false, false, false, false, true, true }, { false, false, false, false, false, false, false, false, true, true }, { false, true, true, true, true, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true } };
+			boolean[][] solidezAubenor = {{true, true, false, true, false, true, true, true, true, true },
+					{true, true, true, true, true, true, true, true, true, true },
+					{true, true, true, true, true, true, true, true, true, true },
+					{true, false, false, false, false, false, false, false, true, true },
+					{false, false, false, false, false, false, false, false, true, true },
+					{false, true, true, true, true, true, true, true, true, true },
+					{true, true, true, true, true, true, true, true, true, true },
+					{true, true, true, true, true, true, true, true, true, true } };
 			for (int y = 0; y < 8; y++) {
 				for (int x = 0; x < 10; x++) {
-					Tile.aubenor[y * 10 + x + 1] = new Tile(mapaAubenor.getTile(x * 64, y * 64, 64, 64), y * 10 + x + 1, solidezAubenor[y][x], 64, 64);
+					Tile.aubenor[y * 10 + x + 1] = new Tile(mapaAubenor.getTile(x * 64, y * 64, 64, 64), y * 10 + x + 1,
+							solidezAubenor[y][x], 64, 64);
 				}
 			}
 		} else {
 			SpriteSheet mapaAris = new SpriteSheet(CargadorImagen.cargarImagen("/Aris.png"));
 			Tile.aris = new Tile[81];
-			boolean[][] solidezAris = { { true, false, false, false, false, false, false, true, true, true }, { false, false, false, false, false, false, false, false, true, true }, { false, false, false, false, true, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true }, { false, true, true, true, true, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true } };
+			boolean[][] solidezAris = {{true, false, false, false, false, false, false, true, true, true},
+					{false, false, false, false, false, false, false, false, true, true },
+					{false, false, false, false, true, true, true, true, true, true },
+					{true, true, true, true, true, true, true, true, true, true },
+					{true, true, true, true, true, true, true, true, true, true },
+					{false, true, true, true, true, true, true, true, true, true },
+					{true, true, true, true, true, true, true, true, true, true },
+					{ true, true, true, true, true, true, true, true, true, true } };
 			for (int y = 0; y < 8; y++) {
 				for (int x = 0; x < 10; x++) {
-					Tile.aris[y * 10 + x + 1] = new Tile(mapaAris.getTile(x * 64, y * 64, 64, 64), y * 10 + x + 1, solidezAris[y][x], 64, 64);
+					Tile.aris[y * 10 + x + 1] = new Tile(
+							mapaAris.getTile(x * X_MAPA_ARIS, y * Y_MAPA_ARIS, ANCHO_MAPA_ARIS, ALTO_MAPA_ARIS),
+							y * 10 + x + 1, solidezAris[y][x], ANCHO_TILE, ALTO_TILE);
 				}
 			}
 		}
@@ -437,7 +459,244 @@ public class Recursos {
 		// Fin Batalla
 	}
 
-	private static void actualizarBarraDeCarga(int elementosCargados, MenuCarga menuCarga) {
+	/**
+	 * Actualiza la barra de carga
+	 * 
+	 * @param elementosCargados
+	 *            elementos cargados
+	 * @param menuCarga
+	 *            menu de carga
+	 */
+	private static void actualizarBarraDeCarga(final int elementosCargados, final MenuCarga menuCarga) {
 		menuCarga.setBarraCargando(elementosCargados * ANCHOBARRA / ELEMENTOS);
 	}
+
+	public static int getELEMENTOS() {
+		return ELEMENTOS;
+	}
+
+	public static int getANCHOBARRA() {
+		return ANCHOBARRA;
+	}
+
+	public static int getANCHO() {
+		return ANCHO;
+	}
+
+	public static int getALTO() {
+		return ALTO;
+	}
+
+	public static Map<String, LinkedList<BufferedImage[]>> getPersonaje() {
+		return personaje;
+	}
+
+	public static SpriteSheet getSpriteHumano() {
+		return spriteHumano;
+	}
+
+	public static LinkedList<BufferedImage[]> getHumano() {
+		return humano;
+	}
+
+	public static BufferedImage[] getHumanoIzq() {
+		return humanoIzq;
+	}
+
+	public static BufferedImage[] getHumanoArribaIzq() {
+		return humanoArribaIzq;
+	}
+
+	public static BufferedImage[] getHumanoArriba() {
+		return humanoArriba;
+	}
+
+	public static BufferedImage[] getHumanoArribaDer() {
+		return humanoArribaDer;
+	}
+
+	public static BufferedImage[] getHumanoDer() {
+		return humanoDer;
+	}
+
+	public static BufferedImage[] getHumanoAbajoDer() {
+		return humanoAbajoDer;
+	}
+
+	public static BufferedImage[] getHumanoAbajo() {
+		return humanoAbajo;
+	}
+
+	public static BufferedImage[] getHumanoAbajoIzq() {
+		return humanoAbajoIzq;
+	}
+
+	public static SpriteSheet getSpriteOgro() {
+		return spriteOgro;
+	}
+
+	public static LinkedList<BufferedImage[]> getOrco() {
+		return orco;
+	}
+
+	public static BufferedImage[] getOrcoIzq() {
+		return orcoIzq;
+	}
+
+	public static BufferedImage[] getOrcoArribaIzq() {
+		return orcoArribaIzq;
+	}
+
+	public static BufferedImage[] getOrcoArriba() {
+		return orcoArriba;
+	}
+
+	public static BufferedImage[] getOrcoArribaDer() {
+		return orcoArribaDer;
+	}
+
+	public static BufferedImage[] getOrcoDer() {
+		return orcoDer;
+	}
+
+	public static BufferedImage[] getOrcoAbajoDer() {
+		return orcoAbajoDer;
+	}
+
+	public static BufferedImage[] getOrcoAbajo() {
+		return orcoAbajo;
+	}
+
+	public static BufferedImage[] getOrcoAbajoIzq() {
+		return orcoAbajoIzq;
+	}
+
+	public static SpriteSheet getSpriteElfo() {
+		return spriteElfo;
+	}
+
+	public static LinkedList<BufferedImage[]> getElfo() {
+		return elfo;
+	}
+
+	public static BufferedImage[] getElfoIzq() {
+		return elfoIzq;
+	}
+
+	public static BufferedImage[] getElfoArribaIzq() {
+		return elfoArribaIzq;
+	}
+
+	public static BufferedImage[] getElfoArriba() {
+		return elfoArriba;
+	}
+
+	public static BufferedImage[] getElfoArribaDer() {
+		return elfoArribaDer;
+	}
+
+	public static BufferedImage[] getElfoDer() {
+		return elfoDer;
+	}
+
+	public static BufferedImage[] getElfoAbajoDer() {
+		return elfoAbajoDer;
+	}
+
+	public static BufferedImage[] getElfoAbajo() {
+		return elfoAbajo;
+	}
+
+	public static BufferedImage[] getElfoAbajoIzq() {
+		return elfoAbajoIzq;
+	}
+
+	public static SpriteSheet getTrees() {
+		return trees;
+	}
+
+	public static BufferedImage getCesped() {
+		return cesped;
+	}
+
+	public static BufferedImage getRoca() {
+		return roca;
+	}
+
+	public static BufferedImage getBackground() {
+		return background;
+	}
+
+	public static BufferedImage getMarco() {
+		return marco;
+	}
+
+	public static BufferedImage getBotonMenu() {
+		return botonMenu;
+	}
+
+	public static BufferedImage getMenuEnemigo() {
+		return menuEnemigo;
+	}
+
+	public static BufferedImage getGreenTree() {
+		return greenTree;
+	}
+
+	public static BufferedImage getNievePiso1() {
+		return nievePiso1;
+	}
+
+	public static BufferedImage getIceBlock() {
+		return iceBlock;
+	}
+
+	public static BufferedImage getBarraSpells() {
+		return barraSpells;
+	}
+
+	public static BufferedImage getEstadoPersonaje() {
+		return estadoPersonaje;
+	}
+
+	public static BufferedImage getBarraSalud() {
+		return barraSalud;
+	}
+
+	public static BufferedImage getBarraEnergia() {
+		return barraEnergia;
+	}
+
+	public static BufferedImage getBarraExperiencia() {
+		return barraExperiencia;
+	}
+
+	public static BufferedImage getMenuBatalla() {
+		return menuBatalla;
+	}
+
+	public static BufferedImage getMenuBatallaDeshabilitado() {
+		return menuBatallaDeshabilitado;
+	}
+
+	public static BufferedImage getNoItem() {
+		return noItem;
+	}
+
+	public static BufferedImage getMochila() {
+		return mochila;
+	}
+
+	public static BufferedImage getMenu() {
+		return menu;
+	}
+
+	public static BufferedImage getChat() {
+		return chat;
+	}
+
+	public static Map<String, BufferedImage> getHabilidades() {
+		return habilidades;
+	}
+
 }

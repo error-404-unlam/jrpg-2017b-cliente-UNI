@@ -99,19 +99,19 @@ public class EstadoJuego extends Estado {
 
 	@Override
 	public void graficar(final Graphics g) {
-		g.drawImage(Recursos.background, 0, 0, this.getJuego().getAncho(), this.getJuego().getAlto(), null);
+		g.drawImage(Recursos.getBackground(), 0, 0, this.getJuego().getAncho(), this.getJuego().getAlto(), null);
 		mundo.graficarSuelo(g);
 		mundo.graficarObstaculos(g);
-		g.drawImage(Recursos.marco, 0, 0, this.getJuego().getAncho(), this.getJuego().getAlto(), null);
+		g.drawImage(Recursos.getMarco(), 0, 0, this.getJuego().getAncho(), this.getJuego().getAlto(), null);
 		EstadoDePersonaje.dibujarEstadoDePersonaje(
 				g,
 				xDibujarEstadoDePersonaje,
 				yDibujarEstadoDePersonaje,
 				paquetePersonaje,
 				miniaturaPersonaje);
-		g.drawImage(Recursos.mochila, posXMochila, posYMochila, anchoMochila, altoMochila, null);
-		g.drawImage(Recursos.menu, posXMenu, posYMenu, anchoMenu, altoMenu, null);
-		g.drawImage(Recursos.chat, posXChat, posYChat, anchoChat, altoChat, null);
+		g.drawImage(Recursos.getMochila(), posXMochila, posYMochila, anchoMochila, altoMochila, null);
+		g.drawImage(Recursos.getMenu(), posXMenu, posYMenu, anchoMenu, altoMenu, null);
+		g.drawImage(Recursos.getChat(), posXChat, posYChat, anchoChat, altoChat, null);
 		if (haySolicitud) {
 			menuEnemigo.graficar(g, tipoSolicitud);
 		}

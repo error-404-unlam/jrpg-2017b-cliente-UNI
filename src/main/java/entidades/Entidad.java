@@ -578,7 +578,7 @@ public class Entidad {
 		if (this.movimientoHacia >= 0 && this.movimientoHacia <= limiteSupMovHacia) {
 			return this.animDirDeMov[this.movimientoHacia].getFrameActual();
 		}
-		return Recursos.orco.get(animActual)[0];
+		return Recursos.getOrco().get(animActual)[0];
 	}
 	/**
 	 * Pide la direccion donde va
