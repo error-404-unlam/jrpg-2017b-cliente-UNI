@@ -20,8 +20,7 @@ public final class Utilitarias {
 
 	/**
 	 * Carga archivo a String
-	 *
-	 * @param path
+	 * @param path ruta del archivo
 	 * @return builder.toString
 	 */
 	public static String archivoAString(final String path) {
@@ -44,9 +43,8 @@ public final class Utilitarias {
 	}
 
 	/**
-	 * Parsea un string  
-	 *
-	 * @param numero
+	 * Parsea un string
+	 * @param numero a parsear
 	 * @return int
 	 */
 	public static int parseInt(final String numero) {
