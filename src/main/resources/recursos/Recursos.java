@@ -347,7 +347,7 @@ public class Recursos {
 		iceBlock = CargadorImagen.cargarImagen("/nieve cubo.png");
 
 		// Mapa
-		if (MenuMapas.numberMap == 1) {
+		if (MenuMapas.getNumberMap() == 1) {
 			SpriteSheet mapaAubenor = new SpriteSheet(CargadorImagen.cargarImagen("/Aubenor.png"));
 			Tile.aubenor = new Tile[81];
 			boolean[][] solidezAubenor = { { true, true, false, true, false, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true }, { true, false, false, false, false, false, false, false, true, true }, { false, false, false, false, false, false, false, false, true, true }, { false, true, true, true, true, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true }, { true, true, true, true, true, true, true, true, true, true } };
