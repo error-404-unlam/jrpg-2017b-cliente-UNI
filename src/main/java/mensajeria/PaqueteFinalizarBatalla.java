@@ -1,6 +1,7 @@
 package mensajeria;
 
 import java.io.Serializable;
+
 /**
  * Clase de final de la batalla
  *
@@ -28,7 +29,7 @@ public class PaqueteFinalizarBatalla extends Paquete implements Serializable, Cl
 	public int getId() {
 		return id;
 	}
-	
+
 	/**
 	 * Setea el id
 	 *

@@ -25,12 +25,12 @@ public class Comercio extends ComandosEscucha {
 
 		if (paqueteComerciar.isSolicitudDeComercio()) {
 			if (this.getJuego().getCli().getM1() != null) {
-				paqueteComerciar.setMensaje(Paquete.msjFracaso);
+				paqueteComerciar.setMensaje(Paquete.getMsjFracaso());
 			} else {
 				this.getJuego().getCli().setPaqueteComercio(paqueteComerciar);
 				this.getJuego().getCli().setM1(new MenuComerciar(this.getJuego().getCli()));
 				this.getJuego().getCli().getM1().setVisible(true);
-				paqueteComerciar.setMensaje(Paquete.msjExito);
+				paqueteComerciar.setMensaje(Paquete.getMsjExito());
 			}
 			paqueteComerciar.setSolicitudDeComercio(false);
 			try {
@@ -40,7 +40,7 @@ public class Comercio extends ComandosEscucha {
 			}
 
 		} else {
-			if (paqueteComerciar.getMensaje().equals(Paquete.msjFracaso)) {
+			if (paqueteComerciar.getMensaje().equals(Paquete.getMsjFracaso())) {
 				JOptionPane.showMessageDialog(null, "Ya esta comerciando");
 			} else {
 				if (this.getJuego().getCli().getM1() == null) {
