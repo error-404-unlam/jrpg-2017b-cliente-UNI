@@ -41,6 +41,37 @@ public class MenuCreacionPj extends JFrame {
 
 	private JComboBox<String> cbxCasta;
 	private JComboBox<String> cbxRaza;
+	private final int posXLabelBackground = 0;
+	private final int posYLabelBackground = 0;
+	private final int anchoLabelBackground = 444;
+	private final int altoLabelBackground = 271;
+	private final int posXCbxRaza = 32;
+	private final int posYCbxRaza = 48;
+	private final int anchoCbxRaza = 76;
+	private final int altoCbxRaza = 20;
+	private final int posXCbxCasta = 161;
+	private final int posYCbxCasta = 48;
+	private final int anchoCbxCasta = 76;
+	private final int altoCbxCasta = 20;
+	private final int posXLblCasta = 161;
+	private final int posYLblCasta = 23;
+	private final int anchoLblCasta = 46;
+	private final int altoLblCasta = 14;
+	private final int tamFuenteLblCasta = 15;
+	private final int tamFuenteLblRaza = 15;
+	private final int posXLblRaza = 33;
+	private final int posYLblRaza = 23;
+	private final int anchoLblRaza = 46;
+	private final int altoLblRaza = 14;
+	private final int posXBtnAceptar = 230;
+	private final int posYBtnAceptar = 174;
+	private final int anchoBtnAceptar = 153;
+	private final int altoBtnAceptar = 23;
+	private final int tamFuenteLblAceptar = 15;
+	private final int posXLblAceptar = 280;
+	private final int posYLblAceptar = 173;
+	private final int anchoLblAceptar = 50;
+	private final int altoLblAceptar = 24;
 
 	public MenuCreacionPj(final Cliente cliente, final PaquetePersonaje personaje, final Gson gson) {
 		// Se inicializa ícono y cursor
@@ -158,47 +189,79 @@ public class MenuCreacionPj extends JFrame {
 		nombre.setBounds(277, 122, 122, 20);
 		layeredPane.add(nombre, new Integer(1));
 		nombre.setColumns(10);
-
 		JLabel lblAceptar = new JLabel("Aceptar");
-		lblAceptar.setBounds(280, 173, 50, 24);
+		lblAceptar.setBounds(
+				posXLblAceptar,
+				posYLblAceptar,
+				anchoLblAceptar,
+				altoLblAceptar);
 		layeredPane.add(lblAceptar, new Integer(2));
 		lblAceptar.setForeground(Color.WHITE);
-		lblAceptar.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblAceptar.setFont(
+				new Font(
+						"Tahoma",
+						Font.PLAIN,
+						tamFuenteLblAceptar));
 
 		// En caso de apretar el boton aceptar
 		JButton btnAceptar = new JButton("Aceptar");
-		btnAceptar.setBounds(230, 174, 153, 23);
+		btnAceptar.setBounds(
+				posXBtnAceptar,
+				posYBtnAceptar,
+				anchoBtnAceptar,
+				altoBtnAceptar);
 		layeredPane.add(btnAceptar, new Integer(1));
 		btnAceptar.setFocusable(false);
 		btnAceptar.setIcon(new ImageIcon(MenuCreacionPj.class.getResource("/frames/BotonMenu.png")));
-
 		btnAceptar.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
-				crearPj(cliente, personaje, gson, vecSalud, vecEnergia, vecFuerza, vecDestreza, vecInteligencia);
+			public void actionPerformed(final ActionEvent e) {
+				crearPj(
+						cliente, personaje, gson,
+						vecSalud, vecEnergia, vecFuerza,
+						vecDestreza, vecInteligencia);
 
 			}
 
 		});
-
 		JLabel lblNewLabel = new JLabel("Raza");
-		lblNewLabel.setBounds(33, 23, 46, 14);
+		lblNewLabel.setBounds(
+				posXLblRaza,
+				posYLblRaza,
+				anchoLblRaza,
+				altoLblRaza);
 		layeredPane.add(lblNewLabel, new Integer(1));
 		lblNewLabel.setForeground(Color.WHITE);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblNewLabel.setFont(
+				new Font(
+						"Tahoma",
+						Font.PLAIN,
+						tamFuenteLblRaza));
 
 		JLabel lblCasta = new JLabel("Casta");
-		lblCasta.setBounds(161, 23, 46, 14);
+		lblCasta.setBounds(
+				posXLblCasta,
+				posYLblCasta,
+				anchoLblCasta,
+				altoLblCasta);
 		layeredPane.add(lblCasta, new Integer(1));
 		lblCasta.setForeground(Color.WHITE);
-		lblCasta.setFont(new Font("Tahoma", Font.PLAIN, 15));
-
+		lblCasta.setFont(
+				new Font(
+						"Tahoma",
+						Font.PLAIN,
+						tamFuenteLblCasta));
+	
 		cbxCasta = new JComboBox<>();
-		cbxCasta.setBounds(161, 48, 76, 20);
+		cbxCasta.setBounds(
+				posXCbxCasta,
+				posYCbxCasta,
+				anchoCbxCasta,
+				altoCbxCasta);
 		layeredPane.add(cbxCasta, new Integer(1));
 		cbxCasta.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				fuerza.setText(vecFuerza[cbxCasta.getSelectedIndex()]);
 				destreza.setText(vecDestreza[cbxCasta.getSelectedIndex()]);
 				inteligencia.setText(vecInteligencia[cbxCasta.getSelectedIndex()]);
@@ -207,13 +270,16 @@ public class MenuCreacionPj extends JFrame {
 		cbxCasta.addItem("Guerrero");
 		cbxCasta.addItem("Hechicero");
 		cbxCasta.addItem("Asesino");
-
 		cbxRaza = new JComboBox<>();
-		cbxRaza.setBounds(32, 48, 76, 20);
+		cbxRaza.setBounds(
+				posXCbxRaza,
+				posYCbxRaza,
+				anchoCbxRaza,
+				altoCbxRaza);
 		layeredPane.add(cbxRaza, new Integer(1));
 		cbxRaza.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				salud.setText(vecSalud[cbxRaza.getSelectedIndex()]);
 				energia.setText(vecEnergia[cbxRaza.getSelectedIndex()]);
 			}
@@ -223,17 +289,40 @@ public class MenuCreacionPj extends JFrame {
 		cbxRaza.addItem("Orco");
 
 		JLabel lblBackground = new JLabel("");
-		lblBackground.setBounds(0, 0, 444, 271);
+		lblBackground.setBounds(
+				posXLabelBackground,
+				posYLabelBackground,
+				anchoLabelBackground,
+				altoLabelBackground);
 		layeredPane.add(lblBackground, new Integer(0));
 		lblBackground.setIcon(new ImageIcon(MenuCreacionPj.class.getResource("/frames/menuBackground.jpg")));
 	}
 
-	protected void crearPj(Cliente cliente, PaquetePersonaje personaje, Gson gson, String[] vecSalud,
-			String[] vecEnergia, String[] vecFuerza, String[] vecDestreza, String[] vecInteligencia) {
+	/**
+	 * Metodo Crear personaje
+	 * @param cliente cliente actual
+	 * @param personaje personaje
+	 * @param gson gson
+	 * @param vecSalud vector de salud de los personajes
+	 * @param vecEnergia vector de energia de los personajes
+	 * @param vecFuerza vector de fuerza de los personajes
+	 * @param vecDestreza vector de destreza de los personajes
+	 * @param vecInteligencia vector de inteligencia de los personajes
+	 */
+	protected void crearPj(
+			final Cliente cliente,
+			final  PaquetePersonaje personaje,
+			final Gson gson,
+			final String[] vecSalud,
+			final String[] vecEnergia,
+			final String[] vecFuerza,
+			final String[] vecDestreza,
+			final String[] vecInteligencia) {
 
 		personaje.setNombre(nombre.getText());
-		if (nombre.getText().equals(""))
+		if (nombre.getText().equals("")) {
 			personaje.setNombre("nameless");
+		}
 		personaje.setRaza((String) cbxRaza.getSelectedItem());
 		personaje.setSaludTope(Integer.parseInt(vecSalud[cbxRaza.getSelectedIndex()]));
 		personaje.setEnergiaTope(Integer.parseInt(vecEnergia[cbxRaza.getSelectedIndex()]));
