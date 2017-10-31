@@ -14,7 +14,7 @@ public class InicioSesion extends ComandosCliente {
 	@Override
 	public void ejecutar() {
 		Paquete paquete = (Paquete) gson.fromJson(cadenaLeida, Paquete.class);
-		if (paquete.getMensaje().equals(Paquete.msjExito)) {
+		if (paquete.getMensaje().equals(Paquete.getMsjExito())) {
 
 			// El usuario ya inicio sesi�n
 			this.getCliente().getPaqueteUsuario().setInicioSesion(true);
@@ -23,7 +23,7 @@ public class InicioSesion extends ComandosCliente {
 			this.getCliente().setPaquetePersonaje(gson.fromJson(cadenaLeida, PaquetePersonaje.class));
 
 		} else {
-			if (paquete.getMensaje().equals(Paquete.msjFracaso)) {
+			if (paquete.getMensaje().equals(Paquete.getMsjFracaso())) {
 				JOptionPane.showMessageDialog(null, "Error al iniciar sesión."
 						+ "Revise el usuario y la contraseña");
 			}

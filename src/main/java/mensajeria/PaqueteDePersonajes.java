@@ -18,7 +18,7 @@ public class PaqueteDePersonajes extends Paquete implements Serializable, Clonea
 	}
 
 	/**
-	 * Asigna personajes
+	 * Paquete de personajes
 	 *
 	 * @param personajes
 	 */
@@ -35,10 +35,12 @@ public class PaqueteDePersonajes extends Paquete implements Serializable, Clonea
 		return personajes;
 	}
 
-	/**
-	 * Clona objeto
-	 */
 	@Override
+	/**
+	 * Retorna el objeto
+	 *
+	 * @return obj
+	 */
 	public Object clone() {
 		Object obj = null;
 		obj = super.clone();

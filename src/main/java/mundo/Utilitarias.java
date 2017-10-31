@@ -16,13 +16,13 @@ public final class Utilitarias {
 	 * Constructor de la clase
 	 */
 	private Utilitarias() {
-		
 	}
+
 	/**
-	 * Carga el mapa
+	 * Carga archivo a String
 	 *
 	 * @param path
-	 * @return
+	 * @return builder.toString
 	 */
 	public static String archivoAString(final String path) {
 		StringBuilder builder = new StringBuilder();
@@ -44,10 +44,10 @@ public final class Utilitarias {
 	}
 
 	/**
-	 * Convierte un numero de string a int
+	 * Parsea un string  
 	 *
 	 * @param numero
-	 * @return
+	 * @return int
 	 */
 	public static int parseInt(final String numero) {
 		try {

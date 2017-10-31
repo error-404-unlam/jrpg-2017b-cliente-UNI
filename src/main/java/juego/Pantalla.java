@@ -33,7 +33,7 @@ import mensajeria.Comando;
 import mensajeria.Paquete;
 
 /**
- * Clase Pantalla 
+ * Clase Pantalla
  *
  * @author lesanmartin
  *
@@ -53,26 +53,26 @@ public class Pantalla {
 	private final Gson gson = new Gson();
 
 	/**
-	 * Constructor de la clase 
+	 * Constructor de la clase
 	 *
-	 * @param NOMBRE
-	 * @param ANCHO
-	 * @param ALTO
+	 * @param nombre
+	 * @param ancho
+	 * @param alto
 	 * @param cliente
 	 */
-	public Pantalla(final String NOMBRE, final int ANCHO, final int ALTO, final Cliente cliente) {
-		pantalla = new JFrame(NOMBRE);
+	public Pantalla(final String nombre, final int ancho, final int alto, final Cliente cliente) {
+		pantalla = new JFrame(nombre);
 		pantalla.setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/frames/IconoWome.png"));
 		pantalla.setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
 				new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0),
 				"custom cursor"));
 
-		pantalla.setSize(ANCHO, ALTO);
+		pantalla.setSize(ancho, alto);
 		pantalla.setResizable(false);
 		pantalla.setDefaultCloseOperation(WindowConstants.DO_NOTHING_ON_CLOSE);
 		pantalla.addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosing(WindowEvent evt) {
+			public void windowClosing(final WindowEvent evt) {
 				try {
 					Paquete p = new Paquete();
 					p.setComando(Comando.DESCONECTAR);
@@ -90,34 +90,29 @@ public class Pantalla {
 		});
 		pantalla.addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyReleased(KeyEvent e) {
-				
+			public void keyReleased(final KeyEvent e) {
 				if (Estado.getEstado().esEstadoDeJuego()) {
 					if (e.getKeyCode() == KeyEvent.VK_I) {
 						if (menuInventario == null) {
 							menuInventario = new MenuInventario(cliente);
 							menuInventario.setVisible(true);
 						}
-
 					} else if (e.getKeyCode() == KeyEvent.VK_A) {
 						if (menuAsignar == null) {
 							menuAsignar = new MenuAsignarSkills(cliente);
 							menuAsignar.setVisible(true);
 						}
-
 					} else if (e.getKeyCode() == KeyEvent.VK_S) {
 						if (menuStats == null) {
 							menuStats = new MenuStats(cliente);
 							menuStats.setVisible(true);
 						}
-
 					} else if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
 						if (menuEscp == null) {
 							menuEscp = new MenuEscape(cliente);
 							menuEscp.setVisible(true);
 						}
 					}
-					
 				} else if (e.getKeyCode() == KeyEvent.VK_C) {
 					// if(Estado.getEstado().esEstadoDeJuego()) {
 					if (ventContac == null) {
@@ -131,41 +126,56 @@ public class Pantalla {
 
 		pantalla.setLocationRelativeTo(null);
 		pantalla.setVisible(false);
-
 		canvas = new Canvas();
-		canvas.setPreferredSize(new Dimension(ANCHO, ALTO));
-		canvas.setMaximumSize(new Dimension(ANCHO, ALTO));
-		canvas.setMinimumSize(new Dimension(ANCHO, ALTO));
+		canvas.setPreferredSize(new Dimension(ancho, alto));
+		canvas.setMaximumSize(new Dimension(ancho, alto));
+		canvas.setMinimumSize(new Dimension(ancho, alto));
 		canvas.setFocusable(false);
-
 		pantalla.add(canvas);
 		pantalla.pack();
 	}
 
+	/**
+	 * Retorna el canvas
+	 *
+	 * @return canvas
+	 */
 	public Canvas getCanvas() {
 		return canvas;
 	}
 
+	/**
+	 * Retorna el Frame
+	 *
+	 * @return pantalla
+	 */
 	public JFrame getFrame() {
 		return pantalla;
 	}
 
+	/**
+	 * Setea la visibilidad de la pantalla
+	 */
 	public void mostrar() {
 		pantalla.setVisible(true);
 	}
 
-	public static void centerString(Graphics g, Rectangle r, String s) {
+	/**
+	 * Centra el string
+	 *
+	 * @param g
+	 * @param r
+	 * @param s
+	 */
+	public static void centerString(final Graphics g, final Rectangle r, final String s) {
 		FontRenderContext frc = new FontRenderContext(null, true, true);
-
 		Rectangle2D r2D = g.getFont().getStringBounds(s, frc);
 		int rWidth = (int) Math.round(r2D.getWidth());
 		int rHeight = (int) Math.round(r2D.getHeight());
 		int rX = (int) Math.round(r2D.getX());
 		int rY = (int) Math.round(r2D.getY());
-
 		int a = (r.width / 2) - (rWidth / 2) - rX;
 		int b = (r.height / 2) - (rHeight / 2) - rY;
-
 		g.drawString(s, r.x + a, r.y + b);
 	}
 }
