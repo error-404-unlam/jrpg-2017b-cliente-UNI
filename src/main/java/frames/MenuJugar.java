@@ -22,18 +22,66 @@ import javax.swing.border.EmptyBorder;
 import cliente.Cliente;
 import mensajeria.Comando;
 
+/**
+ * Clase Menu Jugar
+ *
+ * @author lesanmartin
+ *
+ */
 public class MenuJugar extends JFrame {
 
 	private JPanel contentPane;
-
+	private static final int POS_X_PANTALLA = 100;
+	private static final int POS_Y_PANTALLA = 100;
+	private static final int ALTO_PANTALLA = 450;
+	private static final int ANCHO_PANTALLA = 300;
+	private static final int POS_X_CONTPANEL = 5;
+	private static final int POS_Y_CONTPANEL = 5;
+	private static final int ALTO_CONTPANEL = 5;
+	private static final int ANCHO_CONTPANEL = 5;
+	private static final int POS_X_LAYEREDPANEL = 0;
+	private static final int POS_Y_LAYEREDPANEL = 0;
+	private static final int ALTO_LAYEREDPANEL = 444;
+	private static final int ANCHO_LAYEREDPANEL = 271;
+	private static final int POS_X_LABREG = 181;
+	private static final int POS_Y_LABREG = 162;
+	private static final int ALTO_LABREG = 82;
+	private static final int ANCHO_LABREG = 23;
+	private static final int TAMANIO_FUENTE = 15;
+	private static final int POS_X_LABINICSES = 175;
+	private static final int POS_Y_LABINICSES = 91;
+	private static final int ALTO_LABINICSES = 91;
+	private static final int ANCHO_LABINICSES = 23;
+	private static final int POS_X_BOTONREG = 121;
+	private static final int POS_Y_BOTONREG = 162;
+	private static final int ALTO_BOTONREG = 191;
+	private static final int ANCHO_BOTONREG = 23;
+	private static final int POS_X_BOTONINICSES = 121;
+	private static final int POS_Y_BOTONINICSES = 92;
+	private static final int ALTO_BOTONINICSES = 191;
+	private static final int ANCHO_BOTONINICSES = 23;
+	private static final int POS_X_LAB_BACK = 0;
+	private static final int POS_Y_LAB_BACK = 0;
+	private static final int ALTO_LAB_BACK = 444;
+	private static final int ANCHO_LAB_BACK = 271;
+	/**
+	 * Constructor de la clase
+	 *
+	 * @param cliente
+	 */
 	public MenuJugar(final Cliente cliente) {
 		// Se inicializa ícono y cursor
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/frames/IconoWome.png"));
-		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0), "custom cursor"));
+		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(
+				new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0),
+				"custom cursor"));
 
 		addKeyListener(new KeyAdapter() {
 			@Override
-			public void keyPressed(KeyEvent e) {
+			/**
+			 * Evento de teclado
+			 */
+			public void keyPressed(final KeyEvent e) {
 				if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 					MenuInicioSesion menuInicioSesion = new MenuInicioSesion(cliente);
 					menuInicioSesion.setVisible(true);
@@ -47,7 +95,10 @@ public class MenuJugar extends JFrame {
 		// En caso de cerrar la ventana
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosing(WindowEvent e) {
+			/**
+			 * Evento de la ventana
+			 */
+			public void windowClosing(final WindowEvent e) {
 				synchronized (cliente) {
 					cliente.setAccion(Comando.SALIR);
 					cliente.notify();
@@ -58,42 +109,45 @@ public class MenuJugar extends JFrame {
 
 		// Propiedades de la ventana
 		setTitle("WOME - World Of the Middle Earth");
-		setBounds(100, 100, 450, 300);
+		setBounds(POS_X_PANTALLA, POS_Y_PANTALLA, ANCHO_PANTALLA, ALTO_PANTALLA);
 		setLocationRelativeTo(null);
 		setResizable(false);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane.setBorder(new EmptyBorder(POS_X_CONTPANEL, POS_Y_CONTPANEL, ANCHO_CONTPANEL, ALTO_CONTPANEL));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(0, 0, 444, 271);
+		layeredPane.setBounds(POS_X_LAYEREDPANEL, POS_Y_LAYEREDPANEL, ANCHO_LAYEREDPANEL, ALTO_LAYEREDPANEL);
 		contentPane.add(layeredPane);
 
 		// Boton Registrarse
 		JLabel lblRegistrarse = new JLabel("Registrarse");
-		lblRegistrarse.setBounds(181, 162, 82, 23);
+		lblRegistrarse.setBounds(POS_X_LABREG, POS_Y_LABREG, ANCHO_LABREG, ALTO_LABREG);
 		layeredPane.add(lblRegistrarse, new Integer(2));
 		lblRegistrarse.setForeground(Color.WHITE);
 		lblRegistrarse.setEnabled(true);
-		lblRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblRegistrarse.setFont(new Font("Tahoma", Font.PLAIN, TAMANIO_FUENTE));
 		lblRegistrarse.setBackground(Color.WHITE);
 
 		// Boton Iniciar sesion
 		JLabel lblIniciarSesion = new JLabel("Iniciar Sesion");
-		lblIniciarSesion.setBounds(175, 91, 91, 23);
+		lblIniciarSesion.setBounds(POS_X_LABINICSES, POS_Y_LABINICSES, ANCHO_LABINICSES, ALTO_LABINICSES);
 		layeredPane.add(lblIniciarSesion, new Integer(2));
 		lblIniciarSesion.setForeground(Color.WHITE);
-		lblIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lblIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, TAMANIO_FUENTE));
 
 		JButton btnRegistrar = new JButton("Registrarse");
-		btnRegistrar.setBounds(121, 162, 191, 23);
+		btnRegistrar.setBounds(POS_X_BOTONREG, POS_Y_BOTONREG, ANCHO_BOTONREG, ALTO_BOTONREG);
 		layeredPane.add(btnRegistrar, new Integer(1));
 		btnRegistrar.setFocusable(false);
 		btnRegistrar.setIcon(new ImageIcon(MenuJugar.class.getResource("/frames/BotonMenu.png")));
 		btnRegistrar.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			/**
+			 * Accion de evento menu registro
+			 */
+			public void actionPerformed(final ActionEvent e) {
 				MenuRegistro menuRegistro = new MenuRegistro(cliente);
 				menuRegistro.setVisible(true);
 				dispose();
@@ -101,13 +155,16 @@ public class MenuJugar extends JFrame {
 		});
 
 		JButton btnIniciarSesion = new JButton("Iniciar Sesion");
-		btnIniciarSesion.setBounds(121, 92, 191, 23);
+		btnIniciarSesion.setBounds(POS_X_BOTONINICSES, POS_Y_BOTONINICSES, ANCHO_BOTONINICSES, ALTO_BOTONINICSES);
 		layeredPane.add(btnIniciarSesion, new Integer(1));
 		btnIniciarSesion.setFocusable(false);
 		btnIniciarSesion.setIcon(new ImageIcon(MenuJugar.class.getResource("/frames/BotonMenu.png")));
 		btnIniciarSesion.addActionListener(new ActionListener() {
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			/**
+			 * Acccion de evento de menu inicio de sesion
+			 */
+			public void actionPerformed(final ActionEvent e) {
 				MenuInicioSesion menuInicioSesion = new MenuInicioSesion(cliente);
 				menuInicioSesion.setVisible(true);
 				dispose();
@@ -115,7 +172,7 @@ public class MenuJugar extends JFrame {
 		});
 
 		JLabel lblBackground = new JLabel("");
-		lblBackground.setBounds(0, 0, 444, 271);
+		lblBackground.setBounds(POS_X_LAB_BACK, POS_Y_LAB_BACK, ANCHO_LAB_BACK, ALTO_LAB_BACK);
 		lblBackground.setIcon(new ImageIcon(MenuJugar.class.getResource("/frames/menuBackground.jpg")));
 		layeredPane.add(lblBackground, new Integer(0));
 	}
