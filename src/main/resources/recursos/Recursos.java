@@ -393,7 +393,7 @@ public class Recursos {
 		// Mapa
 		if (MenuMapas.getNumberMap() == 1) {
 			SpriteSheet mapaAubenor = new SpriteSheet(CargadorImagen.cargarImagen("/Aubenor.png"));
-			Tile.aubenor = new Tile[TAM_TILE_ARRAY];
+			Tile.setAubenor(new Tile[TAM_TILE_ARRAY]);
 			boolean[][] solidezAubenor = {{true, true, false, true, false, true, true, true, true, true },
 					{true, true, true, true, true, true, true, true, true, true },
 					{true, true, true, true, true, true, true, true, true, true },
@@ -404,7 +404,7 @@ public class Recursos {
 					{true, true, true, true, true, true, true, true, true, true } };
 			for (int y = 0; y < LIMITE_Y_AUBENOR; y++) {
 				for (int x = 0; x < LIMITE_X_AUBENOR; x++) {
-					Tile.aubenor[y * ID_Y_AUBENOR + x + ID_X_AUBENOR] = new Tile(
+					Tile.getAubenor()[y * ID_Y_AUBENOR + x + ID_X_AUBENOR] = new Tile(
 							mapaAubenor.getTile(
 									x * X_MAPA_AUBENOR,
 									y * Y_MAPA_AUBENOR,
@@ -416,7 +416,7 @@ public class Recursos {
 			}
 		} else {
 			SpriteSheet mapaAris = new SpriteSheet(CargadorImagen.cargarImagen("/Aris.png"));
-			Tile.aris = new Tile[TAM_TILE_ARRAY];
+			Tile.setAris(new Tile[TAM_TILE_ARRAY]);
 			boolean[][] solidezAris = {{true, false, false, false, false, false, false, true, true, true},
 					{false, false, false, false, false, false, false, false, true, true },
 					{false, false, false, false, true, true, true, true, true, true },
@@ -427,7 +427,7 @@ public class Recursos {
 					{true, true, true, true, true, true, true, true, true, true } };
 			for (int y = 0; y < LIMITE_Y_ARIS; y++) {
 				for (int x = 0; x < LIMITE_X_ARIS; x++) {
-					Tile.aris[y * ID_Y_ARIS + x + ID_X_ARIS] = new Tile(
+					Tile.getAris()[y * ID_Y_ARIS + x + ID_X_ARIS] = new Tile(
 							mapaAris.getTile(
 									x * X_MAPA_ARIS,
 									y * Y_MAPA_ARIS,
