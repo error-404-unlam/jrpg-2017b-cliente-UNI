@@ -53,11 +53,18 @@ public class MenuAsignarSkills extends JFrame {
 
 	/**
 	 * Crea la ventana.
+	 * @param cliente en el que se dibujara la ventana
 	 */
 	public MenuAsignarSkills(final Cliente cliente) {
 		// Se inicializa ícono y cursor
 		setIconImage(Toolkit.getDefaultToolkit().getImage("src/main/java/frames/IconoWome.png"));
-		setCursor(Toolkit.getDefaultToolkit().createCustomCursor(new ImageIcon(MenuJugar.class.getResource("/cursor.png")).getImage(), new Point(0, 0), "custom cursor"));
+		setCursor(
+				Toolkit.getDefaultToolkit().createCustomCursor(
+						new ImageIcon(
+								MenuJugar.class.getResource("/cursor.png")).
+						getImage(),
+						new Point(0, 0),
+						"custom cursor"));
 
 		// Inicializo variables
 		puntosNoAsignados = cliente.getPaquetePersonaje().getPuntosNoAsignados();
@@ -96,7 +103,7 @@ public class MenuAsignarSkills extends JFrame {
 
 		addWindowListener(new WindowAdapter() {
 			@Override
-			public void windowClosing(WindowEvent arg0) {
+			public void windowClosing(final WindowEvent arg0) {
 				Pantalla.menuAsignar = null;
 				dispose();
 			}
@@ -159,12 +166,12 @@ public class MenuAsignarSkills extends JFrame {
 
 		// Botón para resetear las habilidades
 		final JButton buttonReset = new JButton("Reset");
-		ImageIcon icono_Reset = new ImageIcon("recursos//botonReset.png");
-		buttonReset.setIcon(icono_Reset);
+		ImageIcon iconoReset = new ImageIcon("recursos//botonReset.png");
+		buttonReset.setIcon(iconoReset);
 		buttonReset.setEnabled(false);
 		buttonReset.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 
 				puntosFuerza = puntosFuerzaMinima;
 				puntosDestreza = puntosDestrezaMinima;
@@ -173,10 +180,20 @@ public class MenuAsignarSkills extends JFrame {
 				int difFuerza = puntosFuerza - puntosFuerzaInicial;
 				int difDestreza = puntosDestreza - puntosDestrezaInicial;
 				int difInteligencia = puntosInteligencia - puntosInteligenciaInicial;
-				cliente.getPaquetePersonaje().setPuntosNoAsignados(puntosNoAsignados - difFuerza - difDestreza - difInteligencia);
-				cliente.getPaquetePersonaje().setPuntosAsignadosFuerza(puntosAsignadosFuerza + difFuerza);
-				cliente.getPaquetePersonaje().setPuntosAsignadosDestreza(puntosAsignadosDestreza + difDestreza);
-				cliente.getPaquetePersonaje().setPuntosAsignadosInteligencia(puntosAsignadosInteligencia + difInteligencia);
+				cliente.getPaquetePersonaje().setPuntosNoAsignados(
+						puntosNoAsignados
+						- difFuerza
+						- difDestreza
+						- difInteligencia);
+				cliente.getPaquetePersonaje().setPuntosAsignadosFuerza(
+						puntosAsignadosFuerza
+						+ difFuerza);
+				cliente.getPaquetePersonaje().setPuntosAsignadosDestreza(
+						puntosAsignadosDestreza
+						+ difDestreza);
+				cliente.getPaquetePersonaje().setPuntosAsignadosInteligencia(
+						puntosAsignadosInteligencia
+						+ difInteligencia);
 				cliente.getPaquetePersonaje().useBonus(0, 0, difFuerza, difDestreza, difInteligencia);
 				cliente.getPaquetePersonaje().removerBonus();
 				cliente.getPaquetePersonaje().setComando(Comando.ACTUALIZARPERSONAJELV);
@@ -199,21 +216,30 @@ public class MenuAsignarSkills extends JFrame {
 
 		// Botón para confirmar
 		final JButton buttonConfirm = new JButton("Confirmar");
-		ImageIcon icono_confirm = new ImageIcon("recursos//botonConfirmar.png");
-		buttonConfirm.setIcon(icono_confirm);
+		ImageIcon iconoConfirm = new ImageIcon("recursos//botonConfirmar.png");
+		buttonConfirm.setIcon(iconoConfirm);
 		buttonConfirm.setEnabled(false);
 		buttonReset.setEnabled(true);
 		buttonConfirm.addActionListener(new ActionListener() {
 
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 
 				int difFuerza = puntosFuerza - puntosFuerzaInicial;
 				int difDestreza = puntosDestreza - puntosDestrezaInicial;
 				int difInteligencia = puntosInteligencia - puntosInteligenciaInicial;
-				cliente.getPaquetePersonaje().setPuntosNoAsignados(puntosNoAsignados - difFuerza - difDestreza - difInteligencia);
-				cliente.getPaquetePersonaje().setPuntosAsignadosFuerza(puntosAsignadosFuerza + difFuerza);
-				cliente.getPaquetePersonaje().setPuntosAsignadosDestreza(puntosAsignadosDestreza + difDestreza);
-				cliente.getPaquetePersonaje().setPuntosAsignadosInteligencia(puntosAsignadosInteligencia + difInteligencia);
+				cliente.getPaquetePersonaje().setPuntosNoAsignados(puntosNoAsignados
+						- difFuerza
+						- difDestreza
+						- difInteligencia);
+				cliente.getPaquetePersonaje().setPuntosAsignadosFuerza(
+						puntosAsignadosFuerza
+						+ difFuerza);
+				cliente.getPaquetePersonaje().setPuntosAsignadosDestreza(
+						puntosAsignadosDestreza
+						+ difDestreza);
+				cliente.getPaquetePersonaje().setPuntosAsignadosInteligencia(
+						puntosAsignadosInteligencia
+						+ difInteligencia);
 				cliente.getPaquetePersonaje().useBonus(0, 0, difFuerza, difDestreza, difInteligencia);
 				cliente.getPaquetePersonaje().removerBonus();
 				cliente.getPaquetePersonaje().setComando(Comando.ACTUALIZARPERSONAJELV);
@@ -235,10 +261,10 @@ public class MenuAsignarSkills extends JFrame {
 
 		// Botón para cancelar
 		final JButton buttonCancel = new JButton("Cancelar");
-		ImageIcon icono_c = new ImageIcon("recursos//botonCancelar.png");
-		buttonCancel.setIcon(icono_c);
+		ImageIcon iconoC = new ImageIcon("recursos//botonCancelar.png");
+		buttonCancel.setIcon(iconoC);
 		buttonCancel.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(final ActionEvent arg0) {
 				Pantalla.menuAsignar = null;
 				dispose();
 			}
@@ -262,7 +288,6 @@ public class MenuAsignarSkills extends JFrame {
 			buttonMenos3.setEnabled(false);
 			buttonReset.setEnabled(false);
 		}
-		
 		if (puntosFuerza == puntosFuerzaMinima || puntosFuerza == puntosFuerzaInicial) {
 			buttonMenos1.setEnabled(false);
 		}
@@ -294,10 +319,10 @@ public class MenuAsignarSkills extends JFrame {
 		}
 
 		// Restar fuerza
-		ImageIcon icono_1 = new ImageIcon("recursos//botonMenoss.png");
-		buttonMenos1.setIcon(icono_1);
+		ImageIcon icono1 = new ImageIcon("recursos//botonMenoss.png");
+		buttonMenos1.setIcon(icono1);
 		buttonMenos1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosFuerza > puntosFuerzaInicial) {
 					puntosFuerza--;
 					if (puntosAsignar == 0) {
@@ -332,7 +357,7 @@ public class MenuAsignarSkills extends JFrame {
 
 		// Restar destreza
 		buttonMenos2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosDestreza > puntosDestrezaInicial) {
 					puntosDestreza--;
 					if (puntosAsignar == 0) {
@@ -362,13 +387,13 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
-		buttonMenos2.setIcon(icono_1);
+		buttonMenos2.setIcon(icono1);
 		buttonMenos2.setBounds(12, 159, 34, 25);
 		contentPane.add(buttonMenos2);
 
 		// Restar inteligencia
 		buttonMenos3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosInteligencia > puntosInteligenciaInicial) {
 					puntosInteligencia--;
 					if (puntosAsignar == 0) {
@@ -398,13 +423,13 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
-		buttonMenos3.setIcon(icono_1);
+		buttonMenos3.setIcon(icono1);
 		buttonMenos3.setBounds(12, 217, 34, 25);
 		contentPane.add(buttonMenos3);
 
 		// Aumentar fuerza
 		buttonMas1.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosAsignar != 0 && !labelFuerza.getText().equals(Integer.toString(MAX))) {
 					puntosFuerza++;
 					puntosAsignar--;
@@ -424,14 +449,14 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
-		ImageIcon icono_2 = new ImageIcon("recursos//botonMass.png");
-		buttonMas1.setIcon(icono_2);
+		ImageIcon icono2 = new ImageIcon("recursos//botonMass.png");
+		buttonMas1.setIcon(icono2);
 		buttonMas1.setBounds(118, 92, 34, 25);
 		contentPane.add(buttonMas1);
 
 		// Aumentar destreza
 		buttonMas2.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosAsignar != 0 && !labelDestreza.getText().equals(Integer.toString(MAX))) {
 					puntosDestreza++;
 					puntosAsignar--;
@@ -451,13 +476,13 @@ public class MenuAsignarSkills extends JFrame {
 				}
 			}
 		});
-		buttonMas2.setIcon(icono_2);
+		buttonMas2.setIcon(icono2);
 		buttonMas2.setBounds(118, 159, 34, 25);
 		contentPane.add(buttonMas2);
 
 		// Aumentar inteligencia
 		buttonMas3.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(final ActionEvent e) {
 				if (puntosAsignar != 0 && !labelInteligencia.getText().equals(Integer.toString(MAX))) {
 					puntosInteligencia++;
 					puntosAsignar--;
@@ -471,13 +496,15 @@ public class MenuAsignarSkills extends JFrame {
 						buttonMas2.setEnabled(false);
 						buttonMas3.setEnabled(false);
 					}
-					if (puntosAsignar == 0 || labelInteligencia.getText().equals(Integer.toString(MAX))) {
+					if (puntosAsignar == 0
+							|| labelInteligencia.getText().equals(
+									Integer.toString(MAX))) {
 						buttonMas3.setEnabled(false);
 					}
 				}
 			}
 		});
-		buttonMas3.setIcon(icono_2);
+		buttonMas3.setIcon(icono2);
 		buttonMas3.setBounds(118, 217, 34, 25);
 		contentPane.add(buttonMas3);
 
