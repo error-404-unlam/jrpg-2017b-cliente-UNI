@@ -40,7 +40,7 @@ public class MenuInfoPersonaje {
 		g.drawImage(menu, x, y, null);
 
 		// Dibujo el personaje
-		g.drawImage(Recursos.personaje.get(personaje.getRaza()).get(6)[0], x + menu.getWidth() / 2 - anchoPersonaje / 2, y + 70, 128, 128, null);
+		g.drawImage(Recursos.getPersonaje().get(personaje.getRaza()).get(6)[0], x + menu.getWidth() / 2 - anchoPersonaje / 2, y + 70, 128, 128, null);
 
 		// Muestro el nombre
 		g.setColor(Color.WHITE);

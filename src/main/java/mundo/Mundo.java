@@ -205,7 +205,7 @@ public class Mundo {
 
 							if (((haySolidoAbajo == haySolidoArriba) && (j == jPersonaje && i == iPersonaje)) || ((haySolidoAbajo && !haySolidoArriba) && (j == jPersonaje && i == iPersonaje - 1)) || ((haySolidoArriba && !haySolidoAbajo) && (j == jPersonaje && i == iPersonaje + 1))) {
 								Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20), 0, 10), personajesConectados.get(actual.getIdPersonaje()).getNombre());
-								g.drawImage(Recursos.personaje.get(personajesConectados.get(actual.getIdPersonaje()).getRaza()).get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset()), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
+								g.drawImage(Recursos.getPersonaje().get(personajesConectados.get(actual.getIdPersonaje()).getRaza()).get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset()), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
 							}
 						}
 					}
