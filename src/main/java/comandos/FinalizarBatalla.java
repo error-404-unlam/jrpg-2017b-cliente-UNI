@@ -17,7 +17,7 @@ public class FinalizarBatalla extends ComandosEscucha {
 				fromJson(getCadenaLeida(), PaqueteFinalizarBatalla.class);
 		this.getJuego().getPersonaje().setEstado(Estado.getEstadoJuego());
 		this.getJuego().getEstadoJuego().setHaySolicitud(true, this.getJuego().getPersonaje(),
-				MenuInfoPersonaje.menuPerderBatalla); // Informar que se perdió la batalla
+				MenuInfoPersonaje.MENU_PERDER_BATALLA); // Informar que se perdió la batalla
 		Estado.setEstado(this.getJuego().getEstadoJuego());
 	}
 
