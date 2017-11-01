@@ -16,17 +16,16 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 	private int frame;
 
 	/**
-	 * Constructor de la clase 
+	 * Constructor de la clase
 	 *
 	 */
 	public PaqueteMovimiento() {
 		setComando(Comando.MOVIMIENTO);
 	}
-	
 	/**
 	 * Constructor parametrizado de la clase
 	 *
-	 * @param idPersonaje
+	 * @param idPersonaje parametro idPersonaje
 	 */
 	public PaqueteMovimiento(final int idPersonaje) {
 		id = idPersonaje;
@@ -36,9 +35,9 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 	/**
 	 * Constructor parametrizado de la clase
 	 *
-	 * @param idPersonaje
-	 * @param posX
-	 * @param posY
+	 * @param idPersonaje parametro idPersonaje
+	 * @param posX parametro posX
+	 * @param posY parametro posY
 	 */
 	public PaqueteMovimiento(final int idPersonaje, final float posX, final float posY) {
 		this.id = idPersonaje;
@@ -50,7 +49,7 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 	/**
 	 * Retorna el id del personaje
 	 *
-	 * @return
+	 * @return id
 	 */
 	public int getIdPersonaje() {
 		return id;
@@ -59,14 +58,14 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 	/**
 	 * Setea el id del personaje
 	 *
-	 * @param idPersonaje
+	 * @param idPersonaje parametro idPersonaje
 	 */
 	public void setIdPersonaje(final int idPersonaje) {
 		this.id = idPersonaje;
 	}
 
 	/**
-	 * Retorna la posicion x 
+	 * Retorna la posicion x
 	 *
 	 * @return posx
 	 */
@@ -75,9 +74,9 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 	}
 
 	/**
-	 * Setea la posicion x 
+	 * Setea la posicion x
 	 *
-	 * @param posX
+	 * @param posX parametro posX
 	 */
 	public void setPosX(final float posX) {
 		this.posX = posX;
@@ -93,16 +92,16 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 	}
 
 	/**
-	 * Setea la posicion Y 
+	 * Setea la posicion Y
 	 *
-	 * @param posY
+	 * @param posY parametro posY
 	 */
 	public void setPosY(final float posY) {
 		this.posY = posY;
 	}
 
 	/**
-	 * Retorna la direccion 
+	 * Retorna la direccion
 	 *
 	 * @return direccion
 	 */
@@ -113,7 +112,7 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 	/**
 	 * Setea la direccion
 	 *
-	 * @param direccion
+	 * @param direccion parametro direccion
 	 */
 	public void setDireccion(final int direccion) {
 		this.direccion = direccion;
@@ -131,7 +130,7 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 	/**
 	 * Setea el Frame
 	 *
-	 * @param frame
+	 * @param frame parametro frame
 	 */
 	public void setFrame(final int frame) {
 		this.frame = frame;
@@ -139,6 +138,8 @@ public class PaqueteMovimiento extends Paquete implements Serializable, Cloneabl
 
 	/**
 	 * Clona objeto
+	 *
+	 * @return obj
 	 */
 	@Override
 	public Object clone() {

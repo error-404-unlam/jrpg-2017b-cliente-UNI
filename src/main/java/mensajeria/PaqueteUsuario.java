@@ -22,7 +22,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 	}
 
 	/**
-	 * Constructor parametrizado de la clase 
+	 * Constructor parametrizado de la clase
 	 *
 	 * @param pj parametro pj
 	 * @param user parametro user

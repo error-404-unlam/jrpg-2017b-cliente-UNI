@@ -37,7 +37,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	private int puntosAsignadosInteligencia;
 
 	/**
-	 * Setea el estado 
+	 * Setea el estado
 	 *
 	 * @throws IOException lanza excepcion
 	 */
@@ -46,7 +46,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	}
 
 	/**
-	 * Retorna el estado 
+	 * Retorna el estado
 	 *
 	 * @return estado
 	 */
@@ -77,7 +77,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param mapa parametro mapa
 	 */
-	public void setMapa(int mapa) {
+	public void setMapa(final int mapa) {
 		idMapa = mapa;
 	}
 
@@ -203,7 +203,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param saludTope parametro saludoTope
 	 */
-	public void setSaludTope(int saludTope) {
+	public void setSaludTope(final int saludTope) {
 		this.saludTope = saludTope;
 	}
 
@@ -221,7 +221,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param energiaTope parametro energia tope
 	 */
-	public void setEnergiaTope(int energiaTope) {
+	public void setEnergiaTope(final int energiaTope) {
 		this.energiaTope = energiaTope;
 	}
 
@@ -239,7 +239,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param fuerza parametro fuerza
 	 */
-	public void setFuerza(int fuerza) {
+	public void setFuerza(final int fuerza) {
 		this.fuerza = fuerza;
 	}
 
@@ -257,7 +257,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param destreza parametro destreza
 	 */
-	public void setDestreza(int destreza) {
+	public void setDestreza(final int destreza) {
 		this.destreza = destreza;
 	}
 
@@ -275,7 +275,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param inteligencia parametro inteligencia
 	 */
-	public void setInteligencia(int inteligencia) {
+	public void setInteligencia(final int inteligencia) {
 		this.inteligencia = inteligencia;
 	}
 
@@ -296,7 +296,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param i parametro i
 	 */
-	public final void anadirItem(Item i) {
+	public final void anadirItem(final Item i) {
 		items.add(i);
 	}
 
@@ -305,7 +305,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param i parametro i
 	 */
-	public final void removerItem(Item i) {
+	public final void removerItem(final Item i) {
 		items.remove(i);
 	}
 
@@ -323,7 +323,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param items parametro items
 	 */
-	public final void setItems(ArrayList<Item> items) {
+	public final void setItems(final ArrayList<Item> items) {
 		this.items = items;
 	}
 
@@ -333,7 +333,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param index parametro index
 	 * @return items.get(index).getIdItem
 	 */
-	public final int getItemID(int index) {
+	public final int getItemID(final int index) {
 		return items.get(index).getIdItem();
 	}
 
@@ -351,7 +351,8 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param foto parametro foto
 	 * @param fotoEquipado parametro fotoEquipado
 	 */
-	public final void anadirItem(int idItem, String nombre, int wearLocation, int bonusSalud, int bonusEnergia,
+	public final void anadirItem(final int idItem, final String nombre, final int wearLocation, 
+			final int bonusSalud, final int bonusEnergia,
 			int bonusAtaque, int bonusDefensa, int bonusMagia, String foto, String fotoEquipado) {
 		try {
 			items.add(new Item(idItem, nombre, wearLocation, bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa,
@@ -384,7 +385,8 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param bonusDefensa parametro bonusDefensa
 	 * @param bonusMagia parametro bonusMagia
 	 */
-	public final void sacarBonus(int bonusSalud, int bonusEnergia, int bonusAtaque, int bonusDefensa, int bonusMagia) {
+	public final void sacarBonus(final int bonusSalud, final int bonusEnergia, final int bonusAtaque, 
+			final int bonusDefensa, final int bonusMagia) {
 		saludTope -= bonusSalud;
 		energiaTope -= bonusEnergia;
 		fuerza -= bonusAtaque;
@@ -413,7 +415,8 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param bonusDefensa parametro bonusDefensa
 	 * @param bonusMagia parametro bonusMagia
 	 */
-	public void useBonus(int bonusSalud, int bonusEnergia, int bonusAtaque, int bonusDefensa, int bonusMagia) {
+	public void useBonus(final int bonusSalud, final int bonusEnergia, final int bonusAtaque, 
+			final int bonusDefensa, final int bonusMagia) {
 		saludTope += bonusSalud;
 		energiaTope += bonusEnergia;
 		fuerza += bonusAtaque;
@@ -435,7 +438,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param idItem parametro idItem
 	 */
-	public void anadirItem(int idItem) {
+	public void anadirItem(final int idItem) {
 		try {
 			items.add(new Item(idItem, null, 0, 0, 0, 0, 0, 0, null, null));
 		} catch (IOException e) {
@@ -475,7 +478,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param cantItems parametro cantItems
 	 */
-	public void ponerBonus(int cantItems) {
+	public void ponerBonus(final int cantItems) {
 		int i = 0;
 		while (i < cantItems) {
 			useBonus(items.get(i).getBonusSalud(), items.get(i).getBonusEnergia(), items.get(i).getBonusFuerza(),
@@ -518,7 +521,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param items parametro items
 	 */
-	public void actualizarTrueque(ArrayList<Item> items) {
+	public void actualizarTrueque(final ArrayList<Item> items) {
 		this.items.removeAll(this.items);
 		for (Item item : items) {
 			this.items.add(item);
@@ -539,7 +542,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param puntosNoAsignados parametro puntos no asignados
 	 */
-	public void setPuntosNoAsignados(int puntosNoAsignados) {
+	public void setPuntosNoAsignados(final int puntosNoAsignados) {
 		this.puntosNoAsignados = puntosNoAsignados;
 	}
 
@@ -557,7 +560,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param puntosAsignadosFuerza parametro puntosAsignadosFuerza
 	 */
-	public void setPuntosAsignadosFuerza(int puntosAsignadosFuerza) {
+	public void setPuntosAsignadosFuerza(final int puntosAsignadosFuerza) {
 		this.puntosAsignadosFuerza = puntosAsignadosFuerza;
 	}
 
@@ -575,7 +578,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param puntosAsignadosDestreza parametros puntos asignados a destreza
 	 */
-	public void setPuntosAsignadosDestreza(int puntosAsignadosDestreza) {
+	public void setPuntosAsignadosDestreza(final int puntosAsignadosDestreza) {
 		this.puntosAsignadosDestreza = puntosAsignadosDestreza;
 	}
 

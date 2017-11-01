@@ -22,6 +22,8 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Retorna el mensaje
+	 *
+	 * @return msj
 	 */
 	public String getMensaje() {
 		return msj;
@@ -46,7 +48,7 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
 	/**
 	 * Setea el id del usuario emisor
 	 *
-	 * @param idEmisor
+	 * @param idEmisor parametro idEmisor
 	 */
 	public void setUserEmisor(final String idEmisor) {
 		this.userEmisor = idEmisor;
@@ -64,7 +66,7 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
 	/**
 	 * Setea el usuario receptor
 	 *
-	 * @param idReceptor
+	 * @param idReceptor parametro idReceptor
 	 */
 	public void setUserReceptor(final String idReceptor) {
 		this.userReceptor = idReceptor;
@@ -72,6 +74,8 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Clona objeto
+	 *
+	 * @return obj
 	 */
 	public Object clone() {
 		Object obj = null;
