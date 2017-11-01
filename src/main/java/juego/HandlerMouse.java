@@ -3,15 +3,15 @@ package juego;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 /**
- * Clase Manejo de Mouse  
+ * Clase Manejo de Mouse
  *
  * @author lesanmartin
  *
  */
 public class HandlerMouse implements MouseListener {
 
-	private int posMouse[];
-	private int posMouseRecorrido[];
+	private int[] posMouse;
+	private int[] posMouseRecorrido;
 	private boolean nuevoRecorrido;
 	private boolean nuevoClick;
 
@@ -72,7 +72,7 @@ public class HandlerMouse implements MouseListener {
 	}
 
 	/**
-	 * Retorna la posicion del mouse 
+	 * Retorna la posicion del mouse
 	 *
 	 * @return posMouse
 	 */
@@ -81,7 +81,7 @@ public class HandlerMouse implements MouseListener {
 	}
 
 	/**
-	 * Retorna el recorrido del mouse 
+	 * Retorna el recorrido del mouse
 	 *
 	 * @return posMouseRecorrido
 	 */
@@ -90,7 +90,7 @@ public class HandlerMouse implements MouseListener {
 	}
 
 	/**
-	 * Retorna el nuevo recorrido del mouse 
+	 * Retorna el nuevo recorrido del mouse
 	 *
 	 * @return nuevoRecorrido
 	 */
@@ -101,14 +101,14 @@ public class HandlerMouse implements MouseListener {
 	/**
 	 * Setea el nuevo recorrido del mouse
 	 *
-	 * @param b
+	 * @param b booleano
 	 */
 	public void setNuevoRecorrido(final boolean b) {
 		nuevoRecorrido = b;
 	}
 
 	/**
-	 * Retorna el nuevo click del mouse 
+	 * Retorna el nuevo click del mouse
 	 *
 	 * @return nuevoClick
 	 */
@@ -119,7 +119,7 @@ public class HandlerMouse implements MouseListener {
 	/**
 	 * Setea el nuevo click del mouse
 	 *
-	 * @param b
+	 * @param b booleano
 	 */
 	public void setNuevoClick(final boolean b) {
 		nuevoClick = b;
