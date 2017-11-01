@@ -35,7 +35,101 @@ public class MenuInfoPersonaje {
 	private int x;
 	private int y;
 	private PaquetePersonaje personaje;
+	private final int offsetXMinBoton = 50;
+	private final int offsetXMaxBoton = 250;
+	private final int offsetYMinBoton = 380;
+	private final int offsetYMaxBoton = 405;
+	private final int offsetXMinCerrar = 24;
+	private final int offsetXMaxCerrar = 4;
+	private final int offsetYMinCerrar = 12;
+	private final int offsetYMaxCerrar = 36;
+	private final int offsetXMinMenuAsigSkill = 50;
+	private final int offsetXMaxMenuAsigSkill = 250;
+	private final int offsetYMinMenuAsigSkill = 410;
+	private final int offsetYMaxMenuAsigSkill = 430;
+	/**
+	 * Offsets del menu comerciar e Informacion
+	 * Offset = desplazamiento de forma absoluta desde un punto
+	 */
+	private final int offsetYCentrarString = 200;
+	private final int posXCasta = 30;
+	private final int posXNivel = 30;
+	private final int posXExperiencia = 30;
+	private final int tamFuenteMenu = 20;
+	private final int offsetXCasta = 100;
+	private final int offsetYCasta = 260;
+	private final int offsetXNivel = 100;
+	private final int offsetYNivel = 290;
+	private final int offsetXExperiencia = 150;
+	private final int offsetYExperiencia = 320;
 
+	/**
+	 * Offsets de graficar menu item
+	 * Offset = desplazamiento de forma absoluta desde un punto
+	 */
+	private final int offsetYPrimerCenterString = 200;
+	private final int offsetYSegundoCenterString = 240;
+	private final int offsetYTercerCenterString = 270;
+	private final int offsetYCuartoCenterString = 325;
+	private final int tamFuentePrimerCenterString = 18;
+	private final int tamFuenteSegundoCenterString = 62;
+	/**
+	 * Offsets de Graficar Menu Subir Nivel
+	 */
+	private final int offsetYHasSubidoDeNivel = 200;
+	private final int offsetYFelicitaciones = 240;
+	private final int offsetYNuevoNivel = 270;
+	private final int offsetYGetNivel = 325;
+	private final int tamFuenteHasSubidoDeNivel = 18;
+	private final int tamFuenteNuevoNivel = 62;
+
+	/**
+	 * Offsets Menu Ganar Batalla
+	 * Se llaman 	Pri por primer linea
+	 * 				Seg por segunda linea
+	 * 				Ter por tercer linea
+	 * 				Cua por cuarta linea
+	 * 				Qui por quinta linea
+	 * 				Sex por sexta linea
+	 * Hacen referencia al numero de renglon.
+	 */
+	private final int tamFuenteGanarBatalla = 14;
+	private final int offsetYPriLinea = 200;
+	private final int offsetYSegLinea = 230;
+	private final int offsetYTerLinea = 270;
+	private final int offsetYCuaLinea = 290;
+	private final int offsetYQuiLinea = 310;
+	private final int offsetYSexLinea = 330;
+	/**
+	 * Offsets Menu Perder Batalla
+	 * Se llaman 	Pri por primer linea
+	 * 				Seg por segunda linea
+	 * 				Ter por tercer linea
+	 * 				Cua por cuarta linea
+	 * 				Qui por quinta linea
+	 * Hacen referencia al numero de renglon.
+	 */
+	private final int tamFuentePerderBatalla = 14;
+	private final int offsetYPriLineaPerder = 200;
+	private final int offsetYSegLineaPerder = 250;
+	private final int offsetYTerLineaPerder = 270;
+	private final int offsetYCuaLineaPerder = 290;
+	private final int offsetYQuiLineaPerder = 310;
+	/**
+	 * Offsets Graficar
+	 */
+	private final int tamFuenteBoton = 20;
+	private final int offsetYLeyendaBoton = 380;
+	private final int offsetYAsignarSkill = 410;
+	private final int offsetXBoton = 50;
+	private final int anchoBoton = 200;
+	private final int altoBoton = 25;
+	private final int posRaza = 6;
+	private final int offsetYDrawImageGraficar = 70;
+	private final int tamFuenteGraficar = 20;
+	private final int offsetYGraficar = 15;
+	private final int anchoDrawImageGraficar = 128;
+	private final int altoDrawImageGraficar = 128;
 	/**
 	 * Constructor
 	 * @param x Personaje
@@ -64,15 +158,18 @@ public class MenuInfoPersonaje {
 		// Dibujo el personaje
 		g.drawImage(
 				Recursos.getPersonaje().get(
-						personaje.getRaza()).get(6)[0],
+						personaje.getRaza()).get(posRaza)[0],
 				x + MENU.getWidth() / 2 - ANCHO_PERSONAJE / 2,
-				y + 70, 128, 128, null);
-
+				y + offsetYDrawImageGraficar, anchoDrawImageGraficar,
+				altoDrawImageGraficar, null);
 		// Muestro el nombre
 		g.setColor(Color.WHITE);
-		g.setFont(new Font("Book Antiqua", 1, 20));
-		Pantalla.centerString(g, new Rectangle(x, y + 15, MENU.getWidth(), 0), personaje.getNombre());
-
+		g.setFont(new Font("Book Antiqua", 1, tamFuenteGraficar));
+		Pantalla.centerString(g, new Rectangle(
+				x,
+				y + offsetYGraficar,
+				MENU.getWidth(), 0),
+				personaje.getNombre());
 		// Grafico la leyenda segun el tipo de menu
 		switch (tipoMenu) {
 		case MENU_BATALLAR:
@@ -101,15 +198,28 @@ public class MenuInfoPersonaje {
 		}
 
 		// Muestro los botones
-		g.setFont(new Font("Book Antiqua", 1, 20));
-		g.drawImage(Recursos.getBotonMenu(), x + 50, y + 380, 200, 25, null);
+		g.setFont(new Font("Book Antiqua", 1, tamFuenteBoton));
+		g.drawImage(Recursos.getBotonMenu(),
+				x + offsetXBoton,
+				y + offsetYLeyendaBoton,
+				anchoBoton, altoBoton, null);
 		g.setColor(Color.WHITE);
-		Pantalla.centerString(g, new Rectangle(x + 50, y + 380, 200, 25), LEYENDA_BOTON[tipoMenu]);
+		Pantalla.centerString(g, new Rectangle(
+				x + offsetXBoton,
+				y + offsetYLeyendaBoton,
+				anchoBoton, altoBoton),
+				LEYENDA_BOTON[tipoMenu]);
 
 		// Agrego el botón "Asignar Skills"
 		if (tipoMenu == 2) {
-			g.drawImage(Recursos.getBotonMenu(), x + 50, y + 410, 200, 25, null);
-			Pantalla.centerString(g, new Rectangle(x + 50, y + 410, 200, 25), "Asignar Skills");
+			g.drawImage(Recursos.getBotonMenu(),
+					x + offsetXBoton,
+					y + offsetYAsignarSkill,
+					anchoBoton, altoBoton, null);
+			Pantalla.centerString(g, new Rectangle(
+					x + offsetXBoton,
+					y + offsetYAsignarSkill,
+					anchoBoton, altoBoton), "Asignar Skills");
 		}
 	}
 
@@ -121,17 +231,32 @@ public class MenuInfoPersonaje {
 
 		// Informo que perdió la batalla
 		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), "¡Has sido derrotado!");
+		Pantalla.centerString(g,
+				new Rectangle(x,
+						y + offsetYPriLineaPerder,
+						MENU.getWidth(), 0),
+				"¡Has sido derrotado!");
 
-		g.setFont(new Font("Book Antiqua", 0, 14));
+		g.setFont(new Font(
+				"Book Antiqua",
+				0, tamFuentePerderBatalla));
 		Pantalla.centerString(
 				g, new Rectangle(
-						x, y + 250,
+						x, y + offsetYSegLineaPerder,
 						MENU.getWidth(), 0),
 				"¡No te rindas! Sigue luchando");
-		Pantalla.centerString(g, new Rectangle(x, y + 270, MENU.getWidth(), 0), "contra los demás personajes");
-		Pantalla.centerString(g, new Rectangle(x, y + 290, MENU.getWidth(), 0), "para aumentar tu nivel y");
-		Pantalla.centerString(g, new Rectangle(x, y + 310, MENU.getWidth(), 0), "mejorar tus atributos.");
+		Pantalla.centerString(g, new Rectangle(x,
+				y + offsetYTerLineaPerder,
+				MENU.getWidth(), 0),
+				"contra los demás personajes");
+		Pantalla.centerString(g, new Rectangle(x,
+				y + offsetYCuaLineaPerder,
+				MENU.getWidth(), 0),
+				"para aumentar tu nivel y");
+		Pantalla.centerString(g, new Rectangle(x,
+				y + offsetYQuiLineaPerder,
+				MENU.getWidth(), 0),
+				"mejorar tus atributos.");
 	}
 
 	/**
@@ -142,19 +267,26 @@ public class MenuInfoPersonaje {
 
 		// Informo que ganó la batalla
 		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), "¡Has derrotado");
-		Pantalla.centerString(g, new Rectangle(x, y + 230, MENU.getWidth(), 0), "a tu enemigo!");
-
-		g.setFont(new Font("Book Antiqua", 0, 14));
-		Pantalla.centerString(
-				g,
+		Pantalla.centerString(g, new Rectangle(x, y + offsetYPriLinea, MENU.getWidth(), 0), "¡Has derrotado");
+		Pantalla.centerString(g, new Rectangle(x, y + offsetYSegLinea, MENU.getWidth(), 0), "a tu enemigo!");
+		g.setFont(new Font("Book Antiqua", 0, tamFuenteGanarBatalla));
+		Pantalla.centerString(g,
 				new Rectangle(
-						x, y + 270,
+						x, y + offsetYTerLinea,
 						MENU.getWidth(), 0),
 				"¡Felicitaciones! Has derrotado");
-		Pantalla.centerString(g, new Rectangle(x, y + 290, MENU.getWidth(), 0), "a tu oponente, sigue así");
-		Pantalla.centerString(g, new Rectangle(x, y + 310, MENU.getWidth(), 0), "para lograr subir de nivel");
-		Pantalla.centerString(g, new Rectangle(x, y + 330, MENU.getWidth(), 0), "y mejorar tus atributos.");
+		Pantalla.centerString(g, new Rectangle(x,
+				y + offsetYCuaLinea,
+				MENU.getWidth(), 0),
+				"a tu oponente, sigue así");
+		Pantalla.centerString(g, new Rectangle(x,
+				y + offsetYQuiLinea,
+				MENU.getWidth(), 0),
+				"para lograr subir de nivel");
+		Pantalla.centerString(g, new Rectangle(x,
+				y + offsetYSexLinea,
+				MENU.getWidth(), 0),
+				"y mejorar tus atributos.");
 
 	}
 
@@ -166,16 +298,21 @@ public class MenuInfoPersonaje {
 
 		// Informo que subió de nivel
 		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), "¡Has subido de nivel!");
+		Pantalla.centerString(g, new Rectangle(
+				x, y + offsetYHasSubidoDeNivel,
+				MENU.getWidth(), 0),
+				"¡Has subido de nivel!");
 
-		g.setFont(new Font("Book Antiqua", 0, 18));
-		Pantalla.centerString(g, new Rectangle(x, y + 240, MENU.getWidth(), 0), "¡Felicitaciones!");
-		Pantalla.centerString(g, new Rectangle(x, y + 270, MENU.getWidth(), 0), "Nuevo Nivel");
-		g.setFont(new Font("Book Antiqua", 1, 62));
+		g.setFont(new Font("Book Antiqua", 0, tamFuenteHasSubidoDeNivel));
+		Pantalla.centerString(g, new Rectangle(x, y + offsetYFelicitaciones,
+				MENU.getWidth(), 0), "¡Felicitaciones!");
+		Pantalla.centerString(g, new Rectangle(x, y + offsetYNuevoNivel,
+				MENU.getWidth(), 0), "Nuevo Nivel");
+		g.setFont(new Font("Book Antiqua", 1, tamFuenteNuevoNivel));
 		Pantalla.centerString(
 				g,
 				new Rectangle(
-						x, y + 325,
+						x, y + offsetYGetNivel,
 						MENU.getWidth(), 0),
 				String.valueOf(
 						personaje.getNivel()
@@ -191,21 +328,24 @@ public class MenuInfoPersonaje {
 
 		// Muestro los nombres de los atributos
 		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), personaje.getRaza());
-		g.drawString("Casta: ", x + 30, y + 260);
-		g.drawString("Nivel: ", x + 30, y + 290);
-		g.drawString("Experiencia: ", x + 30, y + 320);
+		Pantalla.centerString(g, new Rectangle(
+				x, y + offsetYCentrarString,
+				MENU.getWidth(), 0),
+				personaje.getRaza());
+		g.drawString("Casta: ", x + posXCasta, y + offsetYCasta);
+		g.drawString("Nivel: ", x + posXNivel, y + offsetYNivel);
+		g.drawString("Experiencia: ", x + posXExperiencia, y + offsetYExperiencia);
 
 		// Muestro los atributos
-		g.setFont(new Font("Book Antiqua", 0, 20));
-		g.drawString(personaje.getCasta(), x + 100, y + 260);
-		g.drawString(personaje.getNivel() + " ", x + 100, y + 290);
+		g.setFont(new Font("Book Antiqua", 0, tamFuenteMenu));
+		g.drawString(personaje.getCasta(), x + offsetXCasta, y + offsetYCasta);
+		g.drawString(personaje.getNivel() + " ", x + offsetXNivel, y + offsetYNivel);
 		g.drawString(
 				personaje.getExperiencia()
 				+ " / " + Personaje.getTablaDeNiveles()
 				[personaje.getNivel() + 1],
-				x + 150, y + 320);
-
+				x + offsetXExperiencia,
+				y + offsetYExperiencia);
 	}
 
 	/**
@@ -216,21 +356,28 @@ public class MenuInfoPersonaje {
 
 		// Informo que subió de nivel
 		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), "¡Aca iria algo!");
+		Pantalla.centerString(g, new Rectangle(x,
+				y + offsetYPrimerCenterString,
+				MENU.getWidth(), 0), "¡Aca iria algo!");
 
-		g.setFont(new Font("Book Antiqua", 0, 18));
-		Pantalla.centerString(g, new Rectangle(x, y + 240, MENU.getWidth(), 0), "¡Aca otra cosa!");
-		Pantalla.centerString(g, new Rectangle(x, y + 270, MENU.getWidth(), 0), "Nuevo Nivel");
-		g.setFont(new Font("Book Antiqua", 1, 62));
+		g.setFont(new Font(
+				"Book Antiqua", 0, tamFuentePrimerCenterString));
+		Pantalla.centerString(g, new Rectangle(
+				x, y + offsetYSegundoCenterString,
+				MENU.getWidth(), 0), "¡Aca otra cosa!");
+		Pantalla.centerString(g, new Rectangle(
+				x, y + offsetYTercerCenterString,
+				MENU.getWidth(), 0), "Nuevo Nivel");
+		g.setFont(new Font(
+				"Book Antiqua", 1, tamFuenteSegundoCenterString));
 		Pantalla.centerString(
 				g, new Rectangle(
-						x, y + 325,
+						x, y + offsetYCuartoCenterString,
 						MENU.getWidth(),
 						0),
 				String.valueOf(
 						personaje.getNivel()
 						));
-
 	}
 
 	/**
@@ -241,21 +388,36 @@ public class MenuInfoPersonaje {
 
 		// Muestro los nombres de los atributos
 		g.setColor(Color.BLACK);
-		Pantalla.centerString(g, new Rectangle(x, y + 200, MENU.getWidth(), 0), personaje.getRaza());
-		g.drawString("Casta: ", x + 30, y + 260);
-		g.drawString("Nivel: ", x + 30, y + 290);
-		g.drawString("Experiencia: ", x + 30, y + 320);
-
+		Pantalla.centerString(
+				g, new Rectangle(
+						x,
+						y + offsetYCentrarString,
+						MENU.getWidth(),
+						0), personaje.getRaza());
+		g.drawString("Casta: ",
+				x + posXCasta,
+				y + offsetYCasta);
+		g.drawString("Nivel: ",
+				x + posXNivel,
+				y + offsetYNivel);
+		g.drawString("Experiencia: ",
+				x + posXExperiencia,
+				y + offsetYExperiencia);
 		// Muestro los atributos
-		g.setFont(new Font("Book Antiqua", 0, 20));
-		g.drawString(personaje.getCasta(), x + 100, y + 260);
-		g.drawString(personaje.getNivel() + " ", x + 100, y + 290);
+		g.setFont(
+				new Font(
+						"Book Antiqua",
+						0, tamFuenteMenu));
+		g.drawString(personaje.getCasta(),
+				x + offsetXCasta, y + offsetYCasta);
+		g.drawString(personaje.getNivel() + " ",
+				x + offsetXNivel, y + offsetYNivel);
 		g.drawString(
 				personaje.getExperiencia()
 				+ " / " + Personaje.
 				getTablaDeNiveles()[personaje.getNivel() + 1],
-				x + 150, y + 320);
-
+				x + offsetXExperiencia,
+				y + offsetYExperiencia);
 	}
 	/**
 	 * Devuelve si hubo un click en Boton
@@ -266,9 +428,12 @@ public class MenuInfoPersonaje {
 	public boolean clickEnBoton(
 			final int mouseX,
 			final int mouseY) {
-		return (mouseX >= x + 50 && mouseX <= x + 250 && mouseY >= y + 380 && mouseY <= y + 405);
+		return (
+				mouseX >= x + offsetXMinBoton
+				&& mouseX <= x + offsetXMaxBoton
+				&& mouseY >= y + offsetYMinBoton
+				&& mouseY <= y + offsetYMaxBoton);
 	}
-
 	/**
 	 * Devuelve si hubo un click en Asignar Skills
 	 * @param mouseX posicion X del mouse
@@ -278,7 +443,10 @@ public class MenuInfoPersonaje {
 	public boolean clickEnAsignarSkills(
 			final int mouseX,
 			final int mouseY) {
-		return (mouseX >= x + 50 && mouseX <= x + 250 && mouseY >= y + 410 && mouseY <= y + 430);
+		return (mouseX >= x + offsetXMinMenuAsigSkill
+				&& mouseX <= x + offsetXMaxMenuAsigSkill
+				&& mouseY >= y + offsetYMinMenuAsigSkill
+				&& mouseY <= y + offsetYMaxMenuAsigSkill);
 	}
 	/**
 	 * Devuelve si hubo un click en cerrar
@@ -290,10 +458,10 @@ public class MenuInfoPersonaje {
 			final int mouseX,
 			final int mouseY) {
 		return (
-				mouseX >= x + MENU.getWidth()
-				- 24 && mouseX <= x + MENU.getWidth()
-				+ 4 && mouseY >= y + 12 && mouseY
-				<= y + 36);
+				mouseX >= x + MENU.getWidth() - offsetXMinCerrar
+				&& mouseX <= x + MENU.getWidth() + offsetXMaxCerrar
+				&& mouseY >= y + offsetYMinCerrar
+				&& mouseY <= y + offsetYMaxCerrar);
 	}
 	/**
 	 * Devuelve si hubo un click en menu

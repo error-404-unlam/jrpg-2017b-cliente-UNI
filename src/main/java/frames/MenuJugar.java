@@ -67,7 +67,7 @@ public class MenuJugar extends JFrame {
 	/**
 	 * Constructor de la clase
 	 *
-	 * @param cliente
+	 * @param cliente que utiliza el menu
 	 */
 	public MenuJugar(final Cliente cliente) {
 		// Se inicializa ícono y cursor
@@ -113,7 +113,12 @@ public class MenuJugar extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(POS_X_CONTPANEL, POS_Y_CONTPANEL, ANCHO_CONTPANEL, ALTO_CONTPANEL));
+		contentPane.setBorder(
+				new EmptyBorder(
+						POS_X_CONTPANEL,
+						POS_Y_CONTPANEL,
+						ANCHO_CONTPANEL,
+						ALTO_CONTPANEL));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -155,7 +160,11 @@ public class MenuJugar extends JFrame {
 		});
 
 		JButton btnIniciarSesion = new JButton("Iniciar Sesion");
-		btnIniciarSesion.setBounds(POS_X_BOTONINICSES, POS_Y_BOTONINICSES, ANCHO_BOTONINICSES, ALTO_BOTONINICSES);
+		btnIniciarSesion.setBounds(
+				POS_X_BOTONINICSES,
+				POS_Y_BOTONINICSES,
+				ANCHO_BOTONINICSES,
+				ALTO_BOTONINICSES);
 		layeredPane.add(btnIniciarSesion, new Integer(1));
 		btnIniciarSesion.setFocusable(false);
 		btnIniciarSesion.setIcon(new ImageIcon(MenuJugar.class.getResource("/frames/BotonMenu.png")));

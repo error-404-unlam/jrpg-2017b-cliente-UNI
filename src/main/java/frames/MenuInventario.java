@@ -21,24 +21,22 @@ import mensajeria.Comando;
 
 /**
  * Clase Menu de inventario
- *
  * @author lesanmartin
- *
  */
 public class MenuInventario extends JFrame {
 	private JButton cancelar = new JButton("Exit");
-	private final static int POS_X_VENTANA = 600;
-	private final static int POS_Y_VENTANA = 600;
-	private final static int ANCHO_VENTANA = 600;
-	private final static int ALTURA_VENTANA = 600;
-	private final static int LOC_X = 900;
-	private final static int LOC_Y = 140;
+	private static final int POS_X_VENTANA = 600;
+	private static final int POS_Y_VENTANA = 600;
+	private static final int ANCHO_VENTANA = 600;
+	private static final int ALTURA_VENTANA = 600;
+	private static final int LOC_X = 900;
+	private static final int LOC_Y = 140;
 
 
 	/**
 	 * Constructor de la clase
 	 *
-	 * @param cliente
+	 * @param cliente Cliente que utiliza el inventario
 	 */
 	public MenuInventario(final Cliente cliente) {
 		// Se inicializa ícono y cursor
