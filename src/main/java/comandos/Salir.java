@@ -17,7 +17,7 @@ public class Salir extends ComandosCliente {
 	public void ejecutar() {
 		try {
 			this.getCliente().getPaqueteUsuario().setInicioSesion(false);
-			this.getCliente().getSal().writeObject(gson.toJson(
+			this.getCliente().getSal().writeObject(getGson().toJson(
 					new Paquete(Comando.DESCONECTAR), Paquete.class));
 			this.getCliente().getSocket().close();
 		} catch (IOException e) {

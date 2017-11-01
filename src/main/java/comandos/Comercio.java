@@ -17,7 +17,7 @@ public class Comercio extends ComandosEscucha {
 	@Override
 	public void ejecutar() {
 		PaqueteComerciar paqueteComerciar;
-		paqueteComerciar = gson.fromJson(cadenaLeida, PaqueteComerciar.class);
+		paqueteComerciar = getGson().fromJson(getCadenaLeida(), PaqueteComerciar.class);
 		// Cuando recibo el paquete de comercio actualizado intercambio user/
 		// destino
 		paqueteComerciar.setIdEnemigo(paqueteComerciar.getId());
@@ -34,7 +34,7 @@ public class Comercio extends ComandosEscucha {
 			}
 			paqueteComerciar.setSolicitudDeComercio(false);
 			try {
-				this.getJuego().getCli().getSal().writeObject(gson.toJson(paqueteComerciar));
+				this.getJuego().getCli().getSal().writeObject(getGson().toJson(paqueteComerciar));
 			} catch (IOException e) {
 				JOptionPane.showMessageDialog(null, "No se envio la solicitud de comercio");
 			}
