@@ -23,6 +23,10 @@ import javax.swing.border.EmptyBorder;
 import cliente.Cliente;
 import mensajeria.Comando;
 
+/**
+ * Clase encargada de gestionar los el menu de mapas.
+ * @author Miguel
+ */
 public class MenuMapas extends JFrame {
 	private static int numberMap = 0;
 	private JPanel contentPane;
@@ -67,11 +71,13 @@ public class MenuMapas extends JFrame {
 	private static final int POS_Y_LABEL_BACK = 0;
 	private static final int ANCHO_LABEL_BACK = 444;
 	private static final int ALTO_LABEL_BACK = 271;
+	private final int numSetMapa = 3;
+
 
 	/**
 	 * Clase MenuMapas
 	 *
-	 * @param cliente
+	 * @param cliente cliente a usar el menu mapas
 	 */
 	public MenuMapas(final Cliente cliente) {
 		// Se inicializa ícono y cursor
@@ -170,7 +176,7 @@ public class MenuMapas extends JFrame {
 			 */
 			public void actionPerformed(final ActionEvent e) {
 				synchronized (cliente) {
-					cliente.getPaquetePersonaje().setMapa(3);
+					cliente.getPaquetePersonaje().setMapa(numSetMapa);
 					cliente.notify();
 				}
 				dispose();
@@ -231,7 +237,7 @@ public class MenuMapas extends JFrame {
 	/**
 	 * @param numberMap a setear
 	 */
-	public static void setNumberMap(int numberMap) {
+	public static void setNumberMap(final int numberMap) {
 		MenuMapas.numberMap = numberMap;
 	}
 }
