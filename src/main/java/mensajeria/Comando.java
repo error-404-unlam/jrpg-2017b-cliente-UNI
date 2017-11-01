@@ -12,13 +12,24 @@ public abstract class Comando {
 	// Nombre del paquete donde se encuentran las clases con las
 	// responsabilidades
 	public static final String NOMBREPAQUETE = "comandos";
-	public static final String[] CLASSNAMES = {"Conexion", "CrearPersonaje", "Desconectar", "InicioSesion",
-			"MostrarMapas", "Movimiento", "Registro", "Salir", "Batalla", "Atacar", "FinalizarBatalla",
-			"ActualizarPersonaje", "ActualizarPersonajeLvl", "ActualizarInventario", "Comercio", "ActualizarComercio",
+	public static final String[] CLASSNAMES = {
+			"Conexion", "CrearPersonaje",
+			"Desconectar", "InicioSesion",
+			"MostrarMapas", "Movimiento",
+			"Registro", "Salir", "Batalla",
+			"Atacar", "FinalizarBatalla",
+			"ActualizarPersonaje", "ActualizarPersonajeLvl",
+			"ActualizarInventario", "Comercio", "ActualizarComercio",
 			"Trueque", "ActualizarTrueque", "Talk"};
-	public static final String[] CLASSNAMESBIS = {"Conexion", "CrearPersonaje", "Desconectar", "InicioSesionSet",
-			"MostrarMapas", "Movimiento", "RegistroSet", "SalirSet", "Batalla", "Atacar", "FinalizarBatalla",
-			"ActualizarPersonaje", "ActualizarPersonajeLvl", "ActualizarInventario", "Comercio", "ActualizarComercio",
+	public static final String[] CLASSNAMESBIS = {
+			"Conexion", "CrearPersonaje",
+			"Desconectar", "InicioSesionSet",
+			"MostrarMapas", "Movimiento",
+			"RegistroSet", "SalirSet",
+			"Batalla", "Atacar",
+			"FinalizarBatalla",	"ActualizarPersonaje",
+			"ActualizarPersonajeLvl", "ActualizarInventario",
+			"Comercio", "ActualizarComercio",
 			"Trueque", "ActualizarTrueque", "Talk"};
 
 	public static final int CONEXION = 0;
@@ -47,10 +58,10 @@ public abstract class Comando {
 	/**
 	 * Setea la cadena leida
 	 *
-	 * @param cadenaLeida parametros cadena leida
+	 * @param cadLeida parametros cadena leida
 	 */
-	public void setCadena(final String cadenaLeida) {
-		this.setCadenaLeida(cadenaLeida);
+	public void setCadena(final String cadLeida) {
+		this.setCadenaLeida(cadLeida);
 	}
 
 	/**
@@ -75,7 +86,7 @@ public abstract class Comando {
 	/**
 	 * @param cadenaLeida cadenaLeida a setear
 	 */
-	public void setCadenaLeida(String cadenaLeida) {
+	public void setCadenaLeida(final String cadenaLeida) {
 		this.cadenaLeida = cadenaLeida;
 	}
 }
