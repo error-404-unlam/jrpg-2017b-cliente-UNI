@@ -31,6 +31,7 @@ public class PaqueteMensaje extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Asigna mensaje
+	 * @param mensaje a asignar
 	 */
 	public void setMensaje(final String mensaje) {
 		this.msj = mensaje;
