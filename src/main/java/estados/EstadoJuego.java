@@ -133,7 +133,7 @@ public class EstadoJuego extends Estado {
 		String[] mundoM = {"Aubenor" , "Aris" , "Eodrim" };
 		int mapNum = this.getJuego().getPersonaje().getMapa();
 		if (mapNum >= 1 && mapNum <= limiteSupMapaNum) {
-			return mundoM[mapNum];
+			return mundoM[mapNum-1];
 		}
 		return null;
 	}
