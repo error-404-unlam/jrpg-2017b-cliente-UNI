@@ -99,7 +99,10 @@ public class EstadoBatalla extends Estado {
 		menuBatalla = new MenuBatalla(miTurno, personaje);
 
 		miniaturaEnemigo = Recursos.getPersonaje().get(enemigo.getNombreRaza()).get(posMiniaturaEnemigo)[0];
-		miniaturaPersonaje = Recursos.getPersonaje().get(personaje.getNombreRaza()).get(posMiniaturaPersonaje)[0];
+		miniaturaPersonaje = Recursos.getPersonaje().get(
+				personaje.getNombreRaza()
+				).
+				get(posMiniaturaPersonaje)[0];
 
 		paqueteFinalizarBatalla = new PaqueteFinalizarBatalla();
 		paqueteFinalizarBatalla.setId(personaje.getIdPersonaje());
