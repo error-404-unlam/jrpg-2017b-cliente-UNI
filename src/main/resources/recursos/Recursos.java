@@ -15,7 +15,7 @@ import mundo.Tile;
 
 /**
  * Clase encargada de la gestion de los recursos.
- * 
+ *
  * @author Miguel
  */
 public class Recursos {
@@ -125,13 +125,15 @@ public class Recursos {
 	private static final int ALTO_VECTOR_7 = 7;
 	private static final int ANCHO_CARGA = 256;
 	private static final int ALTO_CARGA = 256;
-
+	
+	/**
+	 * Constructor por defecto de la clase 
+	 */
 	public Recursos() {
 		//no utilizado
 	}
 
 	// Se cargan todos los recursos del juego una sola vez al inicio
-
 	/**
 	 * Metodo cargar
 	 * 
@@ -400,14 +402,14 @@ public class Recursos {
 		if (MenuMapas.getNumberMap() == 1) {
 			SpriteSheet mapaAubenor = new SpriteSheet(CargadorImagen.cargarImagen("/Aubenor.png"));
 			Tile.setAubenor(new Tile[TAM_TILE_ARRAY]);
-			boolean[][] solidezAubenor = { { true, true, false, true, false, true, true, true, true, true },
-					{ true, true, true, true, true, true, true, true, true, true },
-					{ true, true, true, true, true, true, true, true, true, true },
-					{ true, false, false, false, false, false, false, false, true, true },
-					{ false, false, false, false, false, false, false, false, true, true },
-					{ false, true, true, true, true, true, true, true, true, true },
-					{ true, true, true, true, true, true, true, true, true, true },
-					{ true, true, true, true, true, true, true, true, true, true } };
+			boolean[][] solidezAubenor = {{true, true, false, true, false, true, true, true, true, true},
+					{true, true, true, true, true, true, true, true, true, true},
+					{true, true, true, true, true, true, true, true, true, true},
+					{true, false, false, false, false, false, false, false, true, true},
+					{false, false, false, false, false, false, false, false, true, true},
+					{false, true, true, true, true, true, true, true, true, true},
+					{true, true, true, true, true, true, true, true, true, true},
+					{true, true, true, true, true, true, true, true, true, true}};
 			for (int y = 0; y < LIMITE_Y_AUBENOR; y++) {
 				for (int x = 0; x < LIMITE_X_AUBENOR; x++) {
 					Tile.getAubenor()[y * ID_Y_AUBENOR + x + ID_X_AUBENOR] = new Tile(
@@ -419,14 +421,14 @@ public class Recursos {
 		} else {
 			SpriteSheet mapaAris = new SpriteSheet(CargadorImagen.cargarImagen("/Aris.png"));
 			Tile.setAris(new Tile[TAM_TILE_ARRAY]);
-			boolean[][] solidezAris = { { true, false, false, false, false, false, false, true, true, true },
-					{ false, false, false, false, false, false, false, false, true, true },
-					{ false, false, false, false, true, true, true, true, true, true },
-					{ true, true, true, true, true, true, true, true, true, true },
-					{ true, true, true, true, true, true, true, true, true, true },
-					{ false, true, true, true, true, true, true, true, true, true },
-					{ true, true, true, true, true, true, true, true, true, true },
-					{ true, true, true, true, true, true, true, true, true, true } };
+			boolean[][] solidezAris = {{true, false, false, false, false, false, false, true, true, true},
+					{false, false, false, false, false, false, false, false, true, true},
+					{false, false, false, false, true, true, true, true, true, true},
+					{true, true, true, true, true, true, true, true, true, true},
+					{true, true, true, true, true, true, true, true, true, true},
+					{false, true, true, true, true, true, true, true, true, true},
+					{true, true, true, true, true, true, true, true, true, true},
+					{true, true, true, true, true, true, true, true, true, true}};
 			for (int y = 0; y < LIMITE_Y_ARIS; y++) {
 				for (int x = 0; x < LIMITE_X_ARIS; x++) {
 					Tile.getAris()[y * ID_Y_ARIS + x + ID_X_ARIS] = new Tile(
@@ -505,7 +507,6 @@ public class Recursos {
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		// Fin Batalla
 	}
-
 	/**
 	 * Actualiza la barra de carga
 	 * 

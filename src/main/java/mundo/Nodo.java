@@ -62,7 +62,7 @@ public class Nodo {
 
 	/**
 	 * Agrega nodos adyacentes
-	 * @param nodo
+	 * @param nodo parametro nodo
 	 */
 	public void agregarAdyacente(final Nodo nodo) {
 		nodosAdyacentes[cantidadDeAdyacentes++] = nodo;
