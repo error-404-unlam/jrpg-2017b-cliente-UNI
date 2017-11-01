@@ -14,8 +14,8 @@ public class Tile {
 	private static Tile[] tiles = new Tile[TAM_TILES];
 	private static Tile[] aubenor;
 	private static Tile[] aris;
-	private static int aubenorBase = 3; // Piso por defecto
-	private static int arisBase = 3; // Piso por defecto
+	private final static int aubenorBase = 3; // Piso por defecto
+	private final static int arisBase = 3; // Piso por defecto
 
 	private BufferedImage textura;
 	private final int id;

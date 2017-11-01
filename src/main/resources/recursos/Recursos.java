@@ -15,6 +15,7 @@ import mundo.Tile;
 
 /**
  * Clase encargada de la gestion de los recursos.
+ * 
  * @author Miguel
  */
 public class Recursos {
@@ -122,20 +123,29 @@ public class Recursos {
 	private static final int ALTO_VECTOR_5 = 5;
 	private static final int ALTO_VECTOR_6 = 6;
 	private static final int ALTO_VECTOR_7 = 7;
+	private static final int ANCHO_CARGA = 256;
+	private static final int ALTO_CARGA = 256;
+
+	public Recursos() {
+		//no utilizado
+	}
 
 	// Se cargan todos los recursos del juego una sola vez al inicio
 
 	/**
 	 * Metodo cargar
-	 * @param menuCarga menu a cargar
-	 * @throws IOException excepcion entrada salida
+	 * 
+	 * @param menuCarga
+	 *            menu a cargar
+	 * @throws IOException
+	 *             excepcion entrada salida
 	 */
 	public static void cargar(final MenuCarga menuCarga) throws IOException {
 
 		int elementosCargados = 0;
 
-		ancho = 256;
-		alto = 256;
+		ancho = ANCHO_CARGA;
+		alto = ALTO_CARGA;
 		// Items
 
 		noItem = ImageIO.read(new File("recursos//noItem.png"));
@@ -380,11 +390,7 @@ public class Recursos {
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		trees = new SpriteSheet(CargadorImagen.cargarImagen("/trees.png"));
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
-		greenTree = trees.getTile(
-				X_TILE_TREE,
-				Y_TILE_TREE,
-				ANCHO_TILE_TREE,
-				ALTO_TILE_TREE);
+		greenTree = trees.getTile(X_TILE_TREE, Y_TILE_TREE, ANCHO_TILE_TREE, ALTO_TILE_TREE);
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
 		nievePiso1 = CargadorImagen.cargarImagen("/nieve piso.png");
 		actualizarBarraDeCarga(++elementosCargados, menuCarga);
@@ -394,47 +400,38 @@ public class Recursos {
 		if (MenuMapas.getNumberMap() == 1) {
 			SpriteSheet mapaAubenor = new SpriteSheet(CargadorImagen.cargarImagen("/Aubenor.png"));
 			Tile.setAubenor(new Tile[TAM_TILE_ARRAY]);
-			boolean[][] solidezAubenor = {{true, true, false, true, false, true, true, true, true, true },
-					{true, true, true, true, true, true, true, true, true, true },
-					{true, true, true, true, true, true, true, true, true, true },
-					{true, false, false, false, false, false, false, false, true, true },
-					{false, false, false, false, false, false, false, false, true, true },
-					{false, true, true, true, true, true, true, true, true, true },
-					{true, true, true, true, true, true, true, true, true, true },
-					{true, true, true, true, true, true, true, true, true, true } };
+			boolean[][] solidezAubenor = { { true, true, false, true, false, true, true, true, true, true },
+					{ true, true, true, true, true, true, true, true, true, true },
+					{ true, true, true, true, true, true, true, true, true, true },
+					{ true, false, false, false, false, false, false, false, true, true },
+					{ false, false, false, false, false, false, false, false, true, true },
+					{ false, true, true, true, true, true, true, true, true, true },
+					{ true, true, true, true, true, true, true, true, true, true },
+					{ true, true, true, true, true, true, true, true, true, true } };
 			for (int y = 0; y < LIMITE_Y_AUBENOR; y++) {
 				for (int x = 0; x < LIMITE_X_AUBENOR; x++) {
 					Tile.getAubenor()[y * ID_Y_AUBENOR + x + ID_X_AUBENOR] = new Tile(
-							mapaAubenor.getTile(
-									x * X_MAPA_AUBENOR,
-									y * Y_MAPA_AUBENOR,
-									ANCHO_MAPA_AUBENOR,
+							mapaAubenor.getTile(x * X_MAPA_AUBENOR, y * Y_MAPA_AUBENOR, ANCHO_MAPA_AUBENOR,
 									ALTO_MAPA_AUBENOR),
-							y * ID_Y_AUBENOR + x + ID_X_AUBENOR,
-							solidezAubenor[y][x], ANCHO_TILE, ALTO_TILE);
+							y * ID_Y_AUBENOR + x + ID_X_AUBENOR, solidezAubenor[y][x], ANCHO_TILE, ALTO_TILE);
 				}
 			}
 		} else {
 			SpriteSheet mapaAris = new SpriteSheet(CargadorImagen.cargarImagen("/Aris.png"));
 			Tile.setAris(new Tile[TAM_TILE_ARRAY]);
-			boolean[][] solidezAris = {{true, false, false, false, false, false, false, true, true, true},
-					{false, false, false, false, false, false, false, false, true, true },
-					{false, false, false, false, true, true, true, true, true, true },
-					{true, true, true, true, true, true, true, true, true, true },
-					{true, true, true, true, true, true, true, true, true, true },
-					{false, true, true, true, true, true, true, true, true, true },
-					{true, true, true, true, true, true, true, true, true, true },
-					{true, true, true, true, true, true, true, true, true, true } };
+			boolean[][] solidezAris = { { true, false, false, false, false, false, false, true, true, true },
+					{ false, false, false, false, false, false, false, false, true, true },
+					{ false, false, false, false, true, true, true, true, true, true },
+					{ true, true, true, true, true, true, true, true, true, true },
+					{ true, true, true, true, true, true, true, true, true, true },
+					{ false, true, true, true, true, true, true, true, true, true },
+					{ true, true, true, true, true, true, true, true, true, true },
+					{ true, true, true, true, true, true, true, true, true, true } };
 			for (int y = 0; y < LIMITE_Y_ARIS; y++) {
 				for (int x = 0; x < LIMITE_X_ARIS; x++) {
 					Tile.getAris()[y * ID_Y_ARIS + x + ID_X_ARIS] = new Tile(
-							mapaAris.getTile(
-									x * X_MAPA_ARIS,
-									y * Y_MAPA_ARIS,
-									ANCHO_MAPA_ARIS,
-									ALTO_MAPA_ARIS),
-							y * ID_Y_ARIS + x + ID_X_ARIS,
-							solidezAris[y][x], ANCHO_TILE, ALTO_TILE);
+							mapaAris.getTile(x * X_MAPA_ARIS, y * Y_MAPA_ARIS, ANCHO_MAPA_ARIS, ALTO_MAPA_ARIS),
+							y * ID_Y_ARIS + x + ID_X_ARIS, solidezAris[y][x], ANCHO_TILE, ALTO_TILE);
 				}
 			}
 		}
@@ -511,6 +508,7 @@ public class Recursos {
 
 	/**
 	 * Actualiza la barra de carga
+	 * 
 	 * @param elementosCargados
 	 *            elementos cargados
 	 * @param menuCarga

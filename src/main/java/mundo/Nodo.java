@@ -12,19 +12,20 @@ public class Nodo {
 	private int indice;
 	private int cantidadDeAdyacentes;
 	private Nodo[] nodosAdyacentes;
+	private static final int TAMANIO_VECTOR = 8;
 
 	/**
 	 * Constructor de la clase
-	 * @param indice
-	 * @param x
-	 * @param y
+	 * @param indice parametro indice
+	 * @param x parametro x
+	 * @param y parametro y
 	 */
-	public Nodo(final int indice,final int x,final int y) {
+	public Nodo(final int indice, final int x, final int y) {
 		this.x = x;
 		this.y = y;
 		this.indice = indice;
 		cantidadDeAdyacentes = 0;
-		nodosAdyacentes = new Nodo[8];
+		nodosAdyacentes = new Nodo[TAMANIO_VECTOR];
 	}
 
 	/**

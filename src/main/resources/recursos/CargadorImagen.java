@@ -11,7 +11,10 @@ import javax.swing.JOptionPane;
  * @author leo
  *
  */
-public class CargadorImagen {
+public final class CargadorImagen {
+	private CargadorImagen(){
+		//no utilizado
+	}
 	/**
 	 *
 	 * @param path parametro path
