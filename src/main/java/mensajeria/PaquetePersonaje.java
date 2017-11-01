@@ -341,7 +341,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * Añade item
 	 *
 	 * @param idItem parametro idItem
-	 * @param nombre parametro nombre
+	 * @param nombreI parametro nombre
 	 * @param wearLocation parametro wearLocation
 	 * @param bonusSalud parametro bonusSalud
 	 * @param bonusEnergia parametro bonusEnergia
@@ -352,7 +352,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param fotoEquipado parametro fotoEquipado
 	 */
 	public final void anadirItem(
-			final int idItem, final String nombre, final int wearLocation, 
+			final int idItem, final String nombreI, final int wearLocation,
 			final int bonusSalud, final int bonusEnergia,
 			final int bonusAtaque, final int bonusDefensa,
 			final int bonusMagia, final String foto,
@@ -360,7 +360,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 		try {
 			items.add(
 					new Item(
-							idItem, nombre, wearLocation,
+							idItem, nombreI, wearLocation,
 							bonusSalud, bonusEnergia,
 							bonusAtaque, bonusDefensa,
 							bonusMagia, foto, fotoEquipado));
