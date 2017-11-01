@@ -197,9 +197,9 @@ public class Entidad {
 				&& posMouse[0] <= posXMouseInventarioMax
 				&& posMouse[1] >= posYMouseInventarioMin
 				&& posMouse[1] <= posYMouseInventarioMax) {
-			if (Pantalla.menuInventario == null) {
-				Pantalla.menuInventario = new MenuInventario(juego.getCli());
-				Pantalla.menuInventario.setVisible(true);
+			if (Pantalla.getMenuInventario() == null) {
+				Pantalla.setMenuInventario(new MenuInventario(juego.getCli()));
+				Pantalla.getMenuInventario().setVisible(true);
 			}
 			juego.getHandlerMouse().setNuevoClick(false);
 		}
@@ -208,9 +208,9 @@ public class Entidad {
 				&& posMouse[0] <= posXMouseEscapeMax
 				&& posMouse[1] >= posYMouseEscapeMin
 				&& posMouse[1] <= posYMouseEscapeMax) {
-			if (Pantalla.menuEscp == null) {
-				Pantalla.menuEscp = new MenuEscape(juego.getCli());
-				Pantalla.menuEscp.setVisible(true);
+			if (Pantalla.getMenuEscp() == null) {
+				Pantalla.setMenuEscp(new MenuEscape(juego.getCli()));
+				Pantalla.getMenuEscp().setVisible(true);
 			}
 			juego.getHandlerMouse().setNuevoClick(false);
 		}
@@ -219,9 +219,9 @@ public class Entidad {
 				&& posMouse[0] <= posXMouseVentContacMax
 				&& posMouse[1] >= posYMouseVentContacMin
 				&& posMouse[1] <= posYMouseVentContacMax) {
-			if (Pantalla.ventContac == null) {
-				Pantalla.ventContac = new VentanaContactos(juego);
-				Pantalla.ventContac.setVisible(true);
+			if (Pantalla.getVentContac() == null) {
+				Pantalla.setVentContac(new VentanaContactos(juego));
+				Pantalla.getVentContac().setVisible(true);
 			}
 			juego.getHandlerMouse().setNuevoClick(false);
 		}
@@ -233,10 +233,10 @@ public class Entidad {
 				if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.MENU_SUBIR_NIVEL) {
 					if (juego.getEstadoJuego().getMenuEnemigo().
 							clickEnAsignarSkills(posMouse[0], posMouse[1])) {
-						if (Pantalla.menuAsignar == null) {
-							Pantalla.menuAsignar = new MenuAsignarSkills(juego.getCli());
+						if (Pantalla.getMenuAsignar() == null) {
+							Pantalla.setMenuAsignar(new MenuAsignarSkills(juego.getCli()));
 						}
-						Pantalla.menuAsignar.setVisible(true);
+						Pantalla.getMenuAsignar().setVisible(true);
 					}
 				}
 
