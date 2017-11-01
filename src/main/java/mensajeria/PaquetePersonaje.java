@@ -351,12 +351,19 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param foto parametro foto
 	 * @param fotoEquipado parametro fotoEquipado
 	 */
-	public final void anadirItem(final int idItem, final String nombre, final int wearLocation, 
+	public final void anadirItem(
+			final int idItem, final String nombre, final int wearLocation, 
 			final int bonusSalud, final int bonusEnergia,
-			int bonusAtaque, int bonusDefensa, int bonusMagia, String foto, String fotoEquipado) {
+			final int bonusAtaque, final int bonusDefensa,
+			final int bonusMagia, final String foto,
+			final String fotoEquipado) {
 		try {
-			items.add(new Item(idItem, nombre, wearLocation, bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa,
-					bonusMagia, foto, fotoEquipado));
+			items.add(
+					new Item(
+							idItem, nombre, wearLocation,
+							bonusSalud, bonusEnergia,
+							bonusAtaque, bonusDefensa,
+							bonusMagia, foto, fotoEquipado));
 			useBonus(bonusSalud, bonusEnergia, bonusAtaque, bonusDefensa, bonusMagia);
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Falló al añadir item");
@@ -370,8 +377,12 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	public final void removerBonus() {
 		int i = 0;
 		while (i < items.size()) {
-			sacarBonus(items.get(i).getBonusSalud(), items.get(i).getBonusEnergia(), items.get(i).getBonusFuerza(),
-					items.get(i).getBonusDestreza(), items.get(i).getBonusInteligencia());
+			sacarBonus(
+					items.get(i).getBonusSalud(),
+					items.get(i).getBonusEnergia(),
+					items.get(i).getBonusFuerza(),
+					items.get(i).getBonusDestreza(),
+					items.get(i).getBonusInteligencia());
 			i++;
 		}
 	}
@@ -385,7 +396,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param bonusDefensa parametro bonusDefensa
 	 * @param bonusMagia parametro bonusMagia
 	 */
-	public final void sacarBonus(final int bonusSalud, final int bonusEnergia, final int bonusAtaque, 
+	public final void sacarBonus(final int bonusSalud, final int bonusEnergia, final int bonusAtaque,
 			final int bonusDefensa, final int bonusMagia) {
 		saludTope -= bonusSalud;
 		energiaTope -= bonusEnergia;
@@ -400,8 +411,12 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	public final void ponerBonus() {
 		int i = 0;
 		while (i < items.size()) {
-			useBonus(items.get(i).getBonusSalud(), items.get(i).getBonusEnergia(), items.get(i).getBonusFuerza(),
-					items.get(i).getBonusDestreza(), items.get(i).getBonusInteligencia());
+			useBonus(
+					items.get(i).getBonusSalud(),
+					items.get(i).getBonusEnergia(),
+					items.get(i).getBonusFuerza(),
+					items.get(i).getBonusDestreza(),
+					items.get(i).getBonusInteligencia());
 			i++;
 		}
 	}
@@ -415,7 +430,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @param bonusDefensa parametro bonusDefensa
 	 * @param bonusMagia parametro bonusMagia
 	 */
-	public void useBonus(final int bonusSalud, final int bonusEnergia, final int bonusAtaque, 
+	public void useBonus(final int bonusSalud, final int bonusEnergia, final int bonusAtaque,
 			final int bonusDefensa, final int bonusMagia) {
 		saludTope += bonusSalud;
 		energiaTope += bonusEnergia;
@@ -481,8 +496,12 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	public void ponerBonus(final int cantItems) {
 		int i = 0;
 		while (i < cantItems) {
-			useBonus(items.get(i).getBonusSalud(), items.get(i).getBonusEnergia(), items.get(i).getBonusFuerza(),
-					items.get(i).getBonusDestreza(), items.get(i).getBonusInteligencia());
+			useBonus(
+					items.get(i).getBonusSalud(),
+					items.get(i).getBonusEnergia(),
+					items.get(i).getBonusFuerza(),
+					items.get(i).getBonusDestreza(),
+					items.get(i).getBonusInteligencia());
 			i++;
 		}
 	}
@@ -493,8 +512,12 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	public void sacarUltimoItem() {
 		int i = items.size() - 1;
 		if (i >= 0) {
-			sacarBonus(items.get(i).getBonusSalud(), items.get(i).getBonusEnergia(), items.get(i).getBonusFuerza(),
-					items.get(i).getBonusDestreza(), items.get(i).getBonusInteligencia());
+			sacarBonus(
+					items.get(i).getBonusSalud(),
+					items.get(i).getBonusEnergia(),
+					items.get(i).getBonusFuerza(),
+					items.get(i).getBonusDestreza(),
+					items.get(i).getBonusInteligencia());
 		}
 	}
 
@@ -504,8 +527,12 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	public void ponerUltimoItem() {
 		int i = items.size() - 1;
 		if (i >= 0) {
-			useBonus(items.get(i).getBonusSalud(), items.get(i).getBonusEnergia(), items.get(i).getBonusFuerza(),
-					items.get(i).getBonusDestreza(), items.get(i).getBonusInteligencia());
+			useBonus(
+					items.get(i).getBonusSalud(),
+					items.get(i).getBonusEnergia(),
+					items.get(i).getBonusFuerza(),
+					items.get(i).getBonusDestreza(),
+					items.get(i).getBonusInteligencia());
 		}
 	}
 
@@ -518,12 +545,11 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 
 	/**
 	 * Actualiza trueque
-	 *
-	 * @param items parametro items
+	 * @param itemsT parametro items
 	 */
-	public void actualizarTrueque(final ArrayList<Item> items) {
+	public void actualizarTrueque(final ArrayList<Item> itemsT) {
 		this.items.removeAll(this.items);
-		for (Item item : items) {
+		for (Item item : itemsT) {
 			this.items.add(item);
 		}
 	}
@@ -596,7 +622,7 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 *
 	 * @param puntosAsignadosInteligencia parametros de puntos asignados a inteligencia
 	 */
-	public void setPuntosAsignadosInteligencia(int puntosAsignadosInteligencia) {
+	public void setPuntosAsignadosInteligencia(final int puntosAsignadosInteligencia) {
 		this.puntosAsignadosInteligencia = puntosAsignadosInteligencia;
 	}
 }
