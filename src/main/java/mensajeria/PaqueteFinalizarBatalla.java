@@ -33,7 +33,7 @@ public class PaqueteFinalizarBatalla extends Paquete implements Serializable, Cl
 	/**
 	 * Setea el id
 	 *
-	 * @param id
+	 * @param id de la batalla
 	 */
 	public void setId(final int id) {
 		this.id = id;
@@ -51,7 +51,7 @@ public class PaqueteFinalizarBatalla extends Paquete implements Serializable, Cl
 	/**
 	 * Setea el id del enemigo
 	 *
-	 * @param idEnemigo
+	 * @param idEnemigo id del enemigo
 	 */
 	public void setIdEnemigo(final int idEnemigo) {
 		this.idEnemigo = idEnemigo;
@@ -69,7 +69,7 @@ public class PaqueteFinalizarBatalla extends Paquete implements Serializable, Cl
 	/**
 	 * Setea el ganador de la batalla
 	 *
-	 * @param ganadorBatalla
+	 * @param ganadorBatalla ganador de la batalla
 	 */
 	public void setGanadorBatalla(final int ganadorBatalla) {
 		this.ganadorBatalla = ganadorBatalla;
