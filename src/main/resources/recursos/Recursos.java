@@ -125,9 +125,8 @@ public class Recursos {
 	private static final int ALTO_VECTOR_7 = 7;
 	private static final int ANCHO_CARGA = 256;
 	private static final int ALTO_CARGA = 256;
-	
 	/**
-	 * Constructor por defecto de la clase 
+	 * Constructor por defecto de la clase
 	 */
 	public Recursos() {
 		//no utilizado
@@ -136,7 +135,6 @@ public class Recursos {
 	// Se cargan todos los recursos del juego una sola vez al inicio
 	/**
 	 * Metodo cargar
-	 * 
 	 * @param menuCarga
 	 *            menu a cargar
 	 * @throws IOException
@@ -413,9 +411,15 @@ public class Recursos {
 			for (int y = 0; y < LIMITE_Y_AUBENOR; y++) {
 				for (int x = 0; x < LIMITE_X_AUBENOR; x++) {
 					Tile.getAubenor()[y * ID_Y_AUBENOR + x + ID_X_AUBENOR] = new Tile(
-							mapaAubenor.getTile(x * X_MAPA_AUBENOR, y * Y_MAPA_AUBENOR, ANCHO_MAPA_AUBENOR,
+							mapaAubenor.getTile(
+									x * X_MAPA_AUBENOR,
+									y * Y_MAPA_AUBENOR,
+									ANCHO_MAPA_AUBENOR,
 									ALTO_MAPA_AUBENOR),
-							y * ID_Y_AUBENOR + x + ID_X_AUBENOR, solidezAubenor[y][x], ANCHO_TILE, ALTO_TILE);
+							y * ID_Y_AUBENOR + x + ID_X_AUBENOR,
+							solidezAubenor[y][x],
+							ANCHO_TILE,
+							ALTO_TILE);
 				}
 			}
 		} else {
@@ -432,8 +436,15 @@ public class Recursos {
 			for (int y = 0; y < LIMITE_Y_ARIS; y++) {
 				for (int x = 0; x < LIMITE_X_ARIS; x++) {
 					Tile.getAris()[y * ID_Y_ARIS + x + ID_X_ARIS] = new Tile(
-							mapaAris.getTile(x * X_MAPA_ARIS, y * Y_MAPA_ARIS, ANCHO_MAPA_ARIS, ALTO_MAPA_ARIS),
-							y * ID_Y_ARIS + x + ID_X_ARIS, solidezAris[y][x], ANCHO_TILE, ALTO_TILE);
+							mapaAris.getTile(
+									x * X_MAPA_ARIS,
+									y * Y_MAPA_ARIS,
+									ANCHO_MAPA_ARIS,
+									ALTO_MAPA_ARIS),
+							y * ID_Y_ARIS + x + ID_X_ARIS,
+							solidezAris[y][x],
+							ANCHO_TILE,
+							ALTO_TILE);
 				}
 			}
 		}
@@ -509,7 +520,6 @@ public class Recursos {
 	}
 	/**
 	 * Actualiza la barra de carga
-	 * 
 	 * @param elementosCargados
 	 *            elementos cargados
 	 * @param menuCarga

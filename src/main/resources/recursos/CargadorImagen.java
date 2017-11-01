@@ -13,8 +13,10 @@ import javax.swing.JOptionPane;
  *
  */
 public final class CargadorImagen {
+	/**
+	 * Constructor no utilizado privado de la clase
+	 */
 	private CargadorImagen() {
-		//no utilizado
 	}
 	/**
 	 *
