@@ -41,20 +41,41 @@ public abstract class Comando {
 	public static final int ACTUALIZARTRUEQUE = 17;
 	public static final int TALK = 18;
 
-	protected final Gson gson = new Gson();
-	protected String cadenaLeida;
+	private final Gson gson = new Gson();
+	private String cadenaLeida;
 
 	/**
 	 * Setea la cadena leida
 	 *
-	 * @param cadenaLeida
+	 * @param cadenaLeida parametros cadena leida
 	 */
 	public void setCadena(final String cadenaLeida) {
-		this.cadenaLeida = cadenaLeida;
+		this.setCadenaLeida(cadenaLeida);
 	}
 
 	/**
 	 * Metodo abstracto para ejecutar
 	 */
 	public abstract void ejecutar();
+
+	/**
+	 * @return gson
+	 */
+	public Gson getGson() {
+		return gson;
+	}
+
+	/**
+	 * @return cadenaLeida
+	 */
+	public String getCadenaLeida() {
+		return cadenaLeida;
+	}
+
+	/**
+	 * @param cadenaLeida cadenaLeida a setear
+	 */
+	public void setCadenaLeida(String cadenaLeida) {
+		this.cadenaLeida = cadenaLeida;
+	}
 }

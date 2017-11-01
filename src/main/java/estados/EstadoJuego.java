@@ -70,10 +70,10 @@ public class EstadoJuego extends Estado {
 				anchoPersonaje, altoPersonaje,
 				juego.getPersonaje().getNombre(),
 				0, 0,
-				Recursos.personaje.get(
+				Recursos.getPersonaje().get(
 						juego.getPersonaje().getRaza()),
 				velocidadPersonaje);
-		miniaturaPersonaje = Recursos.personaje.get(paquetePersonaje.getRaza()).get(nroMiniaturaPersonaje)[0];
+		miniaturaPersonaje = Recursos.getPersonaje().get(paquetePersonaje.getRaza()).get(nroMiniaturaPersonaje)[0];
 
 		try {
 			// Le pido al servidor que me conecte al mapa
@@ -133,7 +133,7 @@ public class EstadoJuego extends Estado {
 		String[] mundoM = {"Aubenor" , "Aris" , "Eodrim" };
 		int mapNum = this.getJuego().getPersonaje().getMapa();
 		if (mapNum >= 1 && mapNum <= limiteSupMapaNum) {
-			return mundoM[mapNum];
+			return mundoM[mapNum-1];
 		}
 		return null;
 	}

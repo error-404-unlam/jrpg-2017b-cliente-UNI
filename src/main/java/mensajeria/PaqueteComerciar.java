@@ -29,9 +29,9 @@ public class PaqueteComerciar extends Paquete implements Serializable, Cloneable
 	}
 
 	/**
-	 * Retorna si es solicitud de comercio 
+	 * Retorna si es solicitud de comercio
 	 *
-	 * @return
+	 * @return solicitudDeComercio
 	 */
 	public boolean isSolicitudDeComercio() {
 		return solicitudDeComercio;
@@ -40,7 +40,7 @@ public class PaqueteComerciar extends Paquete implements Serializable, Cloneable
 	/**
 	 * Setea la solicitud de comercio
 	 *
-	 * @param solicitudDeComercio
+	 * @param solicitudDeComercio parametro solicitudDeComercio
 	 */
 	public void setSolicitudDeComercio(final boolean solicitudDeComercio) {
 		this.solicitudDeComercio = solicitudDeComercio;
@@ -49,7 +49,7 @@ public class PaqueteComerciar extends Paquete implements Serializable, Cloneable
 	/**
 	 * Retorna los items a dar
 	 *
-	 * @return
+	 * @return itemsADar
 	 */
 	public ArrayList<Item> getItemsADar() {
 		return itemsADar;
@@ -58,7 +58,7 @@ public class PaqueteComerciar extends Paquete implements Serializable, Cloneable
 	/**
 	 * Setea los items a dar
 	 *
-	 * @param itemsADar
+	 * @param itemsADar parametros itemsADar
 	 */
 	public void setItemsADar(final ArrayList<Item> itemsADar) {
 		this.itemsADar = itemsADar;
@@ -67,7 +67,7 @@ public class PaqueteComerciar extends Paquete implements Serializable, Cloneable
 	/**
 	 * Retorna el id
 	 *
-	 * @return
+	 * @return id
 	 */
 	public int getId() {
 		return id;
@@ -76,7 +76,7 @@ public class PaqueteComerciar extends Paquete implements Serializable, Cloneable
 	/**
 	 * Setea el id
 	 *
-	 * @param id
+	 * @param id parametros id
 	 */
 	public void setId(final int id) {
 		this.id = id;
@@ -85,7 +85,7 @@ public class PaqueteComerciar extends Paquete implements Serializable, Cloneable
 	/**
 	 * Retorna el id enemigo
 	 *
-	 * @return
+	 * @return idEnemigo
 	 */
 	public int getIdEnemigo() {
 		return idEnemigo;
@@ -94,7 +94,7 @@ public class PaqueteComerciar extends Paquete implements Serializable, Cloneable
 	/**
 	 * Setea el id enemigo
 	 *
-	 * @param idEnemigo
+	 * @param idEnemigo parametros idEnemigo
 	 */
 	public void setIdEnemigo(final int idEnemigo) {
 		this.idEnemigo = idEnemigo;
@@ -103,12 +103,11 @@ public class PaqueteComerciar extends Paquete implements Serializable, Cloneable
 	/**
 	 * Retorna si esta listo
 	 *
-	 * @return
+	 * @return listo
 	 */
 	public int getListo() {
 		return listo;
 	}
-	
 	/**
 	 * Aumenta la variable listo
 	 */
@@ -122,11 +121,10 @@ public class PaqueteComerciar extends Paquete implements Serializable, Cloneable
 	public void disminuirListo() {
 		this.listo--;
 	}
-	
 	/**
 	 * Retorna los items a obtener
 	 *
-	 * @return
+	 * @return itemsAObtener
 	 */
 	public ArrayList<Item> getItemsAObtener() {
 		return itemsAObtener;
@@ -135,7 +133,7 @@ public class PaqueteComerciar extends Paquete implements Serializable, Cloneable
 	/**
 	 * Setea los items a obtener
 	 *
-	 * @param itemsAObtener
+	 * @param itemsAObtener parametros ItemsAObtener
 	 */
 	public void setItemsAObtener(final ArrayList<Item> itemsAObtener) {
 		this.itemsAObtener = itemsAObtener;

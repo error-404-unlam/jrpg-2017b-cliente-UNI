@@ -98,8 +98,8 @@ public class EstadoBatalla extends Estado {
 
 		menuBatalla = new MenuBatalla(miTurno, personaje);
 
-		miniaturaEnemigo = Recursos.personaje.get(enemigo.getNombreRaza()).get(posMiniaturaEnemigo)[0];
-		miniaturaPersonaje = Recursos.personaje.get(personaje.getNombreRaza()).get(posMiniaturaPersonaje)[0];
+		miniaturaEnemigo = Recursos.getPersonaje().get(enemigo.getNombreRaza()).get(posMiniaturaEnemigo)[0];
+		miniaturaPersonaje = Recursos.getPersonaje().get(personaje.getNombreRaza()).get(posMiniaturaPersonaje)[0];
 
 		paqueteFinalizarBatalla = new PaqueteFinalizarBatalla();
 		paqueteFinalizarBatalla.setId(personaje.getIdPersonaje());
@@ -238,13 +238,13 @@ public class EstadoBatalla extends Estado {
 		g.fillRect(0, 0, this.getJuego().getAncho(), this.getJuego().getAlto());
 		mundo.graficarSuelo(g);
 
-		g.drawImage(Recursos.personaje.get(paquetePersonaje.getRaza()).get(perfilPersonaje)[0],
+		g.drawImage(Recursos.getPersonaje().get(paquetePersonaje.getRaza()).get(perfilPersonaje)[0],
 				posXPersonaje,
 				posYPersonaje,
 				anchoPersonaje,
 				altoPersonaje,
 				null);
-		g.drawImage(Recursos.personaje.get(paqueteEnemigo.getRaza()).get(perfilEnemigo)[0],
+		g.drawImage(Recursos.getPersonaje().get(paqueteEnemigo.getRaza()).get(perfilEnemigo)[0],
 				posXEnemigo,
 				posYEnemigo,
 				anchoEnemigo,

@@ -8,10 +8,16 @@ import javax.swing.JOptionPane;
 
 /**
  * Setea la imagen de carga
+ *
  * @author leo
  *
  */
-public class CargadorImagen {
+public final class CargadorImagen {
+	/**
+	 * Constructor no utilizado privado de la clase
+	 */
+	private CargadorImagen() {
+	}
 	/**
 	 *
 	 * @param path parametro path

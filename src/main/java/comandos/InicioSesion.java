@@ -13,14 +13,14 @@ public class InicioSesion extends ComandosCliente {
 
 	@Override
 	public void ejecutar() {
-		Paquete paquete = (Paquete) gson.fromJson(cadenaLeida, Paquete.class);
+		Paquete paquete = (Paquete) getGson().fromJson(getCadenaLeida(), Paquete.class);
 		if (paquete.getMensaje().equals(Paquete.getMsjExito())) {
 
 			// El usuario ya inicio sesi�n
 			this.getCliente().getPaqueteUsuario().setInicioSesion(true);
 
 			// Recibo el paquete personaje con los datos
-			this.getCliente().setPaquetePersonaje(gson.fromJson(cadenaLeida, PaquetePersonaje.class));
+			this.getCliente().setPaquetePersonaje(getGson().fromJson(getCadenaLeida(), PaquetePersonaje.class));
 
 		} else {
 			if (paquete.getMensaje().equals(Paquete.getMsjFracaso())) {

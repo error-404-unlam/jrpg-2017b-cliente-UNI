@@ -22,7 +22,7 @@ public class Trueque extends ComandosEscucha {
 	public void ejecutar() {
 		PaqueteComerciar paqueteComerciar;
 		PaquetePersonaje paquetePersonaje;
-		paqueteComerciar = gson.fromJson(cadenaLeida, PaqueteComerciar.class);
+		paqueteComerciar = getGson().fromJson(getCadenaLeida(), PaqueteComerciar.class);
 		Personaje pj = null;
 
 		this.getJuego().getCli().getPaquetePersonaje().removerBonus();
@@ -90,7 +90,7 @@ public class Trueque extends ComandosEscucha {
 		paquetePersonaje.setComando(Comando.ACTUALIZARTRUEQUE);
 		this.getJuego().getCli().setM1(null);
 		try {
-			this.getJuego().getCli().getSal().writeObject(gson.toJson(paquetePersonaje));
+			this.getJuego().getCli().getSal().writeObject(getGson().toJson(paquetePersonaje));
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(null, "Error al actualizar trueque");
 

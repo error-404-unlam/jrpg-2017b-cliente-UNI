@@ -22,11 +22,11 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 	}
 
 	/**
-	 * Constructor parametrizado de la clase 
+	 * Constructor parametrizado de la clase
 	 *
-	 * @param pj
-	 * @param user
-	 * @param pw
+	 * @param pj parametro pj
+	 * @param user parametro user
+	 * @param pw parametro pw
 	 */
 	public PaqueteUsuario(final int pj, final String user, final String pw) {
 		idPj = pj;
@@ -38,7 +38,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 	/**
 	 * Retorna el id
 	 *
-	 * @return idPj
+	 * @return idPj retorna idpj
 	 */
 	public int getIdPj() {
 		return idPj;
@@ -47,7 +47,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 	/**
 	 * Setea el id
 	 *
-	 * @param idPj
+	 * @param idPj parametro idpj
 	 */
 	public void setIdPj(final int idPj) {
 		this.idPj = idPj;
@@ -56,7 +56,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 	/**
 	 * Devuelve el nombre de usuario
 	 *
-	 * @return username
+	 * @return username retorna el nombre de usuario
 	 */
 	public String getUsername() {
 		return username;
@@ -65,7 +65,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 	/**
 	 * Setea el nombre de usuario
 	 *
-	 * @param username
+	 * @param username parametro nombre de usuario
 	 */
 	public void setUsername(final String username) {
 		this.username = username;
@@ -74,7 +74,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 	/**
 	 * Retorna el password
 	 *
-	 * @return password
+	 * @return password retorna el password
 	 */
 	public String getPassword() {
 		return password;
@@ -83,7 +83,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 	/**
 	 * Setea el password
 	 *
-	 * @param password
+	 * @param password parametro password
 	 */
 	public void setPassword(final String password) {
 		this.password = password;
@@ -92,7 +92,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 	/**
 	 * Verifica si es inicio de sesion
 	 *
-	 * @return
+	 * @return inicioSesion retorna el inicio de sesion
 	 */
 	public boolean isInicioSesion() {
 		return inicioSesion;
@@ -101,7 +101,7 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 	/**
 	 * Setea el inicio de la sesion
 	 *
-	 * @param inicioSesion
+	 * @param inicioSesion parametro inicioSesion
 	 */
 	public void setInicioSesion(final boolean inicioSesion) {
 		this.inicioSesion = inicioSesion;
@@ -109,6 +109,8 @@ public class PaqueteUsuario extends Paquete implements Serializable, Cloneable {
 
 	/**
 	 * Clona objeto
+	 *
+	 * @return obj retorna el objeto
 	 */
 	@Override
 	public Object clone() {

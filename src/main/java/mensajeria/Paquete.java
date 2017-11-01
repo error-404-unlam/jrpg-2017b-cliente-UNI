@@ -28,10 +28,10 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * Constructor de la clase parametrizado
 	 *
-	 * @param mensaje
-	 * @param nick
-	 * @param ip
-	 * @param comando
+	 * @param mensaje parametros mensaje
+	 * @param nick parametros nick
+	 * @param ip parametros ip
+	 * @param comando parametro comando
 	 */
 	public Paquete(final String mensaje, final String nick, final String ip, final int comando) {
 		this.mensaje = mensaje;
@@ -42,8 +42,8 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * Constructor de la clase parametrizado
 	 *
-	 * @param mensaje
-	 * @param comando
+	 * @param mensaje parametro mensaje
+	 * @param comando parametro comando
 	 */
 	public Paquete(final String mensaje, final int comando) {
 		this.mensaje = mensaje;
@@ -53,7 +53,7 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * Constructor de la clase parametrizado
 	 *
-	 * @param comando
+	 * @param comando parametro comando
 	 */
 	public Paquete(final int comando) {
 		this.comando = comando;
@@ -62,7 +62,7 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * Setea el mensaje
 	 *
-	 * @param mensaje
+	 * @param mensaje parametro mensaje
 	 */
 	public void setMensaje(final String mensaje) {
 		this.mensaje = mensaje;
@@ -71,7 +71,7 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * Setea la ip
 	 *
-	 * @param ip
+	 * @param ip parametro ip
 	 */
 	public void setIp(final String ip) {
 		this.ip = ip;
@@ -80,7 +80,7 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * Setea el comando
 	 *
-	 * @param comando
+	 * @param comando parametro comando
 	 */
 	public void setComando(final int comando) {
 		this.comando = comando;
@@ -89,7 +89,7 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * Retorna el mensaje
 	 *
-	 * @return
+	 * @return mensaje
 	 */
 	public String getMensaje() {
 		return mensaje;
@@ -98,7 +98,7 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * Retorna la ip
 	 *
-	 * @return
+	 * @return ip
 	 */
 	public String getIp() {
 		return ip;
@@ -107,7 +107,7 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * Retorna el comando
 	 *
-	 * @return
+	 * @return comando
 	 */
 	public int getComando() {
 		return comando;
@@ -132,8 +132,8 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * Retorna el objeto
 	 *
-	 * @param nombrePaquete
-	 * @return
+	 * @param nombrePaquete parametro nombrePaquete
+	 * @return c
 	 */
 	public Comando getObjeto(final String nombrePaquete) {
 		Comando c = null;	
@@ -148,9 +148,9 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * Retorna el objeto seteado
 	 *
-	 * @param nombrePaquete
-	 * @param accion
-	 * @return
+	 * @param nombrePaquete parametro nombrePaquete
+	 * @param accion parametro accion
+	 * @return c
 	 */
 	public static Comando getObjetoSet(final String nombrePaquete, final int accion) {
 		Comando c = null;		

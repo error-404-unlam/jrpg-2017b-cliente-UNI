@@ -15,6 +15,10 @@ import mensajeria.PaqueteMovimiento;
 import mensajeria.PaquetePersonaje;
 import recursos.Recursos;
 
+/**
+ * Clase encargada de gestionar el Mundo
+ * @author Miguel
+ */
 public class Mundo {
 	private Juego juego;
 	private int ancho;
@@ -34,47 +38,119 @@ public class Mundo {
 	private int yMaximo;
 
 	private Grafo grafoDeTilesNoSolidos;
-
-	public Mundo(Juego juego, String pathMap, String pathObstac) {
+	private final int offsetUtilitariasAncho = 0;
+	private final int offsetUtilitariasAlto = 1;
+	private final int offsetUtilitariasSpawnX = 2;
+	private final int offsetUtilitariasSpawnY = 3;
+	private final int offsetUtilitariasTiles = 4;
+	private final int tileAubenor = 1;
+	private final int tileAris = 2;
+	private final int tileAubenorBase = 3;
+	private final int anchoPersonaje = 64;
+	private final int altoPersonaje = 64;
+	private final int anchoRectangulo = 0;
+	private final int altoRectangulo = 10;
+	private final int offsetXCenterString = 32;
+	private final int offsetYCenterString = 20;
+	private final int anchoBaldosa = 64;
+	private final int altoBaldosa = 64;
+	private final int offsetYBaldosa = 32;
+	private final int offsetXSuelo = 30;
+	private final int offsetYSuelo = 60;
+	private final int tamLetra = 15;
+	private final int direccion4 = 4;
+	private final int direccion5 = 5;
+	private final int direccion6 = 6;
+	private final int direccion7 = 7;
+	/**
+	 * Constructor
+	 * @param juego Actual
+	 * @param pathMap Ruta Mapa
+	 * @param pathObstac Ruta Obstaculos
+	 */
+	public Mundo(final Juego juego, final String pathMap, final String pathObstac) {
 		this.juego = juego;
 		cargarMundo(pathMap, pathObstac);
 		mundoAGrafo();
 	}
 
+	/**
+	 * actualizar
+	 */
 	public void actualizar() {
 
 	}
 
-	public void graficarSuelo(Graphics g) {
+	/**
+	 * Grafica el suelo
+	 * @param g Graphics
+	 */
+	public void graficarSuelo(final Graphics g) {
 		xOffset = juego.getEstadoJuego().getPersonaje().getxOffset();
 		yOffset = juego.getEstadoJuego().getPersonaje().getYOffset();
 
-		xMinimo = (int) (juego.getCamara().getxOffset() - xOffset - 30);
-		xMaximo = xMinimo + juego.getAncho() + xOffset + 30;
-		yMinimo = (int) juego.getCamara().getyOffset() + yOffset - 60;
-		yMaximo = yMinimo + juego.getAlto() + yOffset + 60;
+		xMinimo = (int) (juego.getCamara().getxOffset() - xOffset - offsetXSuelo);
+		xMaximo = xMinimo + juego.getAncho() + xOffset + offsetXSuelo;
+		yMinimo = (int) juego.getCamara().getyOffset() + yOffset - offsetYSuelo;
+		yMaximo = yMinimo + juego.getAlto() + yOffset + offsetYSuelo;
 
 		// Grafico el el tile base
 		for (int i = 0; i < alto; i++) {
 			for (int j = 0; j < ancho; j++) {
 				iso = convertir2DaISO(j, i);
-				if ((iso[0] >= xMinimo && iso[0] <= xMaximo) && (iso[1] >= yMinimo && iso[1] <= yMaximo)) {
+				if ((iso[0] >= xMinimo
+						&& iso[0] <= xMaximo)
+						&& (iso[1] >= yMinimo
+						&& iso[1] <= yMaximo)) {
 					int map = juego.getPersonaje().getMapa();
-					if (map == 1) {
-						Tile.aubenor[Tile.aubenorBase].graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()), (int) (iso[1] - juego.getCamara().getyOffset() - 32), 64, 64);
-					} else if (map == 2) {
-						Tile.aris[Tile.arisBase].graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()), (int) (iso[1] - juego.getCamara().getyOffset() - 32), 64, 64);
-					} else if (map == 3) {
-						Tile.aubenor[Tile.aubenorBase].graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()), (int) (iso[1] - juego.getCamara().getyOffset() - 32), 64, 64);
+					if (map == tileAubenor) {
+						Tile.getAubenor()[Tile.getAubenorBase()].
+						graficar(g,
+								(int)
+								(iso[0] - juego.getCamara().getxOffset()),
+								(int)
+								(iso[1] - juego.getCamara().getyOffset()
+										- offsetYBaldosa),
+								anchoBaldosa, altoBaldosa);
+					} else if (map == tileAris) {
+						Tile.getAris()[Tile.getArisBase()].
+						graficar(g,
+								(int)
+								(iso[0] - juego.getCamara().getxOffset()),
+								(int)
+								(iso[1] - juego.getCamara().getyOffset()
+										- offsetYBaldosa),
+								anchoBaldosa, altoBaldosa);
+					} else if (map == tileAubenorBase) {
+						Tile.getAubenor()[Tile.getAubenorBase()].
+						graficar(g,
+								(int)
+								(iso[0] - juego.getCamara().getxOffset()),
+								(int)
+								(iso[1] - juego.getCamara().getyOffset()
+										- offsetYBaldosa),
+								anchoBaldosa, altoBaldosa);
 					}
-					if (!getTile(j, i).esSolido())
-						getTile(j, i).graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()), (int) (iso[1] - juego.getCamara().getyOffset() - 32), 64, 64);
+					if (!getTile(j, i).esSolido()) {
+						getTile(j, i).graficar(
+								g,
+								(int)
+								(iso[0] - juego.getCamara().getxOffset()),
+								(int)
+								(iso[1] - juego.getCamara().getyOffset()
+										- offsetYBaldosa),
+								anchoBaldosa, altoBaldosa);
+					}
 				}
 			}
 		}
 	}
 
-	public void graficarObstaculos(Graphics g) {
+	/**
+	 * Grafica Obstaculos
+	 * @param g Graphics
+	 */
+	public void graficarObstaculos(final Graphics g) {
 		Map<Integer, PaqueteMovimiento> ubicacionPersonajes = null;
 		Map<Integer, PaquetePersonaje> personajesConectados = null;
 		int jPersonaje;
@@ -87,37 +163,58 @@ public class Mundo {
 
 				// Se grafican los obstáculos sólidos
 				iso = convertir2DaISO(j, i);
-				if ((iso[0] >= xMinimo && iso[0] <= xMaximo) && (iso[1] >= yMinimo && iso[1] <= yMaximo) && getTile(j, i).esSolido()) {
+				if ((iso[0] >= xMinimo
+						&& iso[0] <= xMaximo)
+						&& (iso[1] >= yMinimo
+						&& iso[1] <= yMaximo)
+						&& getTile(j, i).esSolido()) {
 					obst = getTile(j, i);
-					obst.graficar(g, (int) (iso[0] - juego.getCamara().getxOffset()), (int) (iso[1] - juego.getCamara().getyOffset() - obst.getAlto() / 2), obst.getAncho(), obst.getAlto());
+					obst.graficar(
+							g,
+							(int)
+							(iso[0] - juego.getCamara().getxOffset()),
+							(int)
+							(iso[1] - juego.getCamara().getyOffset() - obst.getAlto() / 2),
+							obst.getAncho(),
+							obst.getAlto());
 				}
 
 				// Se grafica el personaje, teniendo en cuenta si es adyacente a
 				// un obstáculo sólido
-				jPersonaje = Mundo.mouseATile(juego.getUbicacionPersonaje().getPosX(), juego.getUbicacionPersonaje().getPosY())[0];
-				iPersonaje = Mundo.mouseATile(juego.getUbicacionPersonaje().getPosX(), juego.getUbicacionPersonaje().getPosY())[1];
+				jPersonaje = Mundo.mouseATile(
+						juego.getUbicacionPersonaje().getPosX(),
+						juego.getUbicacionPersonaje().getPosY())[0];
+				iPersonaje = Mundo.mouseATile(
+						juego.getUbicacionPersonaje().getPosX(),
+						juego.getUbicacionPersonaje().getPosY())[1];
 
 				/*
 				 * Parche temporal
-				 *
-				 * Bug a solucionar: Las coordenadas del personaje no se actualizan apropiadamente luego de un movimiento
-				 *
-				 * Será necesario remover el parche una vez solucionado el bug
+				 * Bug a solucionar:
+				 * 			Las coordenadas del personaje no se
+				 * 			actualizan apropiadamente
+				 * 			luego de un movimiento
+				 * Será necesario remover
+				 * el parche una vez solucionado el bug
 				 */
 				if (juego.getUbicacionPersonaje().getDireccion() == 0) {
 					iPersonaje++;
 				}
-				if (juego.getUbicacionPersonaje().getDireccion() == 4) {
+				if (juego.getUbicacionPersonaje().getDireccion()
+						== direccion4) {
 					jPersonaje++;
 				}
-				if (juego.getUbicacionPersonaje().getDireccion() == 5) {
+				if (juego.getUbicacionPersonaje().getDireccion()
+						== direccion5) {
 					jPersonaje++;
 				}
-				if (juego.getUbicacionPersonaje().getDireccion() == 6) {
+				if (juego.getUbicacionPersonaje().getDireccion()
+						== direccion6) {
 					jPersonaje++;
 					iPersonaje++;
 				}
-				if (juego.getUbicacionPersonaje().getDireccion() == 7) {
+				if (juego.getUbicacionPersonaje().getDireccion()
+						== direccion7) {
 					iPersonaje++;
 				}
 				/*
@@ -136,7 +233,14 @@ public class Mundo {
 					haySolidoArriba = false;
 				}
 
-				if (((haySolidoAbajo == haySolidoArriba) && (j == jPersonaje && i == iPersonaje)) || ((haySolidoAbajo && !haySolidoArriba) && (j == jPersonaje && i == iPersonaje - 1)) || ((haySolidoArriba && !haySolidoAbajo) && (j == jPersonaje && i == iPersonaje + 1))) {
+				if (((haySolidoAbajo == haySolidoArriba)
+						&& (j == jPersonaje && i == iPersonaje))
+						|| ((haySolidoAbajo && !haySolidoArriba)
+								&& (j == jPersonaje
+								&& i == iPersonaje - 1))
+						|| ((haySolidoArriba && !haySolidoAbajo)
+								&& (j == jPersonaje
+								&& i == iPersonaje + 1))) {
 					juego.getEstadoJuego().getPersonaje().graficar(g);
 					juego.getEstadoJuego().getPersonaje().graficarNombre(g);
 				}
@@ -146,8 +250,10 @@ public class Mundo {
 				// están en el mismo mapa
 				if (juego.getPersonajesConectados() != null) {
 					try {
-						personajesConectados = new HashMap<Integer, PaquetePersonaje>(juego.getPersonajesConectados());
-						ubicacionPersonajes = new HashMap<Integer, PaqueteMovimiento>(juego.getUbicacionPersonajes());
+						personajesConectados = new HashMap<Integer, PaquetePersonaje>(
+								juego.getPersonajesConectados());
+						ubicacionPersonajes = new HashMap<Integer, PaqueteMovimiento>(
+								juego.getUbicacionPersonajes());
 					} catch (Exception e) {
 						e.printStackTrace();
 					}
@@ -155,36 +261,54 @@ public class Mundo {
 					int key;
 					PaqueteMovimiento actual;
 					g.setColor(Color.WHITE);
-					g.setFont(new Font("Book Antiqua", Font.PLAIN, 15));
+					g.setFont(
+							new Font(
+									"Book Antiqua",
+									Font.PLAIN,
+									tamLetra));
 					while (it.hasNext()) {
 						key = it.next();
 						actual = ubicacionPersonajes.get(key);
-						if (actual != null && actual.getIdPersonaje() != juego.getPersonaje().getId() && personajesConectados.get(actual.getIdPersonaje()).getEstado() == Estado.getEstadoJuego() && personajesConectados.get(actual.getIdPersonaje()).getMapa() == juego.getPersonaje().getMapa()) {
-
-							jPersonaje = Mundo.mouseATile(actual.getPosX(), actual.getPosY())[0];
-							iPersonaje = Mundo.mouseATile(actual.getPosX(), actual.getPosY())[1];
+						if (actual != null && actual.getIdPersonaje()
+								!= juego.getPersonaje().getId()
+								&& personajesConectados.get(
+										actual.getIdPersonaje()).
+								getEstado() == Estado.getEstadoJuego()
+								&& personajesConectados.get(
+										actual.getIdPersonaje()).getMapa()
+								== juego.getPersonaje().getMapa()) {
+							jPersonaje = Mundo.mouseATile(
+									actual.getPosX(), actual.getPosY())[0];
+							iPersonaje = Mundo.mouseATile(
+									actual.getPosX(), actual.getPosY())[1];
 
 							/*
 							 * Parche temporal
-							 *
-							 * Bug a solucionar: Las coordenadas del personaje no se actualizan apropiadamente luego de un movimiento
-							 *
-							 * Será necesario remover el parche una vez solucionado el bug
+							 * Bug a solucionar:
+							 * 		Las coordenadas del personaje
+							 * 		no se actualizan apropiadamente
+							 * 		luego de un movimiento
+							 * Será necesario remover el parche
+							 * una vez solucionado el bug
 							 */
 							if (juego.getUbicacionPersonaje().getDireccion() == 0) {
 								iPersonaje++;
 							}
-							if (juego.getUbicacionPersonaje().getDireccion() == 4) {
+							if (juego.getUbicacionPersonaje().getDireccion()
+									== direccion4) {
 								jPersonaje++;
 							}
-							if (juego.getUbicacionPersonaje().getDireccion() == 5) {
+							if (juego.getUbicacionPersonaje().getDireccion()
+									== direccion5) {
 								jPersonaje++;
 							}
-							if (juego.getUbicacionPersonaje().getDireccion() == 6) {
+							if (juego.getUbicacionPersonaje().getDireccion()
+									== direccion6) {
 								jPersonaje++;
 								iPersonaje++;
 							}
-							if (juego.getUbicacionPersonaje().getDireccion() == 7) {
+							if (juego.getUbicacionPersonaje().getDireccion()
+									== direccion7) {
 								iPersonaje++;
 							}
 							/*
@@ -192,83 +316,141 @@ public class Mundo {
 							 */
 
 							try {
-								haySolidoAbajo = getTile(jPersonaje + 1, iPersonaje).esSolido();
+								haySolidoAbajo = getTile(
+										jPersonaje + 1, iPersonaje).
+										esSolido();
 							} catch (Exception e) {
 								haySolidoAbajo = false;
 							}
 
 							try {
-								haySolidoArriba = getTile(jPersonaje - 1, iPersonaje).esSolido();
+								haySolidoArriba = getTile(
+										jPersonaje - 1, iPersonaje).
+										esSolido();
 							} catch (Exception e) {
 								haySolidoArriba = false;
 							}
 
-							if (((haySolidoAbajo == haySolidoArriba) && (j == jPersonaje && i == iPersonaje)) || ((haySolidoAbajo && !haySolidoArriba) && (j == jPersonaje && i == iPersonaje - 1)) || ((haySolidoArriba && !haySolidoAbajo) && (j == jPersonaje && i == iPersonaje + 1))) {
-								Pantalla.centerString(g, new Rectangle((int) (actual.getPosX() - juego.getCamara().getxOffset() + 32), (int) (actual.getPosY() - juego.getCamara().getyOffset() - 20), 0, 10), personajesConectados.get(actual.getIdPersonaje()).getNombre());
-								g.drawImage(Recursos.personaje.get(personajesConectados.get(actual.getIdPersonaje()).getRaza()).get(actual.getDireccion())[actual.getFrame()], (int) (actual.getPosX() - juego.getCamara().getxOffset()), (int) (actual.getPosY() - juego.getCamara().getyOffset()), 64, 64, null);
+							if (((haySolidoAbajo == haySolidoArriba)
+									&& (j == jPersonaje && i == iPersonaje))
+									|| ((haySolidoAbajo && !haySolidoArriba)
+											&& (j == jPersonaje
+											&& i == iPersonaje - 1))
+									|| ((haySolidoArriba && !haySolidoAbajo)
+											&& (j == jPersonaje
+											&& i == iPersonaje + 1))) {
+								Pantalla.centerString(g, new Rectangle(
+										(int)
+										(actual.getPosX()
+												- juego.getCamara().
+												getxOffset()
+												+ offsetXCenterString),
+										(int)
+										(actual.getPosY()
+												- juego.getCamara().
+												getyOffset()
+												- offsetYCenterString),
+										anchoRectangulo, altoRectangulo),
+										personajesConectados.get(
+												actual.getIdPersonaje()
+												).
+										getNombre());
+								g.drawImage(
+										Recursos.getPersonaje().get(
+												personajesConectados.
+												get(actual.getIdPersonaje()).
+												getRaza()).
+										get(actual.getDireccion())
+										[actual.getFrame()],
+										(int)
+										(actual.getPosX() - juego.getCamara().
+												getxOffset()),
+										(int)
+										(actual.getPosY() - juego.getCamara().
+												getyOffset()),
+										anchoPersonaje, altoPersonaje, null);
 							}
 						}
 					}
 				}
-
 			}
 		}
 	}
 
-	public Tile getTile(int x, int y) {
-		Tile t = Tile.tiles[tiles[x][y]];
+	/**
+	 * Devuelve la baldosa
+	 * @param x baldosa
+	 * @param y baldosa
+	 * @return Tile
+	 */
+	public Tile getTile(final int x, final int y) {
+		Tile t = Tile.getTiles()[tiles[x][y]];
 		if (t == null) {
 			int map = juego.getPersonaje().getMapa();
-			if (map == 1) {
-				return Tile.aubenor[Tile.aubenorBase];
-			} else if (map == 2) {
-				return Tile.aris[Tile.arisBase];
-			} else if (map == 3) {
-				return Tile.aubenor[Tile.aubenorBase];
+			if (map == tileAubenor) {
+				return Tile.getAubenor()[Tile.getAubenorBase()];
+			} else if (map == tileAris) {
+				return Tile.getAris()[Tile.getArisBase()];
+			} else if (map == tileAubenorBase) {
+				return Tile.getAubenor()[Tile.getAubenorBase()];
 			}
 		}
 		return t;
 	}
 
-	private void cargarMundo(String pathMapa, String pathObstaculos) {
+	/**
+	 * Carga el mundo
+	 * @param pathMapa ruta del mapa
+	 * @param pathObstaculos ruta obstaculos
+	 */
+	private void cargarMundo(final String pathMapa, final String pathObstaculos) {
 		String archivo = Utilitarias.archivoAString(pathMapa);
 		String[] tokens = archivo.split("\\s+");
-		ancho = Utilitarias.parseInt(tokens[0]);
-		alto = Utilitarias.parseInt(tokens[1]);
-		spawnX = Utilitarias.parseInt(tokens[2]);
-		spawnY = Utilitarias.parseInt(tokens[3]);
+		ancho = Utilitarias.parseInt(
+				tokens[offsetUtilitariasAncho]);
+		alto = Utilitarias.parseInt(
+				tokens[offsetUtilitariasAlto]);
+		spawnX = Utilitarias.parseInt(
+				tokens[offsetUtilitariasSpawnX]);
+		spawnY = Utilitarias.parseInt(
+				tokens[offsetUtilitariasSpawnY]);
 
 		tiles = new int[ancho][alto];
 		tilesInv = new int[alto][ancho];
-
 		for (int y = 0; y < alto; y++) {
 			for (int x = 0; x < ancho; x++) {
-
-				tiles[x][y] = Utilitarias.parseInt(tokens[(x + y * ancho + 4)]);
+				tiles[x][y] = Utilitarias.parseInt(
+						tokens[
+						       (x + y * ancho + offsetUtilitariasTiles)
+						       ]);
 				tilesInv[y][x] = tiles[x][y];
 			}
 		}
-
 	}
 
+	/**
+	 * Convierte el mundo a grafo
+	 */
 	private void mundoAGrafo() {
 		// Creo una matriz de nodos
 		Nodo[][] nodos = new Nodo[ancho][alto];
 		int indice = 0;
 		// Lleno la matriz con los nodos
-		for (int y = 0; y < alto; y++)
-			for (int x = 0; x < ancho; x++)
+		for (int y = 0; y < alto; y++) {
+			for (int x = 0; x < ancho; x++) {
 				nodos[y][x] = new Nodo(indice++, x, y);
+			}
+		}
 		// Variables finales
 		int xFinal = ancho;
 		int yFinal = alto;
 		// Uno cada nodo con sus adyacentes
 		for (int x = 0; x < yFinal; x++) {
 			for (int y = 0; y < xFinal; y++) {
-				if (!Tile.tiles[tilesInv[x][y]].esSolido()) {
+				if (!Tile.getTiles()[tilesInv[x][y]].esSolido()) {
 					// Si no es la ultima fila y el tile de abajo es no solido,
 					// lo uno
-					if (y < yFinal - 1 && !Tile.tiles[tilesInv[x][y + 1]].esSolido()) {
+					if (y < yFinal - 1 && !Tile.getTiles()[tilesInv[x][y + 1]].esSolido()) {
 						nodos[x][y].agregarAdyacente(nodos[x][y + 1]);
 						nodos[x][y + 1].agregarAdyacente(nodos[x][y]);
 					}
@@ -278,12 +460,15 @@ public class Mundo {
 						// Y ademas el de arriba ni el de la derecha lo son, lo
 						// uno
 						// Tiene que ser a partir de la segunda fila
-						if (y > 0 && !Tile.tiles[tilesInv[x + 1][y - 1]].esSolido() && !Tile.tiles[tilesInv[x + 1][y]].esSolido() && !Tile.tiles[tilesInv[x][y - 1]].esSolido()) {
+						if (y > 0
+								&& !Tile.getTiles()[tilesInv[x + 1][y - 1]].esSolido()
+								&& !Tile.getTiles()[tilesInv[x + 1][y]].esSolido()
+								&& !Tile.getTiles()[tilesInv[x][y - 1]].esSolido()) {
 							nodos[x][y].agregarAdyacente(nodos[x + 1][y - 1]);
 							nodos[x + 1][y - 1].agregarAdyacente(nodos[x][y]);
 						}
 						// Si el de la derecha no es un tile solido lo uno
-						if (!Tile.tiles[tilesInv[x + 1][y]].esSolido()) {
+						if (!Tile.getTiles()[tilesInv[x + 1][y]].esSolido()) {
 							nodos[x][y].agregarAdyacente(nodos[x + 1][y]);
 							nodos[x + 1][y].agregarAdyacente(nodos[x][y]);
 						}
@@ -291,7 +476,10 @@ public class Mundo {
 						// Y ademas el de abajo ni el de la derecha lo son, lo
 						// uno
 						// Debe ser antes de la ultima fila
-						if (y < yFinal - 1 && !Tile.tiles[tilesInv[x + 1][y + 1]].esSolido() && !Tile.tiles[tilesInv[x + 1][y]].esSolido() && !Tile.tiles[tilesInv[x][y + 1]].esSolido()) {
+						if (y < yFinal - 1
+								&& !Tile.getTiles()[tilesInv[x + 1][y + 1]].esSolido()
+								&& !Tile.getTiles()[tilesInv[x + 1][y]].esSolido()
+								&& !Tile.getTiles()[tilesInv[x][y + 1]].esSolido()) {
 							nodos[x][y].agregarAdyacente(nodos[x + 1][y + 1]);
 							nodos[x + 1][y + 1].agregarAdyacente(nodos[x][y]);
 						}
@@ -303,24 +491,44 @@ public class Mundo {
 		grafoDeTilesNoSolidos = new Grafo(ancho * alto);
 		indice = 0;
 		// Paso la matriz a un array
-		for (int i = 0; i < ancho; i++)
-			for (int j = 0; j < alto; j++)
+		for (int i = 0; i < ancho; i++) {
+			for (int j = 0; j < alto; j++) {
 				grafoDeTilesNoSolidos.agregarNodo(nodos[i][j]);
+			}
+		}
 	}
 
+	/**
+	 * Devuelve el grafo de tiles no solidos
+	 * @return Grafo
+	 */
 	public Grafo obtenerGrafoDeTilesNoSolidos() {
 		return grafoDeTilesNoSolidos;
 	}
 
+	/**
+	 * Devuelve el ancho
+	 * @return int
+	 */
 	public int obtenerAncho() {
 		return ancho;
 	}
 
+	/**
+	 * Devuelve el alto
+	 * @return int
+	 */
 	public int obtenerAlto() {
 		return alto;
 	}
 
-	public static float[] convertirISOa2D(float x, float y) {
+	/**
+	 * Convierte Isometrica a 2d
+	 * @param x X Isometrica
+	 * @param y Y Isometrica
+	 * @return float[]
+	 */
+	public static float[] convertirISOa2D(final float x, final float y) {
 		float[] dosD = new float[2];
 
 		dosD[0] = (x / (Tile.ANCHO / 2) + y / (Tile.ALTO / 2)) / 2;
@@ -329,7 +537,13 @@ public class Mundo {
 		return dosD;
 	}
 
-	public static float[] convertir2DaISO(float x, float y) {
+	/**
+	 * Convierte 2d a Isometrica
+	 * @param x X
+	 * @param y Y
+	 * @return float[]
+	 */
+	public static float[] convertir2DaISO(final float x, final float y) {
 		float[] iso = new float[2];
 
 		iso[0] = (x - y) * (Tile.ANCHO / 2);
@@ -338,8 +552,14 @@ public class Mundo {
 		return iso;
 	}
 
-	public static int[] mouseATile(float x, float y) {
-		int tile[] = new int[2];
+	/**
+	 * Convierte el mouse a Tile
+	 * @param x Mouse
+	 * @param y Mouse
+	 * @return int
+	 */
+	public static int[] mouseATile(final float x, final float y) {
+		int []tile = new int[2];
 
 		tile[0] = (int) Math.floor((y / Tile.ALTO) + (x / Tile.ANCHO)) + 1;
 		tile[1] = (int) Math.floor((-x / Tile.ANCHO) + (y / Tile.ALTO)) + 1;
