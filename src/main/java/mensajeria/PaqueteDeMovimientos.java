@@ -10,7 +10,6 @@ import java.util.Map;
  *
  */
 public class PaqueteDeMovimientos extends Paquete implements Serializable, Cloneable {
-	
 	private Map<Integer, PaqueteMovimiento> personajes;
 
 	/**
@@ -22,8 +21,7 @@ public class PaqueteDeMovimientos extends Paquete implements Serializable, Clone
 
 	/**
 	 * Asigna el objeto personajes
-	 *
-	 * @param personajes
+	 * @param personajes mapa de personajes
 	 */
 	public PaqueteDeMovimientos(final Map<Integer, PaqueteMovimiento> personajes) {
 		this.personajes = personajes;
@@ -40,6 +38,7 @@ public class PaqueteDeMovimientos extends Paquete implements Serializable, Clone
 
 	/**
 	 * Clona objeto
+	 * @return devuelve el objeto;
 	 */
 	@Override
 	public Object clone() {

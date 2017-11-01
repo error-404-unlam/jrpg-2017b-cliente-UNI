@@ -57,7 +57,7 @@ public class MenuInventario extends JFrame {
 				} catch (IOException e1) {
 					JOptionPane.showMessageDialog(null, "Error al actualizar inventario");
 				}
-				Pantalla.menuInventario = null;
+				Pantalla.setMenuInventario(null);
 				dispose();
 			}
 		});

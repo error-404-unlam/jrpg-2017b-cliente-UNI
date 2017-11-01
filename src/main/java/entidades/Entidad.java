@@ -197,9 +197,9 @@ public class Entidad {
 				&& posMouse[0] <= posXMouseInventarioMax
 				&& posMouse[1] >= posYMouseInventarioMin
 				&& posMouse[1] <= posYMouseInventarioMax) {
-			if (Pantalla.menuInventario == null) {
-				Pantalla.menuInventario = new MenuInventario(juego.getCli());
-				Pantalla.menuInventario.setVisible(true);
+			if (Pantalla.getMenuInventario() == null) {
+				Pantalla.setMenuInventario(new MenuInventario(juego.getCli()));
+				Pantalla.getMenuInventario().setVisible(true);
 			}
 			juego.getHandlerMouse().setNuevoClick(false);
 		}
@@ -208,9 +208,9 @@ public class Entidad {
 				&& posMouse[0] <= posXMouseEscapeMax
 				&& posMouse[1] >= posYMouseEscapeMin
 				&& posMouse[1] <= posYMouseEscapeMax) {
-			if (Pantalla.menuEscp == null) {
-				Pantalla.menuEscp = new MenuEscape(juego.getCli());
-				Pantalla.menuEscp.setVisible(true);
+			if (Pantalla.getMenuEscp() == null) {
+				Pantalla.setMenuEscp(new MenuEscape(juego.getCli()));
+				Pantalla.getMenuEscp().setVisible(true);
 			}
 			juego.getHandlerMouse().setNuevoClick(false);
 		}
@@ -219,9 +219,9 @@ public class Entidad {
 				&& posMouse[0] <= posXMouseVentContacMax
 				&& posMouse[1] >= posYMouseVentContacMin
 				&& posMouse[1] <= posYMouseVentContacMax) {
-			if (Pantalla.ventContac == null) {
-				Pantalla.ventContac = new VentanaContactos(juego);
-				Pantalla.ventContac.setVisible(true);
+			if (Pantalla.getVentContac() == null) {
+				Pantalla.setVentContac(new VentanaContactos(juego));
+				Pantalla.getVentContac().setVisible(true);
 			}
 			juego.getHandlerMouse().setNuevoClick(false);
 		}
@@ -230,13 +230,13 @@ public class Entidad {
 			if (juego.getEstadoJuego().getHaySolicitud()) {
 
 				// Pregunto si es el menú de subir de nivel
-				if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.menuSubirNivel) {
+				if (juego.getEstadoJuego().getTipoSolicitud() == MenuInfoPersonaje.MENU_SUBIR_NIVEL) {
 					if (juego.getEstadoJuego().getMenuEnemigo().
 							clickEnAsignarSkills(posMouse[0], posMouse[1])) {
-						if (Pantalla.menuAsignar == null) {
-							Pantalla.menuAsignar = new MenuAsignarSkills(juego.getCli());
+						if (Pantalla.getMenuAsignar() == null) {
+							Pantalla.setMenuAsignar(new MenuAsignarSkills(juego.getCli()));
 						}
-						Pantalla.menuAsignar.setVisible(true);
+						Pantalla.getMenuAsignar().setVisible(true);
 					}
 				}
 
@@ -246,9 +246,9 @@ public class Entidad {
 						// Pregunto si es el menuBatallar o
 						//menuComerciar, sino no hace falta hacer esto
 						if (juego.getEstadoJuego().getTipoSolicitud()
-								== MenuInfoPersonaje.menuBatallar
+								== MenuInfoPersonaje.MENU_BATALLAR
 								|| juego.getEstadoJuego().getTipoSolicitud()
-								== MenuInfoPersonaje.menuComerciar) {
+								== MenuInfoPersonaje.MENU_COMERCIAR) {
 							// Guardo la posición del personaje con el que quiero comerciar
 							xComercio = juego.getUbicacionPersonajes().
 									get(idEnemigo).getPosX();
@@ -258,7 +258,7 @@ public class Entidad {
 						}
 						// Pregunto si el menú emergente es de batalla
 						if (juego.getEstadoJuego().getTipoSolicitud()
-								== MenuInfoPersonaje.menuBatallar) {
+								== MenuInfoPersonaje.MENU_BATALLAR) {
 							// Me fijo si el que quiero
 							//batallar está en la zona de comercio
 							if (!((int) comercio[0] >= rangoXInfComerc
@@ -267,7 +267,7 @@ public class Entidad {
 									&& (int) comercio[1] <= rangoYSupComerc)) {
 								juego.getEstadoJuego().setHaySolicitud(
 										false, null,
-										MenuInfoPersonaje.menuBatallar);
+										MenuInfoPersonaje.MENU_BATALLAR);
 								PaqueteBatalla pBatalla = new PaqueteBatalla();
 
 								pBatalla.setId(juego.getPersonaje().getId());
@@ -275,7 +275,7 @@ public class Entidad {
 
 								juego.getEstadoJuego().setHaySolicitud(
 										false, null,
-										MenuInfoPersonaje.menuBatallar);
+										MenuInfoPersonaje.MENU_BATALLAR);
 
 								try {
 									juego.getCli().getSal().writeObject(
@@ -299,7 +299,7 @@ public class Entidad {
 						} else {
 							// Pregunto si el menú emergente es de tipo comercio
 							if (juego.getEstadoJuego().getTipoSolicitud()
-									== MenuInfoPersonaje.menuComerciar) {
+									== MenuInfoPersonaje.MENU_COMERCIAR) {
 								if ((int) comercio[0] >= rangoXInfComerc
 										&& (int) comercio[0] <= rangoXSupComerc
 										&& (int) comercio[1] >= rangoYInfComerc
@@ -349,16 +349,16 @@ public class Entidad {
 							}
 						}
 						juego.getEstadoJuego().setHaySolicitud(
-								false, null, MenuInfoPersonaje.menuBatallar);
+								false, null, MenuInfoPersonaje.MENU_BATALLAR);
 
 					} else if (juego.getEstadoJuego().getMenuEnemigo().
 							clickEnCerrar(posMouse[0], posMouse[1])) {
 						juego.getEstadoJuego().setHaySolicitud(
-								false, null, MenuInfoPersonaje.menuBatallar);
+								false, null, MenuInfoPersonaje.MENU_BATALLAR);
 					}
 				} else {
 					juego.getEstadoJuego().setHaySolicitud(
-							false, null, MenuInfoPersonaje.menuBatallar);
+							false, null, MenuInfoPersonaje.MENU_BATALLAR);
 				}
 			} else {
 				Iterator<Integer> it = juego.getUbicacionPersonajes().keySet().iterator();
@@ -393,14 +393,14 @@ public class Entidad {
 								juego.getEstadoJuego().setHaySolicitud(true,
 										juego.getPersonajesConectados().
 											get(idEnemigo),
-										MenuInfoPersonaje.menuComerciar);
+										MenuInfoPersonaje.MENU_COMERCIAR);
 							} else {
 								// Si estoy dentro de la zona de batalla
 								//se abre la zona de batalla
 								juego.getEstadoJuego().setHaySolicitud(true,
 										juego.getPersonajesConectados().
 										get(idEnemigo),
-										MenuInfoPersonaje.menuBatallar);
+										MenuInfoPersonaje.MENU_BATALLAR);
 							}
 							juego.getHandlerMouse().setNuevoClick(false);
 						}
@@ -418,7 +418,7 @@ public class Entidad {
 
 			pilaMovimiento = null;
 
-			juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.menuBatallar);
+			juego.getEstadoJuego().setHaySolicitud(false, null, MenuInfoPersonaje.MENU_BATALLAR);
 		}
 
 		if (!enMovimiento && tileMoverme != null) {

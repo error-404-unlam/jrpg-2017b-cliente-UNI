@@ -200,7 +200,7 @@ public class MenuAsignarSkills extends JFrame {
 		addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(final WindowEvent arg0) {
-				Pantalla.menuAsignar = null;
+				Pantalla.setMenuAsignar(null);
 				dispose();
 			}
 		});
@@ -394,7 +394,7 @@ public class MenuAsignarSkills extends JFrame {
 		buttonCancel.setIcon(iconoC);
 		buttonCancel.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent arg0) {
-				Pantalla.menuAsignar = null;
+				Pantalla.setMenuAsignar(null);
 				dispose();
 			}
 		});

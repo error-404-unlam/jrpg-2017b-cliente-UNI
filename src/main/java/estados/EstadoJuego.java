@@ -73,7 +73,9 @@ public class EstadoJuego extends Estado {
 				Recursos.getPersonaje().get(
 						juego.getPersonaje().getRaza()),
 				velocidadPersonaje);
-		miniaturaPersonaje = Recursos.getPersonaje().get(paquetePersonaje.getRaza()).get(nroMiniaturaPersonaje)[0];
+		miniaturaPersonaje = Recursos.getPersonaje().get(
+				paquetePersonaje.getRaza()).
+				get(nroMiniaturaPersonaje)[0];
 
 		try {
 			// Le pido al servidor que me conecte al mapa
@@ -99,7 +101,12 @@ public class EstadoJuego extends Estado {
 
 	@Override
 	public void graficar(final Graphics g) {
-		g.drawImage(Recursos.getBackground(), 0, 0, this.getJuego().getAncho(), this.getJuego().getAlto(), null);
+		g.drawImage(
+				Recursos.getBackground(),
+				0, 0,
+				this.getJuego().getAncho(),
+				this.getJuego().getAlto(),
+				null);
 		mundo.graficarSuelo(g);
 		mundo.graficarObstaculos(g);
 		g.drawImage(Recursos.getMarco(), 0, 0, this.getJuego().getAncho(), this.getJuego().getAlto(), null);
@@ -133,7 +140,7 @@ public class EstadoJuego extends Estado {
 		String[] mundoM = {"Aubenor" , "Aris" , "Eodrim" };
 		int mapNum = this.getJuego().getPersonaje().getMapa();
 		if (mapNum >= 1 && mapNum <= limiteSupMapaNum) {
-			return mundoM[mapNum-1];
+			return mundoM[mapNum - 1];
 		}
 		return null;
 	}

@@ -99,14 +99,17 @@ public class EstadoBatalla extends Estado {
 		menuBatalla = new MenuBatalla(miTurno, personaje);
 
 		miniaturaEnemigo = Recursos.getPersonaje().get(enemigo.getNombreRaza()).get(posMiniaturaEnemigo)[0];
-		miniaturaPersonaje = Recursos.getPersonaje().get(personaje.getNombreRaza()).get(posMiniaturaPersonaje)[0];
+		miniaturaPersonaje = Recursos.getPersonaje().get(
+				personaje.getNombreRaza()
+				).
+				get(posMiniaturaPersonaje)[0];
 
 		paqueteFinalizarBatalla = new PaqueteFinalizarBatalla();
 		paqueteFinalizarBatalla.setId(personaje.getIdPersonaje());
 		paqueteFinalizarBatalla.setIdEnemigo(enemigo.getIdPersonaje());
 
 		// Batalla perdida por defecto
-		juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(), MenuInfoPersonaje.menuPerderBatalla);
+		juego.getEstadoJuego().setHaySolicitud(true, juego.getPersonaje(), MenuInfoPersonaje.MENU_PERDER_BATALLA);
 
 		// Limpia la acción del mouse
 		juego.getHandlerMouse().setNuevoClick(false);
@@ -184,7 +187,7 @@ public class EstadoBatalla extends Estado {
 					if (!enemigo.estaVivo()) {
 						this.getJuego().getEstadoJuego().setHaySolicitud(
 								true, this.getJuego().getPersonaje(),
-								MenuInfoPersonaje.menuGanarBatalla);
+								MenuInfoPersonaje.MENU_GANAR_BATALLA);
 						if (personaje.ganarExperiencia(enemigo.getNivel() * multiplicadorExp)) {
 							int nivelInicial = this.getJuego().getPersonaje().getNivel();
 							this.getJuego().getPersonaje().setNivel(personaje.getNivel());
@@ -196,7 +199,7 @@ public class EstadoBatalla extends Estado {
 									+ nivelesSubidos * multiplicadorPuntos);
 							this.getJuego().getEstadoJuego().setHaySolicitud(
 									true, this.getJuego().getPersonaje(),
-									MenuInfoPersonaje.menuSubirNivel);
+									MenuInfoPersonaje.MENU_SUBIR_NIVEL);
 						}
 						paqueteFinalizarBatalla.setGanadorBatalla(
 								this.getJuego().getPersonaje().

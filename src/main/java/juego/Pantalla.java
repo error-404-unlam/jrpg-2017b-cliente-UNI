@@ -44,21 +44,21 @@ public class Pantalla {
 	private Canvas canvas;
 
 	// Menus
-	public static MenuInventario menuInventario;
-	public static MenuAsignarSkills menuAsignar;
-	public static MenuStats menuStats;
-	public static MenuEscape menuEscp;
-	public static VentanaContactos ventContac;
+	private static MenuInventario menuInventario;
+	private	static MenuAsignarSkills menuAsignar;
+	private static MenuStats menuStats;
+	private static MenuEscape menuEscp;
+	private static VentanaContactos ventContac;
 
 	private final Gson gson = new Gson();
 
 	/**
 	 * Constructor de la clase
 	 *
-	 * @param nombre
-	 * @param ancho
-	 * @param alto
-	 * @param cliente
+	 * @param nombre	nombre del juego
+	 * @param ancho		ancho de la ventana
+	 * @param alto		alto de la ventana
+	 * @param cliente	cliente
 	 */
 	public Pantalla(final String nombre, final int ancho, final int alto, final Cliente cliente) {
 		pantalla = new JFrame(nombre);
@@ -136,6 +136,77 @@ public class Pantalla {
 	}
 
 	/**
+	 * @return el menu Inventario
+	 */
+	public static MenuInventario getMenuInventario() {
+		return menuInventario;
+	}
+
+	/**
+	 * @param menuInv que se va a setear
+	 */
+	public static void setMenuInventario(final MenuInventario menuInv) {
+		menuInventario = menuInv;
+	}
+
+	/**
+	 * @return el menu para asignar skills
+	 */
+	public static MenuAsignarSkills getMenuAsignar() {
+		return menuAsignar;
+	}
+
+	/**
+	 * @param menuAsig es el menu en el cual se asignan los skills
+	 */
+	public static void setMenuAsignar(final MenuAsignarSkills menuAsig) {
+		menuAsignar = menuAsig;
+	}
+
+	/**
+	 * @return el menu con la informacion de los stats
+	 */
+	public static MenuStats getMenuStats() {
+		return menuStats;
+	}
+
+	/**
+	 * @param menStat	menu con las estadisticas
+	 */
+	public static void setMenuStats(final MenuStats menStat) {
+		menuStats = menStat;
+	}
+
+	/**
+	 * @return	el menu escape
+	 */
+	public static MenuEscape getMenuEscp() {
+		return menuEscp;
+	}
+
+	/**
+	 * @param menuEsc	es el menu desde el cual se puede acceder a los otros menus
+	 * 					y salir del juego
+	 */
+	public static void setMenuEscp(final MenuEscape menuEsc) {
+		menuEscp = menuEsc;
+	}
+
+	/**
+	 * @return la ventana de chat
+	 */
+	public static VentanaContactos getVentContac() {
+		return ventContac;
+	}
+
+	/**
+	 * @param ventCont es el chat
+	 */
+	public static void setVentContac(final VentanaContactos ventCont) {
+		ventContac = ventCont;
+	}
+
+	/**
 	 * Retorna el canvas
 	 *
 	 * @return canvas
@@ -163,9 +234,9 @@ public class Pantalla {
 	/**
 	 * Centra el string
 	 *
-	 * @param g
-	 * @param r
-	 * @param s
+	 * @param g 	es el que se va a encargar de graficar el string
+	 * @param r		son los limites en los que se va a graficar
+	 * @param s		es lo que se va a escribir
 	 */
 	public static void centerString(final Graphics g, final Rectangle r, final String s) {
 		FontRenderContext frc = new FontRenderContext(null, true, true);

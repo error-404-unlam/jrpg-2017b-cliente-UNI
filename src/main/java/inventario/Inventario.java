@@ -23,9 +23,9 @@ public class Inventario extends JPanel {
 	private static final int CANTFILAS = 3;
 	private ArrayList<Item> items;
 	/**
-	 * 
-	 * @param paquetePersonaje
-	 * @throws IOException
+	 * Inventario
+	 * @param paquetePersonaje Paquete de personaje
+	 * @throws IOException Excepcion de entrada y salida
 	 */
 	public Inventario(final PaquetePersonaje paquetePersonaje) throws IOException {
 		setLayout(new GridBagLayout());
@@ -58,7 +58,8 @@ public class Inventario extends JPanel {
 					}
 				}
 				cellPane.setBorder(border);
-				gbc.weightx = gbc.weighty = 1.0;
+				gbc.weightx = 1.0;
+				gbc.weighty = 1.0;
 				gbc.fill = GridBagConstraints.BOTH;
 
 				add(cellPane, gbc);

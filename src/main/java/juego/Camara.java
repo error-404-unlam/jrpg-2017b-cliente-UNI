@@ -3,10 +3,8 @@ package juego;
 import entidades.Entidad;
 
 /**
- * Clase Camara 
- *
+ * Clase Camara
  * @author lesanmartin
- *
  */
 public class Camara {
 
@@ -17,9 +15,9 @@ public class Camara {
 	/**
 	 * Constructor de la clase
 	 *
-	 * @param juego
-	 * @param xOffset
-	 * @param yOffset
+	 * @param juego juego
+	 * @param xOffset	desplazamiento en x
+	 * @param yOffset	desplazamiento en y
 	 */
 	public Camara(final Juego juego, final float xOffset, final float yOffset) {
 		this.juego = juego;
@@ -30,7 +28,7 @@ public class Camara {
 	/**
 	 * Centra la camara
 	 *
-	 * @param e
+	 * @param e entidad
 	 */
 	public void centrar(final Entidad e) {
 		xOffset = e.getX() - juego.getAncho() / 2 + e.getAncho() / 2;
@@ -40,8 +38,8 @@ public class Camara {
 	/**
 	 * Mueve la camara
 	 *
-	 * @param dx
-	 * @param dy
+	 * @param dx	direccion x
+	 * @param dy	direccion y
 	 */
 	public void mover(final float dx, final float dy) {
 		xOffset += dx;
@@ -60,7 +58,7 @@ public class Camara {
 	/**
 	 * Setea la variable Y
 	 *
-	 * @param yOffset
+	 * @param yOffset	desplazamiento en y
 	 */
 	public void setyOffset(final float yOffset) {
 		this.yOffset = yOffset;
@@ -78,7 +76,7 @@ public class Camara {
 	/**
 	 * Setea el valor de x
 	 *
-	 * @param xOffset
+	 * @param xOffset	desplazamiento en x
 	 */
 	public void setxOffset(final float xOffset) {
 		this.xOffset = xOffset;

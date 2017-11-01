@@ -37,16 +37,20 @@ public class Celda extends JPanel {
 	/**
 	 * Constructor parametrizado de la clase
 	 *
-	 * @param item
-	 * @param paquetePersonaje
-	 * @throws IOException
+	 * @param item item
+	 * @param paquetePersonaje paquete personaje
+	 * @throws IOException Excepcion de entrada/salida
 	 */
 	public Celda(final Item item, final PaquetePersonaje paquetePersonaje) throws IOException {
 		this.item = item.getFoto();
 		it = item;
 		this.paquetePersonaje = paquetePersonaje;
 		label = new JLabel(
-				new ImageIcon(this.item.getScaledInstance(ANCHO_IMAGEN, ALTURA_IMAGEN, Image.SCALE_DEFAULT)));
+				new ImageIcon(
+						this.item.getScaledInstance(
+								ANCHO_IMAGEN,
+								ALTURA_IMAGEN,
+								Image.SCALE_DEFAULT)));
 		actionListenersYLabel(item);
 	}
 
@@ -55,34 +59,38 @@ public class Celda extends JPanel {
 	 */
 	public Celda() {
 		label = new JLabel(
-				new ImageIcon(Recursos.getNoItem().getScaledInstance(ANCHO_IMAGEN, ALTURA_IMAGEN, Image.SCALE_DEFAULT)));
+				new ImageIcon(
+						Recursos.getNoItem().
+						getScaledInstance(
+								ANCHO_IMAGEN,
+								ALTURA_IMAGEN,
+								Image.SCALE_DEFAULT)));
 		add(label);
 	}
 
 	/**
 	 * Acciones de item
-	 *
-	 * @param item
+	 * @param itemP Item de la celda
 	 */
-	private void actionListenersYLabel(Item item) {
+	private void actionListenersYLabel(final Item itemP) {
 		StringBuilder s = new StringBuilder();
 
-		s.append("<html>" + item.getNombre() + "<br>");
+		s.append("<html>" + itemP.getNombre() + "<br>");
 
-		if (item.getBonusSalud() != 0) {
-			s.append("+" + item.getBonusSalud() + " Salud " + "<br>");
+		if (itemP.getBonusSalud() != 0) {
+			s.append("+" + itemP.getBonusSalud() + " Salud " + "<br>");
 		}
-		if (item.getBonusEnergia() != 0) {
-			s.append("+" + item.getBonusEnergia() + " Energia " + "<br>");
+		if (itemP.getBonusEnergia() != 0) {
+			s.append("+" + itemP.getBonusEnergia() + " Energia " + "<br>");
 		}
-		if (item.getBonusFuerza() != 0) {
-			s.append("+" + item.getBonusFuerza() + " Fuerza " + "<br>");
+		if (itemP.getBonusFuerza() != 0) {
+			s.append("+" + itemP.getBonusFuerza() + " Fuerza " + "<br>");
 		}
-		if (item.getBonusDestreza() != 0) {
-			s.append("+" + item.getBonusDestreza() + " Destreza " + "<br>");
+		if (itemP.getBonusDestreza() != 0) {
+			s.append("+" + itemP.getBonusDestreza() + " Destreza " + "<br>");
 		}
-		if (item.getBonusInteligencia() != 0) {
-			s.append("+" + item.getBonusInteligencia() + " Inteligencia");
+		if (itemP.getBonusInteligencia() != 0) {
+			s.append("+" + itemP.getBonusInteligencia() + " Inteligencia");
 		}
 		s.append("</html>");
 		label.setToolTipText(s.toString());
@@ -102,7 +110,12 @@ public class Celda extends JPanel {
 	 */
 	protected void resetLabel() {
 		label.setIcon(
-				new ImageIcon(Recursos.getNoItem().getScaledInstance(ANCHO_IMAGEN, ALTURA_IMAGEN, Image.SCALE_DEFAULT)));
+				new ImageIcon(
+						Recursos.getNoItem().
+						getScaledInstance(
+								ANCHO_IMAGEN,
+								ALTURA_IMAGEN,
+								Image.SCALE_DEFAULT)));
 		label.setToolTipText(null);
 		paquetePersonaje.removerItem(it);
 		label.removeMouseListener(mouseListener);
@@ -111,6 +124,7 @@ public class Celda extends JPanel {
 
 	/**
 	 * Retorna el tamaño de la dimension
+	 * @return Dimension dimension del objeto
 	 */
 	@Override
 	public Dimension getPreferredSize() {
@@ -120,7 +134,7 @@ public class Celda extends JPanel {
 	/**
 	 * Retorna el label
 	 *
-	 * @return
+	 * @return JLabel JLabel
 	 */
 	public JLabel getLabel() {
 		return label;
@@ -130,15 +144,24 @@ public class Celda extends JPanel {
 	 * Listener del mouse
 	 */
 	private MouseListener mouseListener = new MouseAdapter() {
-		public void mouseClicked(MouseEvent e) {
+		public void mouseClicked(final MouseEvent e) {
 			Object[] options = {"Tirar", "Cancelar"};
 			if (e.getClickCount() == 2) {
-				int answer = JOptionPane.showOptionDialog(getParent(), "¿Qué desea hacer?", "Item: " + it.getNombre(),
-						JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE, null, options, options[1]);
+				int answer = JOptionPane.showOptionDialog(
+						getParent(),
+						"¿Qué desea hacer?",
+						"Item: " + it.getNombre(),
+						JOptionPane.YES_NO_CANCEL_OPTION,
+						JOptionPane.PLAIN_MESSAGE,
+						null,
+						options,
+						options[1]);
 				// Tirar
 				if (answer == 0) {
-					paquetePersonaje.sacarBonus(it.getBonusSalud(), it.getBonusEnergia(), it.getBonusFuerza(),
-							it.getBonusDestreza(), it.getBonusInteligencia());
+					paquetePersonaje.sacarBonus(
+							it.getBonusSalud(), it.getBonusEnergia(),
+							it.getBonusFuerza(), it.getBonusDestreza(),
+							it.getBonusInteligencia());
 					resetLabel();
 				}
 			}

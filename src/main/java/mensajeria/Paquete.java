@@ -136,7 +136,7 @@ public class Paquete implements Serializable, Cloneable {
 	 * @return c
 	 */
 	public Comando getObjeto(final String nombrePaquete) {
-		Comando c = null;	
+		Comando c = null;
 		try {
 			c = (Comando) Class.forName(nombrePaquete + "." + Comando.CLASSNAMES[comando]).newInstance();
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
@@ -153,7 +153,7 @@ public class Paquete implements Serializable, Cloneable {
 	 * @return c
 	 */
 	public static Comando getObjetoSet(final String nombrePaquete, final int accion) {
-		Comando c = null;		
+		Comando c = null;
 		try {
 			c = (Comando) Class.forName(nombrePaquete + "." + Comando.CLASSNAMESBIS[accion]).newInstance();
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
@@ -172,7 +172,7 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * @param msjExito a setear
 	 */
-	public static void setMsjExito(String msjExito) {
+	public static void setMsjExito(final String msjExito) {
 		Paquete.msjExito = msjExito;
 	}
 
@@ -186,8 +186,7 @@ public class Paquete implements Serializable, Cloneable {
 	/**
 	 * @param msjFracaso a setear
 	 */
-	public static void setMsjFracaso(String msjFracaso) {
+	public static void setMsjFracaso(final String msjFracaso) {
 		Paquete.msjFracaso = msjFracaso;
 	}
-	
 }
