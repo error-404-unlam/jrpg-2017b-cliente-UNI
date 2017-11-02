@@ -93,7 +93,7 @@ public class MiChat extends JFrame {
 	/**
 	 * Posicion Y del Texto.
 	 */
-	private final int posYTexto = 10;
+	private final int posYTexto = 223;
 	/**
 	 * Ancho del Texto.
 	 */
