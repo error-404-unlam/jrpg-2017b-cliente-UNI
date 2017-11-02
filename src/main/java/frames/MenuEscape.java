@@ -83,7 +83,11 @@ public class MenuEscape extends JFrame {
 
 		contentPane = new JPanel();
 		contentPane
-				.setBorder(new EmptyBorder(TOP_CONTENTPANE, BOTTOM_CONTENTPANE, LEFT_CONTENTPANE, RIGHT_CONTENTPANE));
+				.setBorder(new EmptyBorder(
+						TOP_CONTENTPANE,
+						BOTTOM_CONTENTPANE,
+						LEFT_CONTENTPANE,
+						RIGHT_CONTENTPANE));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -109,7 +113,11 @@ public class MenuEscape extends JFrame {
 		JButton asignarSkills = new JButton("Asignar Skills");
 		asignarSkills.setIcon(new ImageIcon("recursos//asignar skills.png"));
 		asignarSkills.setToolTipText("Presiona A para asignar skills");
-		asignarSkills.setBounds(POS_X_ASIGNARSKILLS, POS_Y_ASIGNARSKILLS, ANCHO_ASIGNARSKILLS, ALTO_ASIGNARSKILLS);
+		asignarSkills.setBounds(
+				POS_X_ASIGNARSKILLS,
+				POS_Y_ASIGNARSKILLS,
+				ANCHO_ASIGNARSKILLS,
+				ALTO_ASIGNARSKILLS);
 		asignarSkills.addActionListener(new ActionListener() {
 			/**
 			 * Evento de boton
@@ -148,7 +156,11 @@ public class MenuEscape extends JFrame {
 		contentPane.add(inventario);
 
 		JButton desconectarse = new JButton("Desconectarse");
-		desconectarse.setBounds(POS_X_DESCONECTARSE, POS_Y_DESCONECTARSE, ANCHO_DESCONECTARSE, ALTO_DESCONECTARSE);
+		desconectarse.setBounds(
+				POS_X_DESCONECTARSE,
+				POS_Y_DESCONECTARSE,
+				ANCHO_DESCONECTARSE,
+				ALTO_DESCONECTARSE);
 		desconectarse.setIcon(new ImageIcon("recursos//desconectarse.png"));
 		desconectarse.addActionListener(new ActionListener() {
 			/**
@@ -193,7 +205,12 @@ public class MenuEscape extends JFrame {
 			JOptionPane.showMessageDialog(null, "No se pudo cargar el fondo");
 
 		}
-		JLabel background = new JLabel(new ImageIcon(imagenFondo.getScaledInstance(ANCHO_IMAGEN, ALTO_IMAGEN, Image.SCALE_DEFAULT)));
+		JLabel background = new JLabel(
+				new ImageIcon(
+						imagenFondo.getScaledInstance(
+								ANCHO_IMAGEN,
+								ALTO_IMAGEN,
+								Image.SCALE_DEFAULT)));
 		background.setBounds(POS_X_BACKGROUND, POS_Y_BACKGROUND, ANCHO_BACKGROUND, ALTO_BACKGROUND);
 		contentPane.add(background);
 	}
