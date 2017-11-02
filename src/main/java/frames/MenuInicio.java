@@ -37,28 +37,28 @@ public class MenuInicio extends JFrame {
 	private static final int LEFT_CONTENTPANE = 5;
 	private static final int RIGHT_CONTENTPANE = 5;
 	private static final int TAMANIO_FUENTE = 15;
-	private static final int POS_X__LABELOGO = 109;
-	private static final int POS_Y__LABELOGO = 39;
+	private static final int POS_X_LABELOGO = 109;
+	private static final int POS_Y_LABELOGO = 39;
 	private static final int ANCHO_LABELOGO = 216;
 	private static final int ALTO_LABELOGO = 90;
-	private static final int POS_X__LAYEREDPANE = 0;
-	private static final int POS_Y__LAYEREDPANE = 0;
+	private static final int POS_X_LAYEREDPANE = 0;
+	private static final int POS_Y_LAYEREDPANE = 0;
 	private static final int ANCHO_LAYEREDPANE = 444;
 	private static final int ALTO_LAYEREDPANE = 271;
-	private static final int POS_X__LABELREGISTRARSE = 205;
-	private static final int POS_Y__LABELREGISTRARSE = 162;
+	private static final int POS_X_LABELREGISTRARSE = 205;
+	private static final int POS_Y_LABELREGISTRARSE = 162;
 	private static final int ANCHO_LABELREGISTRARSE = 82;
 	private static final int ALTO_LABELREGISTRARSE = 23;
-	private static final int POS_X__LABELINICIARSESION = 210;
-	private static final int POS_Y__LABELINICIARSESION = 202;
+	private static final int POS_X_LABELINICIARSESION = 210;
+	private static final int POS_Y_LABELINICIARSESION = 202;
 	private static final int ANCHO_LABELINICIARSESION = 91;
 	private static final int ALTO_LABELINICIARSESION = 23;
-	private static final int POS_X__BOTONREGISTRAR = 127;
-	private static final int POS_Y__BOTONREGISTRAR = 162;
+	private static final int POS_X_BOTONREGISTRAR = 127;
+	private static final int POS_Y_BOTONREGISTRAR = 162;
 	private static final int ANCHO_BOTONREGISTRAR = 191;
 	private static final int ALTO_BOTONREGISTRAR = 23;
-	private static final int POS_X__BOTONINICARSESION = 127;
-	private static final int POS_Y__BOTONINICIARSESION = 202;
+	private static final int POS_X_BOTONINICARSESION = 127;
+	private static final int POS_Y_BOTONINICIARSESION = 202;
 	private static final int ANCHO_BOTONINICIARSESION = 191;
 	private static final int ALTO_BOTONINICIARSESION = 23;
 	private static final int POS_X_BACKGROUND = 0;
@@ -98,22 +98,27 @@ public class MenuInicio extends JFrame {
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane
-				.setBorder(new EmptyBorder(TOP_CONTENTPANE, BOTTOM_CONTENTPANE, LEFT_CONTENTPANE, RIGHT_CONTENTPANE));
+				.setBorder(
+						new EmptyBorder(
+								TOP_CONTENTPANE,
+								BOTTOM_CONTENTPANE,
+								LEFT_CONTENTPANE,
+								RIGHT_CONTENTPANE));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JLabel lblLogo = new JLabel("");
 		lblLogo.setIcon(new ImageIcon(MenuCarga.class.getResource("/frames/WOME.png")));
-		lblLogo.setBounds(POS_X__LABELOGO, POS_Y__LABELOGO, ANCHO_LABELOGO, ALTO_LABELOGO);
+		lblLogo.setBounds(POS_X_LABELOGO, POS_Y_LABELOGO, ANCHO_LABELOGO, ALTO_LABELOGO);
 		contentPane.add(lblLogo);
 
 		JLayeredPane layeredPane = new JLayeredPane();
-		layeredPane.setBounds(POS_X__LAYEREDPANE, POS_Y__LAYEREDPANE, ANCHO_LAYEREDPANE, ALTO_LAYEREDPANE);
+		layeredPane.setBounds(POS_X_LAYEREDPANE, POS_Y_LAYEREDPANE, ANCHO_LAYEREDPANE, ALTO_LAYEREDPANE);
 		contentPane.add(layeredPane);
 
 		// Boton Jugar
 		JLabel lblRegistrarse = new JLabel("Jugar");
-		lblRegistrarse.setBounds(POS_X__LABELREGISTRARSE, POS_Y__LABELREGISTRARSE, ANCHO_LABELREGISTRARSE,
+		lblRegistrarse.setBounds(POS_X_LABELREGISTRARSE, POS_Y_LABELREGISTRARSE, ANCHO_LABELREGISTRARSE,
 				ALTO_LABELREGISTRARSE);
 		layeredPane.add(lblRegistrarse, new Integer(2));
 		lblRegistrarse.setForeground(Color.WHITE);
@@ -123,14 +128,18 @@ public class MenuInicio extends JFrame {
 
 		// Boton Salir
 		JLabel lblIniciarSesion = new JLabel("Salir");
-		lblIniciarSesion.setBounds(POS_X__LABELINICIARSESION, POS_Y__LABELINICIARSESION, ANCHO_LABELINICIARSESION,
+		lblIniciarSesion.setBounds(POS_X_LABELINICIARSESION, POS_Y_LABELINICIARSESION, ANCHO_LABELINICIARSESION,
 				ALTO_LABELINICIARSESION);
 		layeredPane.add(lblIniciarSesion, new Integer(2));
 		lblIniciarSesion.setForeground(Color.WHITE);
 		lblIniciarSesion.setFont(new Font("Tahoma", Font.PLAIN, TAMANIO_FUENTE));
 
 		JButton btnRegistrar = new JButton("Jugar");
-		btnRegistrar.setBounds(POS_X__BOTONREGISTRAR, POS_Y__BOTONREGISTRAR, ANCHO_BOTONREGISTRAR, ALTO_BOTONREGISTRAR);
+		btnRegistrar.setBounds(
+				POS_X_BOTONREGISTRAR,
+				POS_Y_BOTONREGISTRAR,
+				ANCHO_BOTONREGISTRAR,
+				ALTO_BOTONREGISTRAR);
 		layeredPane.add(btnRegistrar, new Integer(1));
 		btnRegistrar.setFocusable(false);
 		btnRegistrar.setIcon(new ImageIcon(MenuJugar.class.getResource("/frames/BotonMenu.png")));
@@ -147,7 +156,7 @@ public class MenuInicio extends JFrame {
 		});
 
 		JButton btnIniciarSesion = new JButton("Salir");
-		btnIniciarSesion.setBounds(POS_X__BOTONINICARSESION, POS_Y__BOTONINICIARSESION, ANCHO_BOTONINICIARSESION,
+		btnIniciarSesion.setBounds(POS_X_BOTONINICARSESION, POS_Y_BOTONINICIARSESION, ANCHO_BOTONINICIARSESION,
 				ALTO_BOTONINICIARSESION);
 		layeredPane.add(btnIniciarSesion, new Integer(1));
 		btnIniciarSesion.setFocusable(false);
@@ -174,7 +183,7 @@ public class MenuInicio extends JFrame {
 	 *
 	 * @param args parametro args
 	 */
-	public static void main(String[] args) {
+	public static void main(final String[] args) {
 		new MenuInicio().setVisible(true);
 	}
 
