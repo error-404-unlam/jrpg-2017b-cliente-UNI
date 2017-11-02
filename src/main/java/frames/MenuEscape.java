@@ -62,11 +62,17 @@ public class MenuEscape extends JFrame {
 	private static final int POS_Y_VOLVER = 227;
 	private static final int ANCHO_VOLVER = 125;
 	private static final int ALTO_VOLVER = 25;
-	
+	private static final int ANCHO_IMAGEN = 200;
+	private static final int ALTO_IMAGEN = 350;
+	private static final int POS_X_BACKGROUND = 0;
+	private static final int POS_Y_BACKGROUND = 0;
+	private static final int ANCHO_BACKGROUND = 186;
+	private static final int ALTO_BACKGROUND = 273;
 	/**
 	 * Constructor de la clase
 	 *
-	 * @param cliente parametro cliente
+	 * @param cliente
+	 *            parametro cliente
 	 */
 	public MenuEscape(final Cliente cliente) {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -76,7 +82,8 @@ public class MenuEscape extends JFrame {
 		this.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(TOP_CONTENTPANE, BOTTOM_CONTENTPANE, LEFT_CONTENTPANE, RIGHT_CONTENTPANE));
+		contentPane
+				.setBorder(new EmptyBorder(TOP_CONTENTPANE, BOTTOM_CONTENTPANE, LEFT_CONTENTPANE, RIGHT_CONTENTPANE));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
@@ -186,8 +193,8 @@ public class MenuEscape extends JFrame {
 			JOptionPane.showMessageDialog(null, "No se pudo cargar el fondo");
 
 		}
-		JLabel background = new JLabel(new ImageIcon(imagenFondo.getScaledInstance(200, 350, Image.SCALE_DEFAULT)));
-		background.setBounds(0, 0, 186, 273);
+		JLabel background = new JLabel(new ImageIcon(imagenFondo.getScaledInstance(ANCHO_IMAGEN, ALTO_IMAGEN, Image.SCALE_DEFAULT)));
+		background.setBounds(POS_X_BACKGROUND, POS_Y_BACKGROUND, ANCHO_BACKGROUND, ALTO_BACKGROUND);
 		contentPane.add(background);
 	}
 }
