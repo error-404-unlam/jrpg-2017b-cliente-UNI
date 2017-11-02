@@ -24,32 +24,82 @@ import juego.Pantalla;
 import mensajeria.Comando;
 import mensajeria.Paquete;
 
+/**
+ * Clase MenuEscape
+ *
+ * @author lesanmartin
+ *
+ */
 public class MenuEscape extends JFrame {
 
 	private JPanel contentPane;
 	private final Gson gson = new Gson();
-
+	private static final int POS_X_PANTALLA = 100;
+	private static final int POS_Y_PANTALLA = 100;
+	private static final int ANCHO_PANTALLA = 180;
+	private static final int ALTO_PANTALLA = 270;
+	private static final int TOP_CONTENTPANE = 5;
+	private static final int BOTTOM_CONTENTPANE = 5;
+	private static final int LEFT_CONTENTPANE = 5;
+	private static final int RIGHT_CONTENTPANE = 5;
+	private static final int POS_X_VERSTATS = 29;
+	private static final int POS_Y_VERSTATS = 13;
+	private static final int ANCHO_VERSTATS = 125;
+	private static final int ALTO_VERSTATS = 25;
+	private static final int POS_X_ASIGNARSKILLS = 29;
+	private static final int POS_Y_ASIGNARSKILLS = 66;
+	private static final int ANCHO_ASIGNARSKILLS = 125;
+	private static final int ALTO_ASIGNARSKILLS = 25;
+	private static final int POS_X_INVENTARIO = 29;
+	private static final int POS_Y_INVENTARIO = 121;
+	private static final int ANCHO_INVENTARIO = 125;
+	private static final int ALTO_INVENTARIO = 25;
+	private static final int POS_X_DESCONECTARSE = 29;
+	private static final int POS_Y_DESCONECTARSE = 175;
+	private static final int ANCHO_DESCONECTARSE = 125;
+	private static final int ALTO_DESCONECTARSE = 25;
+	private static final int POS_X_VOLVER = 29;
+	private static final int POS_Y_VOLVER = 227;
+	private static final int ANCHO_VOLVER = 125;
+	private static final int ALTO_VOLVER = 25;
+	private static final int ANCHO_IMAGEN = 200;
+	private static final int ALTO_IMAGEN = 350;
+	private static final int POS_X_BACKGROUND = 0;
+	private static final int POS_Y_BACKGROUND = 0;
+	private static final int ANCHO_BACKGROUND = 186;
+	private static final int ALTO_BACKGROUND = 273;
 	/**
-	 * Create the frame.
+	 * Constructor de la clase
+	 *
+	 * @param cliente
+	 *            parametro cliente
 	 */
 	public MenuEscape(final Cliente cliente) {
 		this.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.setUndecorated(true);
 		this.setResizable(false);
-		this.setBounds(100, 100, 180, 270);
+		this.setBounds(POS_X_PANTALLA, POS_Y_PANTALLA, ANCHO_PANTALLA, ALTO_PANTALLA);
 		this.setLocationRelativeTo(null);
 
 		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		contentPane
+				.setBorder(new EmptyBorder(
+						TOP_CONTENTPANE,
+						BOTTOM_CONTENTPANE,
+						LEFT_CONTENTPANE,
+						RIGHT_CONTENTPANE));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 
 		JButton verStats = new JButton("Estadísticas");
 		verStats.setIcon(new ImageIcon("recursos//stats.png"));
 		verStats.setToolTipText("Presiona S para ver estadísticas");
-		verStats.setBounds(29, 13, 125, 25);
+		verStats.setBounds(POS_X_VERSTATS, POS_Y_VERSTATS, ANCHO_VERSTATS, ALTO_VERSTATS);
 		verStats.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			/**
+			 * Evento de boton
+			 */
+			public void actionPerformed(final ActionEvent e) {
 				dispose();
 				Pantalla.setMenuEscp(null);
 				if (Pantalla.getMenuStats() == null) {
@@ -63,9 +113,16 @@ public class MenuEscape extends JFrame {
 		JButton asignarSkills = new JButton("Asignar Skills");
 		asignarSkills.setIcon(new ImageIcon("recursos//asignar skills.png"));
 		asignarSkills.setToolTipText("Presiona A para asignar skills");
-		asignarSkills.setBounds(29, 66, 125, 25);
+		asignarSkills.setBounds(
+				POS_X_ASIGNARSKILLS,
+				POS_Y_ASIGNARSKILLS,
+				ANCHO_ASIGNARSKILLS,
+				ALTO_ASIGNARSKILLS);
 		asignarSkills.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			/**
+			 * Evento de boton
+			 */
+			public void actionPerformed(final ActionEvent e) {
 				dispose();
 				Pantalla.setMenuEscp(null);
 				Pantalla.setMenuAsignar(null);
@@ -80,9 +137,12 @@ public class MenuEscape extends JFrame {
 		JButton inventario = new JButton("Inventario");
 		inventario.setIcon(new ImageIcon("recursos//inventario.png"));
 		inventario.setToolTipText("Presiona I para abrir inventario");
-		inventario.setBounds(29, 121, 125, 25);
+		inventario.setBounds(POS_X_INVENTARIO, POS_Y_INVENTARIO, ANCHO_INVENTARIO, ALTO_INVENTARIO);
 		inventario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			/**
+			 * Evento de boton
+			 */
+			public void actionPerformed(final ActionEvent e) {
 				dispose();
 				Pantalla.setMenuEscp(null);
 				if (Estado.getEstado().esEstadoDeJuego()) {
@@ -96,10 +156,17 @@ public class MenuEscape extends JFrame {
 		contentPane.add(inventario);
 
 		JButton desconectarse = new JButton("Desconectarse");
-		desconectarse.setBounds(29, 175, 125, 25);
+		desconectarse.setBounds(
+				POS_X_DESCONECTARSE,
+				POS_Y_DESCONECTARSE,
+				ANCHO_DESCONECTARSE,
+				ALTO_DESCONECTARSE);
 		desconectarse.setIcon(new ImageIcon("recursos//desconectarse.png"));
 		desconectarse.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			/**
+			 * Evento de boton
+			 */
+			public void actionPerformed(final ActionEvent e) {
 				try {
 					Paquete p = new Paquete();
 					p.setComando(Comando.DESCONECTAR);
@@ -119,9 +186,12 @@ public class MenuEscape extends JFrame {
 
 		JButton volver = new JButton("Volver");
 		volver.setIcon(new ImageIcon("recursos//volver.png"));
-		volver.setBounds(29, 227, 125, 25);
+		volver.setBounds(POS_X_VOLVER, POS_Y_VOLVER, ANCHO_VOLVER, ALTO_VOLVER);
 		volver.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+			/**
+			 * Evento de boton
+			 */
+			public void actionPerformed(final ActionEvent arg0) {
 				Pantalla.setMenuEscp(null);
 				dispose();
 			}
@@ -135,8 +205,13 @@ public class MenuEscape extends JFrame {
 			JOptionPane.showMessageDialog(null, "No se pudo cargar el fondo");
 
 		}
-		JLabel background = new JLabel(new ImageIcon(imagenFondo.getScaledInstance(200, 350, Image.SCALE_DEFAULT)));
-		background.setBounds(0, 0, 186, 273);
+		JLabel background = new JLabel(
+				new ImageIcon(
+						imagenFondo.getScaledInstance(
+								ANCHO_IMAGEN,
+								ALTO_IMAGEN,
+								Image.SCALE_DEFAULT)));
+		background.setBounds(POS_X_BACKGROUND, POS_Y_BACKGROUND, ANCHO_BACKGROUND, ALTO_BACKGROUND);
 		contentPane.add(background);
 	}
 }

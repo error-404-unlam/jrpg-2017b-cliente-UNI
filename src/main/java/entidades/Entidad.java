@@ -62,7 +62,8 @@ public class Entidad {
 	private static final int DIAGONAL_INF_DER = 5;
 	private static final int DIAGONAL_SUP_DER = 3;
 	private static final int DIAGONAL_SUP_IZQ = 1;
-	private int movimientoHacia = 6;
+	private static final int MOVIMIENTO = 6;
+	private int movimientoHacia = MOVIMIENTO;
 	private boolean enMovimiento;
 
 	// Animaciones
