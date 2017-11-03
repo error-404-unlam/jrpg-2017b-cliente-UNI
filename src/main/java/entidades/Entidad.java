@@ -718,7 +718,7 @@ public class Entidad {
 	 * @return true or false
 	 */
 	private boolean estanEnDiagonal(final Nodo nodoUno, final Nodo nodoDos) {
-		return nodoUno.obtenerX() == nodoDos.obtenerX() || nodoUno.obtenerY() == nodoDos.obtenerY();
+		return !(nodoUno.obtenerX() == nodoDos.obtenerX() || nodoUno.obtenerY() == nodoDos.obtenerY());
 	}
 
 	/**
