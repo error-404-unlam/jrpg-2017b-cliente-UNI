@@ -218,6 +218,7 @@ public class Juego implements Runnable {
 			corriendo = false;
 			hilo.join();
 		} catch (InterruptedException e) {
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Fallo al intentar detener el juego.");
 		}
 	}

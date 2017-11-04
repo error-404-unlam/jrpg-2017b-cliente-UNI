@@ -288,9 +288,10 @@ public class EstadoBatalla extends Estado {
 
 		Casta casta = null;
 		try {
-			casta = (Casta) Class.forName("dominio" + "." + paquetePersonaje.getCasta()).newInstance();
+			casta = (Casta) Class.forName("edu.unlam.wome.dominio.main" 
+					+ "." + paquetePersonaje.getCasta()).newInstance();
 			personaje = (Personaje) Class.forName(
-					"dominio" + "." + paquetePersonaje.getRaza()).
+					"edu.unlam.wome.dominio.main" + "." + paquetePersonaje.getRaza()).
 					getConstructor(String.class,
 							Integer.TYPE, Integer.TYPE,
 							Integer.TYPE, Integer.TYPE,
@@ -309,6 +310,7 @@ public class EstadoBatalla extends Estado {
 				| InvocationTargetException
 				| NoSuchMethodException
 				| SecurityException e) {
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Error al crear la batalla");
 		}
 
@@ -396,6 +398,7 @@ public class EstadoBatalla extends Estado {
 			this.getJuego().getCli().getSal().writeObject(gson.toJson(paqueteEnemigo));
 
 		} catch (IOException e) {
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(
 					null, "Falló la conexión con "
 							+ "el servidor al finalizar batalla.");

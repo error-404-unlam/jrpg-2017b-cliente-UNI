@@ -84,6 +84,7 @@ public class Pantalla {
 					cliente.getSocket().close();
 					System.exit(0);
 				} catch (IOException e) {
+					e.printStackTrace();
 					JOptionPane.showMessageDialog(null, "Fallo al intentar cerrar la aplicación.");
 					System.exit(1);
 				}

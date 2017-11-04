@@ -10,7 +10,6 @@ public class RegistroSet extends ComandosCliente {
 
 	@Override
 	public void ejecutar() {
-		System.out.println("ERROR");
 		this.getCliente().getPaqueteUsuario().setComando(Comando.REGISTRO);
 
 	}

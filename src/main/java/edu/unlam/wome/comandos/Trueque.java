@@ -53,6 +53,7 @@ public class Trueque extends ComandosEscucha {
 		} catch (InstantiationException | IllegalAccessException | ClassNotFoundException
 				| IllegalArgumentException | InvocationTargetException
 				| NoSuchMethodException | SecurityException e) {
+			e.printStackTrace();
 			JOptionPane.showMessageDialog(null, "Error al crear la batalla");
 		}
 		// Si soy yo mismo, tengo que cambiar los items a darme, y despues
