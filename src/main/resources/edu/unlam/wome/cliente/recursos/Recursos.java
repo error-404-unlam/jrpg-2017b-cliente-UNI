@@ -9,9 +9,9 @@ import java.util.Map;
 
 import javax.imageio.ImageIO;
 
-import edu.unlam.wome.cliente.frames.MenuCarga;
-import edu.unlam.wome.cliente.frames.MenuMapas;
-import edu.unlam.wome.cliente.mundo.Tile;
+import edu.unlam.wome.frames.MenuCarga;
+import edu.unlam.wome.frames.MenuMapas;
+import edu.unlam.wome.mundo.Tile;
 
 /**
  * Clase encargada de la gestion de los recursos.
