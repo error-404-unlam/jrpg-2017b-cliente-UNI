@@ -40,10 +40,10 @@ public class Trueque extends ComandosEscucha {
 		Casta casta = null;
 
 		try {
-			casta = (Casta) Class.forName("dominio" + "." + this.getJuego().getCli().
+			casta = (Casta) Class.forName("edu.unlam.wome.dominio.main" + "." + this.getJuego().getCli().
 					getPaquetePersonaje().getCasta())
 					.newInstance();
-			pj = (Personaje) Class.forName("dominio" + "." + this.getJuego().getCli().
+			pj = (Personaje) Class.forName("edu.unlam.wome.dominio.main" + "." + this.getJuego().getCli().
 					getPaquetePersonaje().getRaza())
 					.getConstructor(String.class, Integer.TYPE, Integer.TYPE, Integer.TYPE,
 							Integer.TYPE, Integer.TYPE,	Casta.class, Integer.TYPE,
