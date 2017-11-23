@@ -334,7 +334,9 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @return items.get(index).getIdItem
 	 */
 	public final int getItemID(final int index) {
-		return items.get(index).getIdItem();
+		if(items.size() > index)
+			return items.get(index).getIdItem();
+		return -1;
 	}
 
 	/**
