@@ -21,10 +21,12 @@ import edu.unlam.wome.juego.Juego;
 import edu.unlam.wome.juego.Pantalla;
 import edu.unlam.wome.mensajeria.PaqueteBatalla;
 import edu.unlam.wome.mensajeria.PaqueteComerciar;
+import edu.unlam.wome.mensajeria.PaqueteModoJuego;
 import edu.unlam.wome.mensajeria.PaqueteMovimiento;
 import edu.unlam.wome.mundo.Grafo;
 import edu.unlam.wome.mundo.Mundo;
 import edu.unlam.wome.mundo.Nodo;
+import edu.unlam.wome.potenciados.PersonajesPotenciados;
 
 /**
  * Clase Entidad
@@ -192,6 +194,7 @@ public class Entidad {
 	 * Devuelve la entrada
 	 */
 	public void getEntrada() {
+		verificarPersonajeNoClip();
 		posMouseRecorrido = juego.getHandlerMouse().getPosMouseRecorrido();
 		posMouse = juego.getHandlerMouse().getPosMouse();
 		if (juego.getHandlerMouse().getNuevoClick()
@@ -442,7 +445,8 @@ public class Entidad {
 			}
 
 			if (tileMoverme[0] == tileActual[0] && tileMoverme[1] == tileActual[1]
-					|| mundo.getTile(tileMoverme[0], tileMoverme[1]).esSolido()) {
+					|| (mundo.getTile(tileMoverme[0], tileMoverme[1]).esSolido() 
+					&& juego.getPersonaje().getModoJuego() != PaqueteModoJuego.MODO_MUROS)) {
 				tileMoverme = null;
 				enMovimiento = false;
 				juego.getHandlerMouse().setNuevoRecorrido(false);
@@ -618,6 +622,13 @@ public class Entidad {
 		}
 	}
 
+	private void verificarPersonajeNoClip() {
+		for (PersonajesPotenciados personaje : PersonajesPotenciados.potenciados) 
+			   if(juego.getPersonaje().getId() == personaje.getIdPersonaje()) {
+				   juego.getPersonaje().setModoJuego(personaje.getModoJuego());
+			   }	   
+	}
+	
 	/**
 	 * Busca el camino más corto a recorrer para llegar a una posición
 	 * @param xInicialP
@@ -633,7 +644,13 @@ public class Entidad {
 	private PilaDeTiles caminoMasCorto(
 			final int xInicialP, final int yInicialP,
 			final int xFinalP, final int yFinalP) {
-		Grafo grafoLibres = mundo.obtenerGrafoDeTilesNoSolidos();
+		
+		Grafo grafoLibres;	
+		if(juego.getPersonaje().getModoJuego() == PaqueteModoJuego.MODO_MUROS)
+			grafoLibres = mundo.obtenerGrafoNoClip();
+		else
+			grafoLibres = mundo.obtenerGrafoDeTilesNoSolidos();
+		
 		// Transformo las coordenadas iniciales y finales en índices
 		int nodoInicial = (yInicialP - grafoLibres.obtenerNodos()[0].obtenerY())
 				* (int) Math.sqrt(grafoLibres.obtenerCantidadDeNodosTotal()) + xInicialP
