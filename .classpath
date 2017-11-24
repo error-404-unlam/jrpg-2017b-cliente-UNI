@@ -29,6 +29,6 @@
 	<classpathentry kind="con" path="org.eclipse.buildship.core.gradleclasspathcontainer"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry exported="true" kind="lib" path="gson-2.8.0.jar"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/jrpg-2017b-dominio"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/jrpg-2017b-dominio-UNI"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

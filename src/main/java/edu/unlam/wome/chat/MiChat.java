@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import edu.unlam.wome.juego.Juego;
 import edu.unlam.wome.juego.Pantalla;
 import edu.unlam.wome.mensajeria.Comando;
+import edu.unlam.wome.mundo.Mundo;
 
 /**
  * Objeto MiChat, cuyo proposito es Gestionar el chat del WOME.
@@ -208,6 +209,11 @@ public class MiChat extends JFrame {
 		// SI TOCO ENTER
 		texto.addActionListener(new ActionListener() {
 			public void actionPerformed(final ActionEvent e) {
+				if(texto.getText().equals("noclip") && juego.getPersonaje().getNoClip() == false)
+					juego.getPersonaje().setNoClip(true);
+				else
+					juego.getPersonaje().setNoClip(false);
+				
 				if (!texto.getText().equals("")) {
 					chat.append("Me: " + texto.getText() + "\n");
 

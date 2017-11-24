@@ -119,6 +119,7 @@ public class Entidad {
 	private final int altoRectang = 10;
 	private final int limiteSupMovHacia = 7;
 	private final int animActual = 6;
+	private boolean noclip = false;
 
 	/**
 	 * Constructor de la clase Entidad
@@ -165,6 +166,7 @@ public class Entidad {
 		juego.getUbicacionPersonaje().setPosY(y);
 		juego.getUbicacionPersonaje().setDireccion(getDireccion());
 		juego.getUbicacionPersonaje().setFrame(getFrame());
+			
 	}
 
 	/**
@@ -186,6 +188,7 @@ public class Entidad {
 		mover();
 
 		juego.getCamara().centrar(this);
+		noclip = juego.getPersonaje().getNoClip();
 	}
 
 	/**
@@ -442,7 +445,7 @@ public class Entidad {
 			}
 
 			if (tileMoverme[0] == tileActual[0] && tileMoverme[1] == tileActual[1]
-					|| mundo.getTile(tileMoverme[0], tileMoverme[1]).esSolido()) {
+					/*|| mundo.getTile(tileMoverme[0], tileMoverme[1]).esSolido()*/) {
 				tileMoverme = null;
 				enMovimiento = false;
 				juego.getHandlerMouse().setNuevoRecorrido(false);
@@ -633,7 +636,14 @@ public class Entidad {
 	private PilaDeTiles caminoMasCorto(
 			final int xInicialP, final int yInicialP,
 			final int xFinalP, final int yFinalP) {
-		Grafo grafoLibres = mundo.obtenerGrafoDeTilesNoSolidos();
+		
+		Grafo grafoLibres;
+		if(noclip == true)
+			grafoLibres = mundo.obtenerGrafoNoClip();
+		else
+			grafoLibres = mundo.obtenerGrafoDeTilesNoSolidos();
+
+		
 		// Transformo las coordenadas iniciales y finales en índices
 		int nodoInicial = (yInicialP - grafoLibres.obtenerNodos()[0].obtenerY())
 				* (int) Math.sqrt(grafoLibres.obtenerCantidadDeNodosTotal()) + xInicialP

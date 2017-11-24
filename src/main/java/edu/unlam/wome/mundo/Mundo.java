@@ -37,6 +37,7 @@ public class Mundo {
 	private int yMinimo;
 	private int yMaximo;
 
+	private Grafo grafoNoClip;
 	private Grafo grafoDeTilesNoSolidos;
 	private final int offsetUtilitariasAncho = 0;
 	private final int offsetUtilitariasAlto = 1;
@@ -72,6 +73,7 @@ public class Mundo {
 		this.juego = juego;
 		cargarMundo(pathMap, pathObstac);
 		mundoAGrafo();
+		mundoAGrafoNoClip();
 	}
 
 	/**
@@ -497,6 +499,64 @@ public class Mundo {
 			}
 		}
 	}
+	
+	private void mundoAGrafoNoClip() {
+		// Creo una matriz de nodos
+		Nodo[][] nodos = new Nodo[ancho][alto];
+		int indice = 0;
+		// Lleno la matriz con los nodos
+		for (int y = 0; y < alto; y++) {
+			for (int x = 0; x < ancho; x++) {
+				nodos[y][x] = new Nodo(indice++, x, y);
+			}
+		}
+		// Variables finales
+		int xFinal = ancho;
+		int yFinal = alto;
+		// Uno cada nodo con sus adyacentes
+		for (int x = 0; x < yFinal; x++) {
+			for (int y = 0; y < xFinal; y++) {
+				 
+					// Si no es la ultima fila
+					if (y < yFinal - 1) {
+						nodos[x][y].agregarAdyacente(nodos[x][y + 1]);
+						nodos[x][y + 1].agregarAdyacente(nodos[x][y]);
+					}
+					// Si no es la ultima columna
+					if (x < xFinal - 1) {
+						
+						// Tiene que ser a partir de la segunda fila
+						if (y > 0) {
+							nodos[x][y].agregarAdyacente(nodos[x + 1][y - 1]);
+							nodos[x + 1][y - 1].agregarAdyacente(nodos[x][y]);
+						}
+						
+						nodos[x][y].agregarAdyacente(nodos[x + 1][y]);
+						nodos[x + 1][y].agregarAdyacente(nodos[x][y]);
+						
+						// Debe ser antes de la ultima fila
+						if (y < yFinal - 1) {
+							nodos[x][y].agregarAdyacente(nodos[x + 1][y + 1]);
+							nodos[x + 1][y + 1].agregarAdyacente(nodos[x][y]);
+						}
+					}	
+			}
+		}
+		// Creo un grafo para almacenar solo los tiles
+		grafoNoClip = new Grafo(ancho * alto);
+		indice = 0;
+		// Paso la matriz a un array
+		for (int i = 0; i < ancho; i++) {
+			for (int j = 0; j < alto; j++) {
+				grafoNoClip.agregarNodo(nodos[i][j]);
+			}
+		}
+	}
+	
+	public Grafo obtenerGrafoNoClip() {
+		return grafoNoClip;
+	}
+	
 
 	/**
 	 * Devuelve el grafo de tiles no solidos

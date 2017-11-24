@@ -35,6 +35,15 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	private int puntosAsignadosFuerza;
 	private int puntosAsignadosDestreza;
 	private int puntosAsignadosInteligencia;
+	private boolean noClip = false;
+	
+	public void setNoClip(boolean valor) {
+		noClip = valor;
+	}
+	
+	public boolean getNoClip() {
+		return noClip;
+	}
 
 	/**
 	 * Setea el estado
