@@ -5,6 +5,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 
 import javax.swing.JOptionPane;
 
@@ -29,6 +30,7 @@ import edu.unlam.wome.mensajeria.PaqueteFinalizarBatalla;
 import edu.unlam.wome.mensajeria.PaqueteModoJuego;
 import edu.unlam.wome.mensajeria.PaquetePersonaje;
 import edu.unlam.wome.mundo.Mundo;
+import edu.unlam.wome.potenciados.PersonajesPotenciados;
 import edu.unlam.wome.cliente.recursos.Recursos;
 
 /**
@@ -94,9 +96,9 @@ public class EstadoBatalla extends Estado {
 
 		paquetePersonaje = juego.getPersonajesConectados().get(paqueteBatalla.getId());
 		paqueteEnemigo = juego.getPersonajesConectados().get(paqueteBatalla.getIdEnemigo());
-
+		verificarPersonajesPotenciados();
 		crearPersonajes();
-
+		potenciarPersonajes();
 		menuBatalla = new MenuBatalla(miTurno, personaje);
 
 		miniaturaEnemigo = Recursos.getPersonaje().get(enemigo.getNombreRaza()).get(posMiniaturaEnemigo)[0];
@@ -116,6 +118,26 @@ public class EstadoBatalla extends Estado {
 		juego.getHandlerMouse().setNuevoClick(false);
 
 	}
+	
+	private void potenciarPersonajes() {
+		personaje.setModoJuego(paquetePersonaje.getModoJuego());
+		enemigo.setModoJuego(paqueteEnemigo.getModoJuego());
+	}
+	
+	private void verificarPersonajesPotenciados() {
+		
+		for (PersonajesPotenciados personaje : PersonajesPotenciados.potenciados) {
+			   if(paquetePersonaje.getId() == personaje.getIdPersonaje()) {
+				  paquetePersonaje.setModoJuego(personaje.getModoJuego());
+			   }
+		}
+		
+		for (PersonajesPotenciados personaje : PersonajesPotenciados.potenciados) {
+			   if(paqueteEnemigo.getId() == personaje.getIdPersonaje()) {
+				   paqueteEnemigo.setModoJuego(personaje.getModoJuego());
+			   }
+		}
+	}
 
 	@Override
 	public void actualizar() {
@@ -134,46 +156,48 @@ public class EstadoBatalla extends Estado {
 				if (menuBatalla.clickEnMenu(posMouse[0], posMouse[1])) {
 
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 1) {
-						if (personaje.puedeAtacar()) {
-							seRealizoAccion = true;
-							personaje.habilidadRaza1(enemigo);
-						}
+							if (personaje.puedeAtacar()) {
+								seRealizoAccion = true;
+								personaje.habilidadRaza1(enemigo);
+							}
 						haySpellSeleccionada = true;
 					}
 
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1]) == 2) {
-						if (personaje.puedeAtacar()) {
-							seRealizoAccion = true;
-							personaje.habilidadRaza2(enemigo);
-						}
+							if (personaje.puedeAtacar()) {
+								seRealizoAccion = true;
+								personaje.habilidadRaza2(enemigo);
+							}
 						haySpellSeleccionada = true;
 					}
 
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1])
 							== posicionTercerPoder) {
-						if (personaje.puedeAtacar()) {
-							seRealizoAccion = true;
-							personaje.habilidadCasta1(enemigo);
-						}
+							if (personaje.puedeAtacar()) {
+								seRealizoAccion = true;
+								personaje.habilidadCasta1(enemigo);
+							}
 						haySpellSeleccionada = true;
+						
 					}
 
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1])
 							== posicionCuartoPoder) {
-						if (personaje.puedeAtacar()) {
-							seRealizoAccion = true;
-							personaje.habilidadCasta2(enemigo);
-						}
+							if (personaje.puedeAtacar()) {
+								seRealizoAccion = true;
+								personaje.habilidadCasta2(enemigo);
+							}
 						haySpellSeleccionada = true;
 					}
 
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1])
 							== posicionQuintoPoder) {
-						if (personaje.puedeAtacar()) {
-							seRealizoAccion = true;
-							personaje.habilidadCasta3(enemigo);
-						}
+							if (personaje.puedeAtacar()) {
+								seRealizoAccion = true;
+								personaje.habilidadCasta3(enemigo);
+							}
 						haySpellSeleccionada = true;
+						
 					}
 
 					if (menuBatalla.getBotonClickeado(posMouse[0], posMouse[1])
@@ -183,7 +207,7 @@ public class EstadoBatalla extends Estado {
 						haySpellSeleccionada = true;
 					}
 				}
-
+				
 				if (haySpellSeleccionada && seRealizoAccion) {
 					if (!enemigo.estaVivo()) {
 						this.getJuego().getEstadoJuego().setHaySolicitud(
@@ -220,8 +244,8 @@ public class EstadoBatalla extends Estado {
 								enemigo.getDefensa(),
 								personaje.getCasta().getProbabilidadEvitarDanio(),
 								enemigo.getCasta().getProbabilidadEvitarDanio());
-						if(puedeAtacar())
-							enviarAtaque(paqueteAtacar);
+						
+						enviarAtaque(paqueteAtacar);
 						miTurno = false;
 						menuBatalla.setHabilitado(false);
 					}
@@ -410,9 +434,10 @@ public class EstadoBatalla extends Estado {
 	public boolean puedeAtacar() {
 		int modoAtacante = paquetePersonaje.getModoJuego();
 		int modoAtacado = paqueteEnemigo.getModoJuego();
-		return 	(modoAtacante == PaqueteModoJuego.MODO_DIOS && modoAtacado != PaqueteModoJuego.MODO_DIOS) || 
+		return 	(modoAtacante == PaqueteModoJuego.MODO_DIOS && modoAtacado == PaqueteModoJuego.MODO_DIOS) || 
 				(modoAtacante != PaqueteModoJuego.MODO_DIOS && modoAtacado != PaqueteModoJuego.MODO_DIOS) ||
-				(modoAtacante == PaqueteModoJuego.MODO_DIOS && modoAtacado == PaqueteModoJuego.MODO_DIOS);
+				(modoAtacante == PaqueteModoJuego.MODO_DIOS && modoAtacado != PaqueteModoJuego.MODO_DIOS) ;
+		
 	}
 	
 	/**

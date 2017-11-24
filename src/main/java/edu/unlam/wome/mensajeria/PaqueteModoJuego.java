@@ -11,6 +11,9 @@ public class PaqueteModoJuego extends Paquete implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	private int modo;
+	private int idPersonaje;
+	
+	
 	
 	public PaqueteModoJuego() {
 		this(NORMAL);
@@ -26,5 +29,13 @@ public class PaqueteModoJuego extends Paquete implements Serializable{
 
 	public void setModo(int modo) {
 		this.modo = modo;
+	}
+
+	public int getIdPersonaje() {
+		return idPersonaje;
+	}
+
+	public void setIdPersonaje(int idPersonaje) {
+		this.idPersonaje = idPersonaje;
 	}
 }
