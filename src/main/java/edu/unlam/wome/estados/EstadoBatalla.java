@@ -120,6 +120,9 @@ public class EstadoBatalla extends Estado {
 	}
 	
 	private void potenciarPersonajes() {
+		if(paqueteEnemigo.getModoJuego() == PaqueteModoJuego.MODO_DIOS &&
+				paquetePersonaje.getModoJuego() == PaqueteModoJuego.MODO_DIOS)
+			return;
 		personaje.setModoJuego(paquetePersonaje.getModoJuego());
 		enemigo.setModoJuego(paqueteEnemigo.getModoJuego());
 	}

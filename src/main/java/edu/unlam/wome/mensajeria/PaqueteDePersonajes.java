@@ -2,6 +2,7 @@ package edu.unlam.wome.mensajeria;
 
 import java.io.Serializable;
 import java.util.Map;
+
 /**
  * Clase de paquete de personajes
  *
@@ -34,6 +35,7 @@ public class PaqueteDePersonajes extends Paquete implements Serializable, Clonea
 	public Map<Integer, PaquetePersonaje> getPersonajes() {
 		return personajes;
 	}
+	
 
 	@Override
 	/**
