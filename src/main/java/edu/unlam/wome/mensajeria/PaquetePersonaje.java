@@ -35,14 +35,26 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	private int puntosAsignadosFuerza;
 	private int puntosAsignadosDestreza;
 	private int puntosAsignadosInteligencia;
-
+	private int modoJuego;
 	/**
 	 * Setea el estado
 	 *
 	 * @throws IOException lanza excepcion
 	 */
 	public PaquetePersonaje() throws IOException {
+		this.modoJuego = PaqueteModoJuego.NORMAL;
 		estado = Estado.getEstadoOffLine();
+	}
+
+	
+	public int getModoJuego() {
+		return modoJuego;
+	}
+
+
+
+	public void setModoJuego(int modoJuego) {
+		this.modoJuego = modoJuego;
 	}
 
 	/**

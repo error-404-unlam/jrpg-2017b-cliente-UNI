@@ -20,7 +20,7 @@ public abstract class Comando {
 			"Atacar", "FinalizarBatalla",
 			"ActualizarPersonaje", "ActualizarPersonajeLvl",
 			"ActualizarInventario", "Comercio", "ActualizarComercio",
-			"Trueque", "ActualizarTrueque", "Talk"};
+			"Trueque", "ActualizarTrueque", "Talk", "ActualizarModoJuego"};
 	public static final String[] CLASSNAMESBIS = {
 			"Conexion", "CrearPersonaje",
 			"Desconectar", "InicioSesionSet",
@@ -30,7 +30,7 @@ public abstract class Comando {
 			"FinalizarBatalla",	"ActualizarPersonaje",
 			"ActualizarPersonajeLvl", "ActualizarInventario",
 			"Comercio", "ActualizarComercio",
-			"Trueque", "ActualizarTrueque", "Talk"};
+			"Trueque", "ActualizarTrueque", "Talk", "ActualizarModoJuego"};
 
 	public static final int CONEXION = 0;
 	public static final int CREACIONPJ = 1;
@@ -51,7 +51,8 @@ public abstract class Comando {
 	public static final int TRUEQUE = 16;
 	public static final int ACTUALIZARTRUEQUE = 17;
 	public static final int TALK = 18;
-
+	public static final int ACTUALIZAR_MODO_JUEGO = 19;
+	
 	private final Gson gson = new Gson();
 	private String cadenaLeida;
 

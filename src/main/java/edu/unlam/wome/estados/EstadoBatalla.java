@@ -26,6 +26,7 @@ import edu.unlam.wome.mensajeria.Comando;
 import edu.unlam.wome.mensajeria.PaqueteAtacar;
 import edu.unlam.wome.mensajeria.PaqueteBatalla;
 import edu.unlam.wome.mensajeria.PaqueteFinalizarBatalla;
+import edu.unlam.wome.mensajeria.PaqueteModoJuego;
 import edu.unlam.wome.mensajeria.PaquetePersonaje;
 import edu.unlam.wome.mundo.Mundo;
 import edu.unlam.wome.cliente.recursos.Recursos;
@@ -219,7 +220,8 @@ public class EstadoBatalla extends Estado {
 								enemigo.getDefensa(),
 								personaje.getCasta().getProbabilidadEvitarDanio(),
 								enemigo.getCasta().getProbabilidadEvitarDanio());
-						enviarAtaque(paqueteAtacar);
+						if(puedeAtacar())
+							enviarAtaque(paqueteAtacar);
 						miTurno = false;
 						menuBatalla.setHabilitado(false);
 					}
@@ -405,6 +407,14 @@ public class EstadoBatalla extends Estado {
 		}
 	}
 
+	public boolean puedeAtacar() {
+		int modoAtacante = paquetePersonaje.getModoJuego();
+		int modoAtacado = paqueteEnemigo.getModoJuego();
+		return 	(modoAtacante == PaqueteModoJuego.MODO_DIOS && modoAtacado != PaqueteModoJuego.MODO_DIOS) || 
+				(modoAtacante != PaqueteModoJuego.MODO_DIOS && modoAtacado != PaqueteModoJuego.MODO_DIOS) ||
+				(modoAtacante == PaqueteModoJuego.MODO_DIOS && modoAtacado == PaqueteModoJuego.MODO_DIOS);
+	}
+	
 	/**
 	 * Devuelve el paquete del personaje
 	 * @return Paquete Personaje
