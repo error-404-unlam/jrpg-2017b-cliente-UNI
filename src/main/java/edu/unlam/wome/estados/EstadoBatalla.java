@@ -118,7 +118,9 @@ public class EstadoBatalla extends Estado {
 		juego.getHandlerMouse().setNuevoClick(false);
 
 	}
-	
+	/**
+	 * Metodo para configurar el modo dios a los personajes que van a pelear
+	 */
 	private void potenciarPersonajes() {
 		if(paqueteEnemigo.getModoJuego() == PaqueteModoJuego.MODO_DIOS &&
 				paquetePersonaje.getModoJuego() == PaqueteModoJuego.MODO_DIOS)
@@ -127,6 +129,9 @@ public class EstadoBatalla extends Estado {
 		enemigo.setModoJuego(paqueteEnemigo.getModoJuego());
 	}
 	
+	/**
+	 * Verifica si los personajes que van a pelear tienen puesto el modo dios
+	 */
 	private void verificarPersonajesPotenciados() {
 		
 		for (PersonajesPotenciados personaje : PersonajesPotenciados.potenciados) {
