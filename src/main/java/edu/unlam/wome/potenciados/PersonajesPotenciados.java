@@ -38,4 +38,28 @@ public class PersonajesPotenciados implements Serializable{
 	public int getModoJuego() {
 		return modoJuego;
 	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + idPersonaje;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PersonajesPotenciados other = (PersonajesPotenciados) obj;
+		if (idPersonaje != other.idPersonaje)
+			return false;
+		return true;
+	}
+	
+	
 }

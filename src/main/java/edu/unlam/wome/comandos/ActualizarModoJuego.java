@@ -14,6 +14,11 @@ public class ActualizarModoJuego extends ComandosEscucha{
 		PaqueteModoJuego paquete = getGson().fromJson(getCadenaLeida(), PaqueteModoJuego.class);
 		for (Map.Entry<Integer, PaquetePersonaje> entry : getJuego().getPersonajesConectados().entrySet()) {
 		   if(paquete.getIdPersonaje() == entry.getKey()) {
+			  int indice =  PersonajesPotenciados.potenciados.indexOf(
+					  new PersonajesPotenciados(paquete.getIdPersonaje(), PaqueteModoJuego.NORMAL));
+			  System.out.println(indice + " " +paquete.getModo());
+			  if(indice != -1)
+				  PersonajesPotenciados.potenciados.remove(indice);
 			  PersonajesPotenciados.potenciados.add(new PersonajesPotenciados(entry.getKey(), paquete.getModo()));
 		   }
 		}

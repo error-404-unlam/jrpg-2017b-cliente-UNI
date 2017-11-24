@@ -125,6 +125,7 @@ public class EstadoBatalla extends Estado {
 		if(paqueteEnemigo.getModoJuego() == PaqueteModoJuego.MODO_DIOS &&
 				paquetePersonaje.getModoJuego() == PaqueteModoJuego.MODO_DIOS)
 			return;
+		System.out.println(paquetePersonaje.getModoJuego());
 		personaje.setModoJuego(paquetePersonaje.getModoJuego());
 		enemigo.setModoJuego(paqueteEnemigo.getModoJuego());
 	}
