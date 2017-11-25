@@ -22,6 +22,12 @@ public class PaqueteModoJuego extends Paquete implements Serializable{
 	// Se hace invisible
 	public static final int MODO_INV = 3;
 	
+	// Doble fuerza
+	public static final int MODO_BIGDADDY = 4;
+	
+	// Mitad fuerza
+	public static final int MODO_TINYDADDY = 5;
+	
 	private static final long serialVersionUID = 1L;
 	private int modo; // Truco Seleccionado
 	private int idPersonaje; // Personaje que realizo el truco

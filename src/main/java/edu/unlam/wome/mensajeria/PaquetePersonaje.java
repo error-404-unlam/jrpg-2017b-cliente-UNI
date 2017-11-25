@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 
 import edu.unlam.wome.dominio.main.Item;
 import edu.unlam.wome.estados.Estado;
+import edu.unlam.wome.potenciados.PersonajesPotenciados;
 
 /**
  * Clase personaje
@@ -243,6 +244,16 @@ public class PaquetePersonaje extends Paquete implements Serializable, Cloneable
 	 * @return fuerza
 	 */
 	public int getFuerza() {
+		
+		for (PersonajesPotenciados personaje : PersonajesPotenciados.potenciados) 
+			   if(modoJuego == personaje.getIdPersonaje()) 
+				   modoJuego = personaje.getModoJuego();				   	   
+		
+		if(modoJuego == 4)
+			return fuerza*2;
+		if(modoJuego == 5)
+			return fuerza/2;
+	
 		return fuerza;
 	}
 

@@ -12,8 +12,10 @@ import edu.unlam.wome.cliente.recursos.Recursos;
 import edu.unlam.wome.estados.Estado;
 import edu.unlam.wome.juego.Juego;
 import edu.unlam.wome.juego.Pantalla;
+import edu.unlam.wome.mensajeria.PaqueteModoJuego;
 import edu.unlam.wome.mensajeria.PaqueteMovimiento;
 import edu.unlam.wome.mensajeria.PaquetePersonaje;
+import edu.unlam.wome.potenciados.PersonajesPotenciados;
 
 /**
  * Clase encargada de gestionar el Mundo
@@ -160,6 +162,12 @@ public class Mundo {
 		boolean haySolidoArriba;
 		boolean haySolidoAbajo;
 		Tile obst;
+		
+		for (PersonajesPotenciados personaje : PersonajesPotenciados.potenciados) 
+			   if(juego.getPersonaje().getId() == personaje.getIdPersonaje()) {
+				   juego.getPersonaje().setModoJuego(personaje.getModoJuego());
+			   }
+		
 		for (int i = 0; i < alto; i++) {
 			for (int j = 0; j < ancho; j++) {
 
@@ -278,7 +286,11 @@ public class Mundo {
 								getEstado() == Estado.getEstadoJuego()
 								&& personajesConectados.get(
 										actual.getIdPersonaje()).getMapa()
-								== juego.getPersonaje().getMapa()) {
+								== juego.getPersonaje().getMapa() && 
+								(((personajesConectados.get(actual.getIdPersonaje()).getModoJuego() == PaqueteModoJuego.MODO_INV) 
+								&& juego.getPersonaje().getModoJuego() == PaqueteModoJuego.MODO_INV) 
+								|| (personajesConectados.get(actual.getIdPersonaje()).getModoJuego() != PaqueteModoJuego.MODO_INV))) 
+								 {
 							jPersonaje = Mundo.mouseATile(
 									actual.getPosX(), actual.getPosY())[0];
 							iPersonaje = Mundo.mouseATile(
